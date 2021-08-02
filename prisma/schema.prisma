@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Word {
+  id          Int        @id @default(autoincrement())
+  swissGerman String
+  german      String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  spellings   Spelling[]
+  meanings    Meaning[]
+  examples    Example[]
+}
+
+model Meaning {
+  id     Int    @id @default(autoincrement())
+  value  String
+  wordId Int
+  word   Word   @relation(fields: [wordId], references: [id])
+}
+
+model Spelling {
+  id     Int    @id @default(autoincrement())
+  value  String
+  wordId Int
+  word   Word   @relation(fields: [wordId], references: [id])
+}
+
+model Example {
+  id     Int    @id @default(autoincrement())
+  value  String
+  wordId Int
+  word   Word   @relation(fields: [wordId], references: [id])
+}
