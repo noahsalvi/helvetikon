@@ -1,7 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 import faker from "faker";
+const prisma = new PrismaClient();
+faker.locale = "de_CH";
 export async function get() {
-  const prisma = new PrismaClient();
+  await prisma.meaning.deleteMany();
+  await prisma.example.deleteMany();
+  await prisma.spelling.deleteMany();
+  await prisma.word.deleteMany();
   for (let i = 0; i < 100; i++) {
     const result = await prisma.word.create({
       data: {
