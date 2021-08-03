@@ -2,7 +2,8 @@ const c = [
 	() => import("../../../src/routes/__layout.svelte"),
 	() => import("../components/error.svelte"),
 	() => import("../../../src/routes/index.svelte"),
-	() => import("../../../src/routes/[word]/index.svelte")
+	() => import("../../../src/routes/[word]/index.svelte"),
+	() => import("../../../src/routes/[word]/edit.svelte")
 ];
 
 const d = decodeURIComponent;
@@ -21,7 +22,10 @@ export const routes = [
 	[/^\/api\/words\/([^/]+?)\/?$/],
 
 	// src/routes/[word]/index.svelte
-	[/^\/([^/]+?)\/?$/, [c[0], c[3]], [c[1]], (m) => ({ word: d(m[1])})]
+	[/^\/([^/]+?)\/?$/, [c[0], c[3]], [c[1]], (m) => ({ word: d(m[1])})],
+
+	// src/routes/[word]/edit.svelte
+	[/^\/([^/]+?)\/edit\/?$/, [c[0], c[4]], [c[1]], (m) => ({ word: d(m[1])})]
 ];
 
 export const fallback = [c[0](), c[1]()];
