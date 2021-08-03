@@ -48,7 +48,7 @@
       bind:this={spellingInput}
       on:input={resizeInput}
       on:blur={addSpelling}
-      class="bg-primary py-1 px-2 rounded-2xl placeholder-white placeholder-shown:text-center"
+      class="bg-primary py-1 px-2 rounded-2xl placeholder-white placeholder-shown:(text-center focus:placeholder-transparent)"
       placeholder="+"
       size="1"
     />

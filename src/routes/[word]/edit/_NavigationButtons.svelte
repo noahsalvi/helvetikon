@@ -13,7 +13,7 @@
     href="./"
     class="bg-primaryDark h-13 w-13 rounded-full p-4 text-white filter drop-shadow-xl flex justify-center items-center"
   >
-    <Icon data={faArrowLeft} scale={1.5} />
+    <Icon data={faArrowLeft} class="w-full h-full" />
   </a>
 
   <button
