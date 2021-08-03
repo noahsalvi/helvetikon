@@ -6,7 +6,6 @@ export async function get({ params }) {
 
   const word = await prisma.word.findFirst({
     where: { swissGerman: { equals: query, mode: "insensitive" } },
-    include: { examples: true, meanings: true, spellings: true },
   });
 
   return {

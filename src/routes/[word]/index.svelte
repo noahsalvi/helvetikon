@@ -41,7 +41,7 @@
   </div>
 
   <!-- Actions -->
-  <div class="flex space-x-2 mb-3">
+  <div class="flex space-x-2 mb-6">
     <ActionButton on:click={null}><Icon data={faVolumeUp} /></ActionButton>
     <ActionButton on:click={copyURL}><Icon data={faCopy} /></ActionButton>
     <ActionButton on:click={null}><Icon data={faPen} /></ActionButton>
@@ -52,13 +52,13 @@
   <div class="text-sm">
     Schreibweisen:
     {#each word.spellings as spelling}
-      <span>{spelling.value}</span>
+      <span>{spelling}</span>
     {/each}
   </div>
 
   <section class="mt-6 mb-4">
     <h2>Beispiel</h2>
-    <div class="font-bold italic">"{word.examples[0].value}"</div>
+    <div class="font-bold italic">"{word.examples[0]}"</div>
 
     {#if word.examples.length > 1}
       <Example examples={word.examples} />
@@ -67,7 +67,7 @@
 
   <section class="mb-4">
     <h2>Bedeutung</h2>
-    <div class="font-bold">{word.meanings[0].value}</div>
+    <div class="font-bold">{word.meanings[0]}</div>
   </section>
 
   <!-- <section class="mb-4">

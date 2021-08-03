@@ -11,33 +11,34 @@ generator client {
 }
 
 model Word {
-  id          Int        @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   swissGerman String
   german      String
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  spellings   Spelling[]
-  meanings    Meaning[]
-  examples    Example[]
+  spellings   String[]
+  meanings    String[]
+  examples    String[]
+  history     WordHistory[]
+  updatedAt   DateTime      @updatedAt
 }
 
-model Meaning {
-  id     Int    @id @default(autoincrement())
-  value  String
-  wordId Int
-  word   Word   @relation(fields: [wordId], references: [id])
+model WordHistory {
+  id              Int      @id @default(autoincrement())
+  wordId          Int
+  word            Word     @relation(fields: [wordId], references: [id])
+  swissGerman     String
+  german          String
+  spellings       String[]
+  meanings        String[]
+  examples        String[]
+  createdAt       DateTime @default(now())
+  createdByUserId Int      @map("updatedByUserId")
+  createdBy       User     @relation(fields: [createdByUserId], references: [id])
 }
 
-model Spelling {
-  id     Int    @id @default(autoincrement())
-  value  String
-  wordId Int
-  word   Word   @relation(fields: [wordId], references: [id])
-}
-
-model Example {
-  id     Int    @id @default(autoincrement())
-  value  String
-  wordId Int
-  word   Word   @relation(fields: [wordId], references: [id])
+model User {
+  id           Int           @id @default(autoincrement())
+  username     String
+  email        String
+  password     String
+  createdWords WordHistory[]
 }

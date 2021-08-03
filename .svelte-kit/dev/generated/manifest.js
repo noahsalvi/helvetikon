@@ -14,6 +14,9 @@ export const routes = [
 	// src/routes/api/words/index.ts
 	[/^\/api\/words\/?$/],
 
+	// src/routes/api/words/faker.ts
+	[/^\/api\/words\/faker\/?$/],
+
 	// src/routes/api/words/[word].ts
 	[/^\/api\/words\/([^/]+?)\/?$/],
 

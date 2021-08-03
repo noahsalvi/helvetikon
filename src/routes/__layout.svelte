@@ -3,8 +3,3 @@
 </script>
 
 <slot />
-
-<style global>
-  svg {
-  }
-</style>

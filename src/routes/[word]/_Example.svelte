@@ -3,7 +3,7 @@
   import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
   import { slide } from "svelte/transition";
 
-  export let examples: import(".prisma/client").Example[];
+  export let examples: String[];
 
   let collapsed = true;
 
@@ -18,7 +18,7 @@
   {#if !collapsed}
     <div class="mt-5" transition:slide|local>
       {#each examples as example}
-        <div class="font-bold italic">"{example.value}"</div>
+        <div class="font-bold italic">"{example}"</div>
       {/each}
     </div>
   {/if}
