@@ -5,6 +5,7 @@ export default defineConfig({
     extend: {
       colors: {
         primary: "#CE1818",
+        primaryDark: "#a70000",
         coal: "#454545",
         accent: "#FF5252",
         hint: "#DEEBFF",

@@ -1,7 +1,7 @@
 <script context="module">
   export async function load({ page, fetch }) {
     const { word } = page.params;
-    const result = await fetch("/api/words/" + word);
+    const result = await fetch("/api/words/word-" + word);
     const wordData = await result.json();
 
     return { props: { word: wordData } };
@@ -15,7 +15,7 @@
   import Icon from "$lib/components/Icon";
   import ActionButton from "./_ActionButton.svelte";
   import SwissCross from "./_SwissCross.svelte";
-  import ReturnButton from "./_ReturnButton.svelte";
+  import HomeButton from "./_HomeButton.svelte";
   import Example from "./_Example.svelte";
   import { goto } from "$app/navigation";
 
@@ -31,7 +31,7 @@
   };
 </script>
 
-<ReturnButton />
+<HomeButton />
 
 <SwissCross />
 
@@ -58,22 +58,22 @@
   <div class="text-sm">
     Schreibweisen:
     {#each word.spellings as spelling}
-      <span>{spelling}</span>
+      <span>{spelling} &nbsp;</span>
     {/each}
   </div>
 
   <section class="mt-6 mb-4">
+    <h2>Bedeutung</h2>
+    <div class="font-bold">{word.meanings[0]}</div>
+  </section>
+
+  <section class="mb-4">
     <h2>Beispiel</h2>
     <div class="font-bold italic">"{word.examples[0]}"</div>
 
     {#if word.examples.length > 1}
       <Example examples={word.examples} />
     {/if}
-  </section>
-
-  <section class="mb-4">
-    <h2>Bedeutung</h2>
-    <div class="font-bold">{word.meanings[0]}</div>
   </section>
 
   <!-- <section class="mb-4">
