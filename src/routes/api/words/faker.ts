@@ -1,3 +1,4 @@
+import userAnonym from "$lib/userAnonym";
 import { PrismaClient } from "@prisma/client";
 import faker from "faker";
 const prisma = new PrismaClient();
@@ -7,10 +8,9 @@ export async function get() {
   for (let i = 0; i < 100; i++) {
     const result = await prisma.word.create({
       data: {
+        createdBy: userAnonym,
         german: faker.random.word(),
         swissGerman: faker.random.word(),
-        meanings: [faker.random.words(), faker.random.words()],
-        examples: [faker.random.words(), faker.random.words()],
         spellings: [faker.random.words(), faker.random.words()],
       },
     });

@@ -4,32 +4,36 @@ const prisma = new PrismaClient();
 export async function get({ params }) {
   const { searchQuery } = params;
 
-  const wordsSwissGermanMatch = await prisma.word.findMany({
-    where: {
-      swissGerman: { contains: searchQuery, mode: "insensitive" },
-    },
-  });
+  const wordsSwissGermanMatch: Word[] =
+    await prisma.$queryRaw`select * from "Word" where "swissGerman" ~* ${searchQuery} collate "de_CH" order by char_length("swissGerman");`;
 
-  // const wordsSpellingMatch = await prisma.word.findMany({
-  //   where: {
-  //     spellings: {  mode: "insensitive" },
-  //   },
-  // });
+  const wordsGermanMatch: Word[] =
+    await prisma.$queryRaw`select * from "Word" where "german"~*${searchQuery} collate "de_CH" order by char_length("german");`;
 
-  const wordsGermanMatch = await prisma.word.findMany({
-    where: {
-      german: { contains: searchQuery, mode: "insensitive" },
-    },
-  });
+  const searchQuerySpellings = `.*${searchQuery}*.`;
+  const wordsSpellingMatch: Word[] =
+    await prisma.$queryRaw`select * from "Word" where array_to_string(spellings, ',') ~* ${searchQuerySpellings} collate "de_CH"`;
 
-  const words = [
-    ...wordsSwissGermanMatch.sort(
-      (a, b) => a.swissGerman.length - b.swissGerman.length
-    ),
-    ...wordsGermanMatch.sort((a, b) => a.german.length - b.german.length),
-  ];
+  const words = removeDuplicates([
+    ...wordsSwissGermanMatch,
+    ...wordsGermanMatch,
+    ...wordsSpellingMatch,
+  ]);
 
   return {
     body: words,
   };
+}
+
+function removeDuplicates(arr: { id: number }[]) {
+  const newArray = [];
+  const foundIds: number[] = [];
+  for (const item of arr) {
+    if (!foundIds.includes(item.id)) {
+      foundIds.push(item.id);
+      newArray.push(item);
+    }
+  }
+
+  return newArray;
 }

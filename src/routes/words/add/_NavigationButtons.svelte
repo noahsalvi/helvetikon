@@ -3,6 +3,7 @@
   import { faArrowLeft, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
   export let loading;
+  export let disabled;
 </script>
 
 <!-- Placeholder -->
@@ -18,13 +19,13 @@
 
   <button
     on:click
-    class="bg-primary text-white h-full flex-grow rounded-4xl filter drop-shadow-xl"
-    disabled={loading}
+    class="bg-primary text-white h-full flex-grow rounded-4xl filter drop-shadow-xl disabled:bg-opacity-70"
+    disabled={loading || disabled}
   >
     {#if loading}
       <Icon data={faSpinner} spin scale={1.5} />
     {:else}
-      Bestätigen
+      Erstellen
     {/if}
   </button>
 </div>

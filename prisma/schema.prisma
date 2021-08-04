@@ -11,34 +11,49 @@ generator client {
 }
 
 model Word {
-  id          Int           @id @default(autoincrement())
-  swissGerman String
-  german      String
-  spellings   String[]
-  meanings    String[]
-  examples    String[]
-  history     WordHistory[]
-  updatedAt   DateTime      @updatedAt
-}
-
-model WordHistory {
-  id              Int      @id @default(autoincrement())
-  wordId          Int
-  word            Word     @relation(fields: [wordId], references: [id])
-  swissGerman     String
+  id              Int                  @id @default(autoincrement())
+  swissGerman     String               @unique
   german          String
   spellings       String[]
-  meanings        String[]
-  examples        String[]
-  createdAt       DateTime @default(now())
-  createdByUserId Int      @map("updatedByUserId")
-  createdBy       User     @relation(fields: [createdByUserId], references: [id])
+  interpretations WordInterpretation[]
+  createdAt       DateTime             @default(now())
+  createdBy       User                 @relation(fields: [createdByUserId], references: [id])
+
+  createdByUserId Int
+}
+
+model WordInterpretation {
+  id        Int      @id @default(autoincrement())
+  meaning   String
+  examples  String[]
+  word      Word     @relation(fields: [wordId], references: [id])
+  createdBy User     @relation(fields: [createdByUserId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  wordId          Int
+  createdByUserId Int
 }
 
 model User {
-  id           Int           @id @default(autoincrement())
-  username     String
-  email        String
-  password     String
-  createdWords WordHistory[]
+  id                     Int                  @id @default(autoincrement())
+  username               String
+  email                  String
+  password               String
+  createdWords           Word[]
+  createdInterpretations WordInterpretation[]
 }
+
+// model WordHistory {
+//   id              Int      @id @default(autoincrement())
+//   wordId          Int
+//   word            Word     @relation(fields: [wordId], references: [id])
+//   swissGerman     String
+//   german          String
+//   spellings       String[]
+//   meanings        String[]
+//   examples        String[]
+//   createdAt       DateTime @default(now())
+//   createdByUserId Int      @map("updatedByUserId")
+//   createdBy       User     @relation(fields: [createdByUserId], references: [id])
+// }

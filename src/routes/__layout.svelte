@@ -1,9 +1,8 @@
 <script>
   import "virtual:windi.css";
-  import Windi from "$lib/components/Windi.svelte";
+  import "$lib/components/WindiComponents.css";
 </script>
 
-<Windi />
 <slot />
 
 <style global>

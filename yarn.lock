@@ -67,10 +67,10 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
-"@sveltejs/kit@next":
-  version "1.0.0-next.140"
-  resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-1.0.0-next.140.tgz#ea29690298ddc8a0e682f83451a3e9e0b3294365"
-  integrity sha512-mNPtwItLU61JVpYXGAuDBEUlmenMs06lv6xxvhrdIgQlVlizNEebC9E27vdzPtcktxUZJGl4u/Fw3K1CG8Lk2A==
+"@sveltejs/kit@^1.0.0-next.141":
+  version "1.0.0-next.141"
+  resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-1.0.0-next.141.tgz#8b27c7c4392794452945d0493ce56aaafef47704"
+  integrity sha512-6pU+3IRiRKPbpfd1YszlrXeradkiWTBu01dD+HqwFkZQO0iapwYZyRY93vnKw1bqeIjy87JW6QAwO3h9yU7jhQ==
   dependencies:
     "@sveltejs/vite-plugin-svelte" "^1.0.0-next.14"
     cheap-watch "^1.0.3"
@@ -95,9 +95,9 @@
   integrity sha512-ejzb61Q5zQTtS0ZIafgQ7ahO5ACzmGhG5PfX2hxWyth3k0/aysb4ZOxKQB8DbzwSPppA5jmFBwqnBxjv5hqI5Q==
 
 "@types/node@*":
-  version "16.4.10"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.4.10.tgz#e57e2a54fc6da58da94b3571b1cb456d39f88597"
-  integrity sha512-TmVHsm43br64js9BqHWqiDZA+xMtbUpI1MBIA0EyiBmoV9pcEYFOSdj5fr6enZNfh4fChh+AGOLIzGwJnkshyQ==
+  version "16.4.12"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.4.12.tgz#961e3091f263e6345d2d84afab4e047a60b4b11b"
+  integrity sha512-zxrTNFl9Z8boMJXs6ieqZP0wAhvkdzmHSxTlJabM16cf5G9xBc1uPRH5Bbv2omEDDiM8MzTfqTJXBf0Ba4xFWA==
 
 "@types/pug@^2.0.4":
   version "2.0.5"
@@ -627,10 +627,15 @@ svelte-preprocess@^4.0.0:
     detect-indent "^6.0.0"
     strip-indent "^3.0.0"
 
+svelte-use-form@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/svelte-use-form/-/svelte-use-form-2.4.1.tgz#c6625031f41d3361a161312f936a6352d2d42a19"
+  integrity sha512-DDQTl82W+jDtt3cWdw8z1YKdwoO3l4FIeYUDL5p8OEEen03a57enP0IfG3xpApAyzTbhnb5PeQ01oR8JDHS99w==
+
 svelte@^3.15.0, svelte@^3.34.0:
-  version "3.41.0"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.41.0.tgz#2009fd6681453ffb8b5aaa57f4a89a8be3dedd78"
-  integrity sha512-X9/lnTcRBCrMdyFBVjfmqy1T2vyN8ejUE1OfbWSccc2Z42Amn3ab3XdBgVl+oDkZvzPfPMoxo6CEbWca7pXOew==
+  version "3.42.1"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.42.1.tgz#d4b4d9068cce911835f7c6b8ff1d290e1a0b5657"
+  integrity sha512-XtExLd2JAU3T7M2g/DkO3UNj/3n1WdTXrfL63OZ5nZq7nAqd9wQw+lR4Pv/wkVbrWbAIPfLDX47UjFdmnY+YtQ==
 
 to-regex-range@^5.0.1:
   version "5.0.1"
