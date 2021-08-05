@@ -1,6 +1,9 @@
 import type { User } from "@prisma/client";
 import cookie from "cookie";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export default function createJWTCookie(user: User) {
   const safeUser = { id: user.id, email: user.email, username: user.username };

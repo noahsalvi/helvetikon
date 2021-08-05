@@ -20,6 +20,7 @@
     "@types/validator": "^13.6.3",
     "bcrypt": "^5.0.1",
     "cookie": "^0.4.1",
+    "dotenv": "^10.0.0",
     "faker": "^5.5.3",
     "jsonwebtoken": "^8.5.1",
     "prisma": "2.28.0",

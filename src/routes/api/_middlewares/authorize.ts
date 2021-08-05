@@ -1,5 +1,8 @@
 import cookie from "cookie";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export default function _authorize(
   headers: { cookie: string },

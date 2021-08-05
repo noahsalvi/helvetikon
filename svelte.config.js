@@ -12,9 +12,6 @@ const config = {
     target: "#svelte",
     vite: {
       plugins: [WindiCSS.default()],
-      define: {
-        "process.env.JWT_SECRET": "process.env.JWT_SECRET",
-      },
     },
   },
 };
