@@ -4,9 +4,8 @@
   import { slide } from "svelte/transition";
 
   export let examples: String[];
-  if (examples.length > 1) {
-    examples = examples.slice(1);
-  }
+  // Remove the first example which already gets displayed somewhere else
+  examples = examples.slice(1);
 
   let collapsed = true;
 
@@ -14,7 +13,10 @@
 </script>
 
 {#if examples.length}
-  <div on:click={toggle} class="bg-hint mt-3 py-2 px-4 rounded">
+  <div
+    on:click={toggle}
+    class="has-pointer-event bg-hint mt-3 py-2 px-4 rounded"
+  >
     <div class="flex items-center">
       <Icon data={collapsed ? faPlus : faMinus} class="mr-2" />
       {collapsed ? "Mehr Beispiele" : "Minimieren"}

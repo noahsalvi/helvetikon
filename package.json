@@ -13,6 +13,7 @@
     "@prisma/client": "^2.28.0",
     "@sveltejs/kit": "^1.0.0-next.141",
     "@types/faker": "^5.5.7",
+    "@types/swiper": "^5.4.3",
     "faker": "^5.5.3",
     "prisma": "2.28.0",
     "svelte": "^3.34.0",
@@ -22,6 +23,7 @@
     "svelte-notifications": "^0.9.91",
     "svelte-preprocess": "^4.0.0",
     "svelte-use-form": "^2.4.1",
+    "swiper": "^6.8.1",
     "tslib": "^2.0.0",
     "typescript": "^4.0.0",
     "vite-plugin-windicss": "^1.2.7"

@@ -1,0 +1,89 @@
+<script lang="ts">
+  import type { User, WordInterpretation } from ".prisma/client";
+  import Examples from "./_Examples.svelte";
+  import "swiper/swiper-bundle.min.css";
+  import Swiper from "swiper/esm/svelte/swiper.svelte";
+  import SwiperSlide from "swiper/esm/svelte/swiper-slide.svelte";
+  import Icon from "$lib/components/Icon";
+  import {
+    faArrowCircleDown,
+    faArrowCircleUp,
+    faPlus,
+  } from "@fortawesome/free-solid-svg-icons";
+  import { page } from "$app/stores";
+
+  export let interpretations: (WordInterpretation & { createdBy: User })[];
+
+  let activeIndex = 0;
+
+  const updateActiveIndex = (e) => {
+    activeIndex = e.detail[0][0].activeIndex;
+  };
+
+  $: slidesLength = interpretations.length + 1;
+</script>
+
+<section>
+  <Swiper on:slideChange={updateActiveIndex}>
+    {#each interpretations as interpretation}
+      <SwiperSlide>
+        <div
+          class="mx-3 mb-1 py-6 px-3 rounded-lg bg-white border-3 border-light-300 filter drop-shadow"
+        >
+          <div class="font-bold">Bedeutung</div>
+          <div>
+            {interpretation.meaning}
+          </div>
+
+          <div class="h-3" />
+
+          <div class="font-bold">Beispiele</div>
+          <div class="italic">"{interpretation.examples[0]}"</div>
+          <Examples examples={interpretation.examples} />
+
+          <div class="h-3" />
+
+          <div class="flex justify-between items-baseline">
+            <div>{interpretation.createdBy.username}</div>
+
+            <div class="h-5 flex items-center gap-2">
+              <Icon
+                data={faArrowCircleUp}
+                class="opacity-50 text-primary w-auto !block h-full"
+              />
+              {5}
+              <Icon
+                data={faArrowCircleDown}
+                class="opacity-50 w-auto !block h-full"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- <div class="h-10 bg-green-100" /> -->
+      </SwiperSlide>
+    {/each}
+    <SwiperSlide>
+      <a
+        href="{$page.path}/interpretations/add"
+        class="mx-3 py-6 px-3
+        flex flex-col items-center justify-center gap-4
+        rounded-lg border-3 border-dashed border-light-800 filter drop-shadow"
+      >
+        <Icon data={faPlus} class="text-coal !block w-8 h-8" />
+        <div class="textxl text-coal">Interpretation hinzufügen</div>
+      </a>
+    </SwiperSlide>
+  </Swiper>
+
+  <!-- Bottom Overview thingy -->
+  <div class="h-20 flex justify-center items-center">
+    <div class="flex space-x-2">
+      {#each new Array(slidesLength) as _, index}
+        <div
+          class="h-2 w-2 rounded-full last:bg-opacity-50
+          {index === activeIndex ? 'bg-primary' : 'bg-gray-300'}"
+        />
+      {/each}
+    </div>
+  </div>
+</section>

@@ -10,7 +10,7 @@ export async function get({ params }) {
   const wordsGermanMatch: Word[] =
     await prisma.$queryRaw`select * from "Word" where "german"~*${searchQuery} collate "de_CH" order by char_length("german");`;
 
-  const searchQuerySpellings = `.*${searchQuery}*.`;
+  const searchQuerySpellings = `.*${searchQuery}.*`;
   const wordsSpellingMatch: Word[] =
     await prisma.$queryRaw`select * from "Word" where array_to_string(spellings, ',') ~* ${searchQuerySpellings} collate "de_CH"`;
 

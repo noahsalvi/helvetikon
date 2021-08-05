@@ -26,15 +26,16 @@
 </script>
 
 <section>
-  <label for="example">Beispiele</label>
+  <label for="example">Beispielsätze</label>
   <div class="flex flex-col gap-2 mb-3">
     {#each examples as example, index}
       <div class="flex">
         <input
+          bind:value={example}
           class="textfield"
           type="text"
           id="example-{index}"
-          bind:value={example}
+          placeholder="Schweizerdeutscher Satz"
         />
         {#if examples.length > 1}
           <button on:click={() => deleteExample(index)} class="px-3">

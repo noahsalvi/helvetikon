@@ -6,6 +6,10 @@ export async function get({ params }) {
   const query = params.word;
 
   const word = await prisma.word.findUnique({
+    include: {
+      createdBy: true,
+      interpretations: { include: { createdBy: true } },
+    },
     where: { swissGerman: query },
   });
 
