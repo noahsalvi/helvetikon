@@ -18,30 +18,32 @@ model Word {
   interpretations WordInterpretation[]
   createdAt       DateTime             @default(now())
   createdBy       User                 @relation(fields: [createdByUserId], references: [id])
-
   createdByUserId Int
 }
 
 model WordInterpretation {
-  id        Int      @id @default(autoincrement())
-  meaning   String
-  examples  String[]
-  word      Word     @relation(fields: [wordId], references: [id])
-  createdBy User     @relation(fields: [createdByUserId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
+  id              Int      @id @default(autoincrement())
+  word            Word     @relation(fields: [wordId], references: [id])
   wordId          Int
+  meaning         String
+  examples        String[]
+  upvotes         User[]   @relation("WordInterpretationUpvotes")
+  downvotes       User[]   @relation("WordInterpretationDownvotes")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  createdBy       User     @relation(fields: [createdByUserId], references: [id])
   createdByUserId Int
 }
 
 model User {
-  id                     Int                  @id @default(autoincrement())
-  username               String
-  email                  String
-  password               String
-  createdWords           Word[]
-  createdInterpretations WordInterpretation[]
+  id                       Int                  @id @default(autoincrement())
+  username                 String
+  email                    String
+  createdWords             Word[]
+  createdInterpretations   WordInterpretation[]
+  upvotedInterpretations   WordInterpretation[] @relation("WordInterpretationUpvotes")
+  downvotedInterpretations WordInterpretation[] @relation("WordInterpretationDownvotes")
+  password                 String
 }
 
 // model WordHistory {
