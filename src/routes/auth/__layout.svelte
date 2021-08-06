@@ -3,7 +3,7 @@
 </script>
 
 <div class="h-screen">
-  <header class="px-3 py-5 flex text-xl">
+  <header class="px-6 py-5 flex text-xl">
     <LogoButton />
   </header>
 

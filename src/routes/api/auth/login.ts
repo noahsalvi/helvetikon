@@ -1,9 +1,6 @@
-import { PrismaClient, User } from "@prisma/client";
+import { prisma, PrismaClient, User } from "@prisma/client";
 import bcrypt from "bcrypt";
-import authorize from "../_middlewares/authorize";
 import createJWTCookie from "../_utils/createJWTCookie";
-
-const prisma = new PrismaClient();
 
 export async function post({ body, locals }) {
   const username: string = body.username;

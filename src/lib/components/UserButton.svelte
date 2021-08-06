@@ -24,7 +24,7 @@
     </a>
   {:else}
     <a href="/auth/login" class="h-full w-full">
-      <Icon data={faUserCircle} class="!block h-full w-full" />
+      <Icon data={faUserCircle} class="!block h-full w-full text-white" />
     </a>
   {/if}
 </div>

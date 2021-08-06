@@ -10,7 +10,8 @@
     faArrowCircleUp,
     faPlus,
   } from "@fortawesome/free-solid-svg-icons";
-  import { page } from "$app/stores";
+  import { page, session } from "$app/stores";
+  import { goto } from "$app/navigation";
 
   export let interpretations: (WordInterpretation & { createdBy: User })[];
 
@@ -18,6 +19,12 @@
 
   const updateActiveIndex = (e) => {
     activeIndex = e.detail[0][0].activeIndex;
+  };
+
+  const addInterpretation = () => {
+    if (!$session.user)
+      return alert("Melde dich an, um Interpretationen hinzuzufügen");
+    goto(`${$page.path}/interpretations/add`);
   };
 
   $: slidesLength = interpretations.length + 1;
@@ -63,15 +70,15 @@
       </SwiperSlide>
     {/each}
     <SwiperSlide>
-      <a
-        href="{$page.path}/interpretations/add"
+      <div
+        on:click={addInterpretation}
         class="mx-3 py-6 px-3
         flex flex-col items-center justify-center gap-4
         rounded-lg border-3 border-dashed border-light-800 filter drop-shadow"
       >
         <Icon data={faPlus} class="text-coal !block w-8 h-8" />
         <div class="textxl text-coal">Interpretation hinzufügen</div>
-      </a>
+      </div>
     </SwiperSlide>
   </Swiper>
 
