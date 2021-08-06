@@ -1,13 +1,10 @@
 import type { User } from "@prisma/client";
 import cookie from "cookie";
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 export default function createJWTCookie(user: User) {
   const safeUser = { id: user.id, email: user.email, username: user.username };
-  const secret = process.env.JWT_SECRET as string;
+  const secret = import.meta.env.VITE_JWT_SECRET as string;
   const token = jwt.sign(safeUser, secret);
   const today = new Date();
   const tomorrow = new Date(today);

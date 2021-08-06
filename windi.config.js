@@ -1,4 +1,11 @@
 import { defineConfig } from "windicss/helpers";
+import plugin from "windicss/plugin";
+
+const formError = plugin(({ addVariant }) => [
+  addVariant("error", ({ modifySelectors }) =>
+    modifySelectors(({ className }) => `.touched.${className}:invalid`)
+  ),
+]);
 
 export default defineConfig({
   theme: {
@@ -12,8 +19,8 @@ export default defineConfig({
       },
     },
     fontFamily: {
-      sans: ["Rambla", "sans-serif"],
+      sans: ["Nunito", "sans-serif"],
     },
   },
-  plugins: [],
+  plugins: [formError],
 });
