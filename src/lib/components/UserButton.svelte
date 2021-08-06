@@ -14,7 +14,7 @@
   {#if authenticated}
     <a
       href="/profile/{$session.user.username}"
-      class="block h-full w-full rounded-full border-2 border-primary bg-primary overflow-hidden dark:(border-white bg-white)"
+      class="block h-full w-full rounded-full border-2 border-light-900 bg-light-900 overflow-hidden dark:(border-white bg-white)"
     >
       <img
         src="https://gravatar.com/avatar/{gravatarHash}"
@@ -24,7 +24,10 @@
     </a>
   {:else}
     <a href="/auth/login" class="h-full w-full">
-      <Icon data={faUserCircle} class="!block h-full w-full text-white" />
+      <Icon
+        data={faUserCircle}
+        class="!block h-full w-full text-light-900 dark:text-white"
+      />
     </a>
   {/if}
 </div>
