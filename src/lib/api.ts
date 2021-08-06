@@ -7,7 +7,13 @@ async function send({ method, path, data }) {
   }
 
   return fetch(path, opts)
-    .then((r) => r.text())
+    .then((r) => {
+      if (!r.ok) {
+        throw r;
+      }
+
+      return r.text();
+    })
     .then((json) => {
       try {
         return JSON.parse(json);

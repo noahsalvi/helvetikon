@@ -1,4 +1,6 @@
-export function post() {
+export function post({ locals }) {
+  delete locals.user;
+
   return {
     headers: {
       "set-cookie":

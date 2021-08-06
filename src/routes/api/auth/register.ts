@@ -12,7 +12,7 @@ export function post({ body }) {
   const password: string = body.password || "";
 
   return _validate(
-    [username.length > 4, validator.isEmail(email), password.length > 5],
+    [username.length > 3, validator.isEmail(email), password.length > 5],
     async () => {
       const userWithSameUsername = await prisma.user.findFirst({
         where: { username },

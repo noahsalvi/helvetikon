@@ -1,10 +1,11 @@
 <script>
-  import config from "../../config";
+  import config from "../config";
   import {
     faLayerGroup,
     faUserCircle,
   } from "@fortawesome/free-solid-svg-icons";
   import Icon from "./Icon";
+  import UserButton from "./UserButton.svelte";
 </script>
 
 <!-- Placeholder -->
@@ -17,6 +18,6 @@
     <h1 class="text-lg font-bold">{config.appName}</h1>
   </a>
 
-  <Icon class="text-coal" data={faUserCircle} scale={1.2} />
+  <UserButton />
 </nav>
 <div class="h-15" />
