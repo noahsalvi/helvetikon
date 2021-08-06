@@ -26,7 +26,11 @@
 
   export let word: Word & {
     createdBy: User;
-    interpretations: (WordInterpretation & { createdBy: User })[];
+    interpretations: (WordInterpretation & {
+      createdBy: User;
+      upvotes: User[];
+      downvotes: User[];
+    })[];
   };
 
   const copyURL = () => {

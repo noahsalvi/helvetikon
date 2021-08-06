@@ -12,8 +12,13 @@
   } from "@fortawesome/free-solid-svg-icons";
   import { page, session } from "$app/stores";
   import { goto } from "$app/navigation";
+  import Rating from "./_Rating.svelte";
 
-  export let interpretations: (WordInterpretation & { createdBy: User })[];
+  export let interpretations: (WordInterpretation & {
+    createdBy: User;
+    upvotes: User[];
+    downvotes: User[];
+  })[];
 
   let activeIndex = 0;
 
@@ -53,17 +58,7 @@
           <div class="flex justify-between items-baseline">
             <div>{interpretation.createdBy.username}</div>
 
-            <div class="h-5 flex items-center gap-2">
-              <Icon
-                data={faArrowCircleUp}
-                class="opacity-50 text-primary w-auto !block h-full"
-              />
-              {5}
-              <Icon
-                data={faArrowCircleDown}
-                class="opacity-50 w-auto !block h-full"
-              />
-            </div>
+            <Rating {...interpretation} />
           </div>
         </div>
         <!-- <div class="h-10 bg-green-100" /> -->

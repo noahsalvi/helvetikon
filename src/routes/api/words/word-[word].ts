@@ -9,7 +9,11 @@ export async function get({ params, headers }) {
     include: {
       createdBy: { select: { username: true } },
       interpretations: {
-        include: { createdBy: { select: { username: true } } },
+        include: {
+          createdBy: { select: { username: true } },
+          upvotes: { select: { username: true } },
+          downvotes: { select: { username: true } },
+        },
       },
     },
     where: { swissGerman: query },
