@@ -5,14 +5,10 @@
   import Swiper from "swiper/esm/svelte/swiper.svelte";
   import SwiperSlide from "swiper/esm/svelte/swiper-slide.svelte";
   import Icon from "$lib/components/Icon";
-  import {
-    faArrowCircleDown,
-    faArrowCircleUp,
-    faPlus,
-  } from "@fortawesome/free-solid-svg-icons";
+  import { faPlus } from "@fortawesome/free-solid-svg-icons";
   import { page, session } from "$app/stores";
   import { goto } from "$app/navigation";
-  import Rating from "./_Rating.svelte";
+  import Voting from "./_Voting.svelte";
 
   export let interpretations: (WordInterpretation & {
     createdBy: User;
@@ -32,6 +28,10 @@
     goto(`${$page.path}/interpretations/add`);
   };
 
+  const belongsToUser = (user: User) => {
+    return user.username === $session.user?.username;
+  };
+
   $: slidesLength = interpretations.length + 1;
 </script>
 
@@ -40,25 +40,39 @@
     {#each interpretations as interpretation}
       <SwiperSlide>
         <div
-          class="mx-3 mb-1 py-6 px-3 rounded-lg bg-white border-3 border-light-300 filter drop-shadow"
+          class="relative mx-3 mb-1 p-3 rounded-lg bg-white border-3 border-light-300 filter drop-shadow"
         >
+          {#if belongsToUser(interpretation.createdBy)}
+            <a
+              href="{$page.path}/interpretations/{interpretation.id}/edit"
+              class="absolute top-0 right-0 p-3 text-sm text-primaryDark"
+            >
+              Bearbeiten
+            </a>
+          {/if}
+
           <div class="font-bold">Bedeutung</div>
           <div>
             {interpretation.meaning}
           </div>
 
           <div class="h-3" />
-
-          <div class="font-bold">Beispiele</div>
-          <div class="italic">"{interpretation.examples[0]}"</div>
+          {#if interpretation.examples.length}
+            <div class="font-bold">Beispiele</div>
+            <div class="italic">"{interpretation.examples[0]}"</div>
+          {/if}
           <Examples examples={interpretation.examples} />
 
           <div class="h-3" />
 
           <div class="flex justify-between items-baseline">
-            <div>{interpretation.createdBy.username}</div>
+            <div>@{interpretation.createdBy.username}</div>
 
-            <Rating {...interpretation} />
+            <Voting
+              interpretationId={interpretation.id}
+              upvotes={interpretation.upvotes}
+              downvotes={interpretation.downvotes}
+            />
           </div>
         </div>
         <!-- <div class="h-10 bg-green-100" /> -->

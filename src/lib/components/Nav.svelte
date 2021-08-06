@@ -11,7 +11,7 @@
 <!-- Placeholder -->
 
 <nav
-  class="bg-white fixed h-15 p-4 w-full flex justify-between items-center shadow-md"
+  class="bg-white fixed h-15 px-6 w-full flex justify-between items-center shadow-md"
 >
   <a href="/" class="flex items-center text-primary">
     <Icon data={faLayerGroup} class="mr-4" scale={1.1} />

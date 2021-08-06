@@ -1,8 +1,6 @@
 <script lang="ts">
   import Nav from "$lib/components/Nav.svelte";
-
   import NavigationButtons from "./_NavigationButtons.svelte";
-
   import Spellings from "./_Spellings.svelte";
   import { goto } from "$app/navigation";
   import { required, useForm } from "svelte-use-form";
@@ -27,7 +25,7 @@
       body: JSON.stringify({ swissGerman, german, spellings }),
     }).then((result) =>
       result.json().then((word: Word) => {
-        const path = `/${word.swissGerman.toLowerCase()}`;
+        const path = `/${word.swissGerman}`;
         goto(path);
       })
     );

@@ -15,7 +15,7 @@
 
   import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
   import { maxLength, minLength, required, useForm } from "svelte-use-form";
-  import Button from "../_Button.svelte";
+  import Button from "../../../lib/components/Button.svelte";
   import TextFieldWithIcon from "../_TextFieldWithIcon.svelte";
 
   let loading = false;
@@ -65,7 +65,7 @@
     </div>
     <div class="h-6" />
 
-    <Button {loading} {form}>Anmelden</Button>
+    <Button {loading} valid={$form.valid}>Anmelden</Button>
 
     <div class="h-6" />
     <div class="flex justify-center items-center">

@@ -1,7 +1,6 @@
 <script lang="ts">
   import { session } from "$app/stores";
   import api from "$lib/api";
-
   import Icon from "$lib/components/Icon";
   import {
     faArrowCircleDown,
@@ -9,7 +8,7 @@
   } from "@fortawesome/free-solid-svg-icons";
   import type { User } from "@prisma/client";
 
-  export let id: number;
+  export let interpretationId: number;
   export let upvotes: User[];
   export let downvotes: User[];
 
@@ -24,6 +23,9 @@
       upvote = false;
     } else {
       upvotes = [...upvotes, $session.user];
+      downvotes = downvotes.filter(
+        (d) => d.username !== $session.user?.username
+      );
       upvote = true;
     }
 
@@ -41,6 +43,7 @@
       downvote = false;
     } else {
       downvotes = [...downvotes, $session.user];
+      upvotes = upvotes.filter((u) => u.username !== $session.user?.username);
       downvote = true;
     }
 
@@ -49,26 +52,29 @@
 
   const vote = ({ upvote, downvote }) => {
     api
-      .put(`api/interpretations/${id}/vote`, { upvote, downvote })
+      .put(`api/interpretations/${interpretationId}/vote`, { upvote, downvote })
       .then((response) => {
         upvotes = response.upvotes;
         downvotes = response.downvotes;
       });
   };
 
-  console.log(upvotes, downvotes);
+  const authorizeVote = (callback) => {
+    if (!$session.user) return alert("Nur angemeldete Nutzer dürfen abstimmen");
+    callback();
+  };
 
   $: score = upvotes.length - downvotes.length;
   $: selfUpvote = upvotes.find(
-    (upvote) => upvote.username === $session.user.username
+    (upvote) => upvote.username === $session.user?.username
   );
   $: selfDownvote = downvotes.find(
-    (downvote) => downvote.username === $session.user.username
+    (downvote) => downvote.username === $session.user?.username
   );
 </script>
 
-<div class="h-5 flex items-center gap-2">
-  <button on:click={upvote}>
+<div class="h-7 flex items-center gap-2">
+  <button on:click={() => authorizeVote(upvote)} class="h-full">
     <Icon
       data={faArrowCircleUp}
       class="text-primary w-auto !block h-full
@@ -76,7 +82,7 @@
     />
   </button>
   {score}
-  <button on:click={downvote}>
+  <button on:click={() => authorizeVote(downvote)} class="h-full">
     <Icon
       data={faArrowCircleDown}
       class="text-black w-auto !block h-full

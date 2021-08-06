@@ -1,4 +1,6 @@
 <script>
+  import { session } from "$app/stores";
+
   import api from "$lib/api";
 
   import Icon from "$lib/components/Icon";
@@ -14,9 +16,16 @@
   };
 </script>
 
-<main class="bg-primary h-screen px-3 text-white">
-  <header class="py-5">
-    <div class="flex justify-end h-8"><UserButton /></div>
+<main class="bg-primary h-screen px-6 text-white">
+  <header class="pb-5">
+    <div class="flex justify-between items-center h-15 dark">
+      {#if $session.user}
+        <button on:click={logout}>Log out</button>
+      {:else}
+        <div />
+      {/if}
+      <UserButton />
+    </div>
 
     <div class="h-10" />
 
@@ -25,7 +34,8 @@
       <h1 class="text-3xl">{config.appName}</h1>
     </div>
   </header>
-  <Search />
 
-  <button on:click={logout}>Log out</button>
+  <div class="h-10" />
+
+  <Search />
 </main>

@@ -81,8 +81,10 @@
 
 <svelte:head>
   <title>{word.swissGerman}</title>
-  <meta
-    name="description"
-    content="{word.german}, {word.interpretations[0].meaning}"
-  />
+  {#if word.interpretations.length}
+    <meta
+      name="description"
+      content="{word.german}, {word.interpretations[0].meaning}"
+    />
+  {/if}
 </svelte:head>

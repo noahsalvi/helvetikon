@@ -4,7 +4,7 @@
   import md5 from "md5";
   import Icon from "svelte-awesome/components/Icon.svelte";
 
-  const email = "noahsalvi@me.com";
+  const email = $session.user?.email || "";
   const gravatarHash: string = md5(email.trim().toLowerCase());
 
   $: authenticated = !!$session.user;
@@ -14,12 +14,12 @@
   {#if authenticated}
     <a
       href="/profile/{$session.user.username}"
-      class="block h-full w-full rounded-full bg-white border-2 overflow-hidden relative"
+      class="block h-full w-full rounded-full border-2 border-primary bg-primary overflow-hidden dark:(border-white bg-white)"
     >
       <img
         src="https://gravatar.com/avatar/{gravatarHash}"
         alt="Gravatar"
-        class="absolute left-0 top-0"
+        class="h-full w-full"
       />
     </a>
   {:else}

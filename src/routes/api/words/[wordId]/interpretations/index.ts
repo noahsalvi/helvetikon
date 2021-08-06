@@ -1,11 +1,12 @@
-import userAnonym from "$lib/userAnonym";
-import { PrismaClient, WordInterpretation } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
+import authorize from "../../../_middlewares/authorize";
 const prisma = new PrismaClient();
 
 type WordInterpretationDraft = { meaning: string; examples: string[] };
 
 // Create an interpretation
-export async function post({ params, body }) {
+export async function post({ params, body, locals }) {
+  const user = authorize(locals);
   const wordId = parseInt(params.wordId);
   const newInterpretation: WordInterpretationDraft = JSON.parse(body);
 
@@ -13,7 +14,7 @@ export async function post({ params, body }) {
     data: {
       ...newInterpretation,
       word: { connect: { id: wordId } },
-      createdBy: userAnonym,
+      createdBy: { connect: { id: user.id } },
     },
   });
 

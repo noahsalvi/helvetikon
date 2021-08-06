@@ -22,7 +22,7 @@
     required,
     useForm,
   } from "svelte-use-form";
-  import Button from "../_Button.svelte";
+  import Button from "../../../lib/components/Button.svelte";
   import TextFieldWithIcon from "../_TextFieldWithIcon.svelte";
 
   let loading = false;
@@ -99,7 +99,7 @@
 
     <div class="h-6" />
 
-    <Button {loading} {form}>Registrieren</Button>
+    <Button {loading} valid={$form.valid}>Registrieren</Button>
 
     <div class="h-6" />
     <div class="flex justify-center items-center">
