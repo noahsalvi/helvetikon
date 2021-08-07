@@ -2,8 +2,11 @@ import preprocess from "svelte-preprocess";
 import WindiCSS from "vite-plugin-windicss";
 import adapter from "@sveltejs/adapter-node";
 import fs from "fs";
+import dotenv from "dotenv";
 
-const productionMode = process.env.NODE_ENV === "production";
+dotenv.config();
+
+const https = !!process.env.HTTPS;
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -17,7 +20,7 @@ const config = {
     vite: {
       plugins: [WindiCSS.default()],
       server: {
-        https: productionMode
+        https: https
           ? {
               key: fs.readFileSync(
                 "/etc/letsencrypt/live/noahsalvi.ch/privkey.pem"
