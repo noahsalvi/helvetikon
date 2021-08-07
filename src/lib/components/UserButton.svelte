@@ -13,7 +13,7 @@
 <div class="h-9 w-9">
   {#if authenticated}
     <a
-      href="/profile/{$session.user.username}"
+      href="/profile"
       class="block h-full w-full rounded-full border-2 border-light-900 bg-light-900 overflow-hidden dark:(border-white bg-white)"
     >
       <img

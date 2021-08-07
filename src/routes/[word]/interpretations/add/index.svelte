@@ -11,10 +11,10 @@
 <script lang="ts">
   import Nav from "$lib/components/Nav.svelte";
   import type { Word } from ".prisma/client";
-  import NavigationButtons from "./_NavigationButtons.svelte";
   import Examples from "./_Examples.svelte";
 
   import { goto } from "$app/navigation";
+  import FloatingButton from "$lib/components/FloatingButton.svelte";
 
   export let word: Word;
 
@@ -61,11 +61,5 @@
 
   <Examples bind:examples />
 
-  <NavigationButtons on:click={submit} {loading} />
+  <FloatingButton on:click={submit} {loading}>Interpretieren</FloatingButton>
 </main>
-
-<style>
-  label {
-    @apply text-sm;
-  }
-</style>

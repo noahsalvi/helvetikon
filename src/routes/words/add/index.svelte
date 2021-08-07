@@ -1,10 +1,10 @@
 <script lang="ts">
   import Nav from "$lib/components/Nav.svelte";
-  import NavigationButtons from "./_NavigationButtons.svelte";
   import Spellings from "./_Spellings.svelte";
   import { goto } from "$app/navigation";
   import { required, useForm } from "svelte-use-form";
   import type { Word } from ".prisma/client";
+  import FloatingButton from "$lib/components/FloatingButton.svelte";
 
   const placeholder = "Öpfu";
   const form = useForm({
@@ -71,11 +71,7 @@
     </section>
   </form>
 
-  <NavigationButtons on:click={submit} {loading} disabled={!$form.valid} />
+  <FloatingButton on:click={submit} {loading} valid={$form.valid}>
+    Erstellen
+  </FloatingButton>
 </main>
-
-<style>
-  label {
-    @apply text-sm;
-  }
-</style>

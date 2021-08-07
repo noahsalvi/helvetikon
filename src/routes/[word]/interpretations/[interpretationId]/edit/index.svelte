@@ -18,6 +18,7 @@
   import api from "$lib/api";
   import Button from "$lib/components/Button.svelte";
   import ReturnButton from "$lib/components/ReturnButton.svelte";
+  import FloatingButton from "$lib/components/FloatingButton.svelte";
 
   export let interpretation: WordInterpretation & { word: Word };
 
@@ -64,22 +65,12 @@
 
   <Examples bind:examples={interpretation.examples} />
 
-  <div class="fixed bottom-4 left-0 px-3 w-full flex gap-3">
-    <ReturnButton href="../../" />
-
-    <div class="flex-grow">
-      <Button
-        on:click={submit}
-        {loading}
-        valid={!!interpretation.meaning.length}
-        class="filter drop-shadow-lg">Aktualisieren</Button
-      >
-    </div>
-  </div>
+  <FloatingButton
+    on:click={submit}
+    {loading}
+    href="../../"
+    valid={!!interpretation.meaning.length}
+  >
+    Aktualisieren
+  </FloatingButton>
 </main>
-
-<style>
-  label {
-    @apply text-sm;
-  }
-</style>

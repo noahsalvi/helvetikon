@@ -7,6 +7,7 @@
   import UserButton from "$lib/components/UserButton.svelte";
   import { faLayerGroup } from "@fortawesome/free-solid-svg-icons";
   import config from "../lib/config";
+  import AddWord from "./_AddWord.svelte";
   import Search from "./_Search.svelte";
 
   const logout = () => {
@@ -38,5 +39,7 @@
   <div class="h-10" />
 
   <Search />
-  <a href="/words/add">Wort hinzufügen</a>
+  <div class="mt-5 flex justify-center">
+    <AddWord />
+  </div>
 </main>

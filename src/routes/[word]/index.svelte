@@ -68,7 +68,7 @@
     <div class="flex space-x-2 mb-6">
       <ActionButton on:click={null}><Icon data={faVolumeUp} /></ActionButton>
       <ActionButton on:click={copyURL}><Icon data={faCopy} /></ActionButton>
-      <ActionButton on:click={editWord}><Icon data={faPen} /></ActionButton>
+      <!-- <ActionButton on:click={editWord}><Icon data={faPen} /></ActionButton> -->
     </div>
 
     <hr class="bg-primary h-1 rounded mb-3" />
