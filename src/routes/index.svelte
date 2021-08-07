@@ -38,4 +38,5 @@
   <div class="h-10" />
 
   <Search />
+  <a href="/words/add">Wort hinzufügen</a>
 </main>
