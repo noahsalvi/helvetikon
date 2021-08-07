@@ -13,5 +13,5 @@ jobs:
       with:
         node-version: 16
     - run: npm i -g yarn
-    - run: yarn i --frozen-lockfile
+    - run: yarn install --frozen-lockfile
     - run: yarn build build
