@@ -20,10 +20,10 @@ const config = {
         https: productionMode
           ? {
               key: fs.readFileSync(
-                "/etc/letsencrypt/live/noahsalvi.ch/fullchain.pem"
+                "/etc/letsencrypt/live/noahsalvi.ch/privkey.pem"
               ),
               cert: fs.readFileSync(
-                "/etc/letsencrypt/live/noahsalvi.ch/privkey.pem"
+                "/etc/letsencrypt/live/noahsalvi.ch/fullchain.pem"
               ),
             }
           : {},
