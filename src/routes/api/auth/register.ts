@@ -1,10 +1,8 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "$lib/prisma";
 import bcrypt from "bcrypt";
 import validator from "validator";
 import createJWTCookie from "../_utils/createJWTCookie";
 import _validate from "../_middlewares/validate";
-
-const prisma = new PrismaClient();
 
 export function post({ body }) {
   const username: string = body.username || "";

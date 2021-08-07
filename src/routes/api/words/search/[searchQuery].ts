@@ -1,5 +1,5 @@
-import { PrismaClient, Word } from "@prisma/client";
-const prisma = new PrismaClient();
+import prisma from "$lib/prisma";
+import type { Word } from "@prisma/client";
 
 export async function get({ params }) {
   const { searchQuery } = params;

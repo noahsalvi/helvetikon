@@ -1,5 +1,5 @@
-import { PrismaClient, WordInterpretation } from "@prisma/client";
-const prisma = new PrismaClient();
+import prisma from "$lib/prisma";
+import type { WordInterpretation } from "@prisma/client";
 
 // Update an interpretation
 export async function put({ params, body }) {

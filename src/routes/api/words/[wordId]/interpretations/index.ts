@@ -1,6 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "$lib/prisma";
 import authorize from "../../../_middlewares/authorize";
-const prisma = new PrismaClient();
 
 type WordInterpretationDraft = { meaning: string; examples: string[] };
 

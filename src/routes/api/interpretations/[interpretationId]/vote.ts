@@ -1,6 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import authorize from "../../_middlewares/authorize";
-const prisma = new PrismaClient();
+import prisma from "$lib/prisma";
 
 export async function put({ params, locals, body }) {
   const interpretationId = parseInt(params.interpretationId);
