@@ -1,5 +1,7 @@
 import preprocess from "svelte-preprocess";
 import WindiCSS from "vite-plugin-windicss";
+import adapter from "@sveltejs/adapter-node";
+import fs from "fs";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -8,10 +10,22 @@ const config = {
   preprocess: preprocess(),
 
   kit: {
-    // hydrate the <div id="svelte"> element in src/app.html
+    adapter: adapter({}),
     target: "#svelte",
     vite: {
       plugins: [WindiCSS.default()],
+      server: {
+        https: process.env.PRODUCTION
+          ? {
+              key: fs.readFileSync(
+                "/etc/letsencrypt/live/noahsalvi.ch/fullchain.pem"
+              ),
+              cert: fs.readFileSync(
+                "/etc/letsencrypt/live/noahsalvi.ch/privkey.pem"
+              ),
+            }
+          : {},
+      },
     },
   },
 };
