@@ -3,6 +3,8 @@ import WindiCSS from "vite-plugin-windicss";
 import adapter from "@sveltejs/adapter-node";
 import fs from "fs";
 
+const productionMode = process.env.NODE_ENV === "production";
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   // Consult https://github.com/sveltejs/svelte-preprocess
@@ -15,7 +17,7 @@ const config = {
     vite: {
       plugins: [WindiCSS.default()],
       server: {
-        https: process.env.PRODUCTION
+        https: productionMode
           ? {
               key: fs.readFileSync(
                 "/etc/letsencrypt/live/noahsalvi.ch/fullchain.pem"
