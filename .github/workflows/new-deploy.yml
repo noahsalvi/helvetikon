@@ -19,10 +19,12 @@ jobs:
         with:
           envKey_VITE_JWT_SECRET: ${{ secrets.JWT_SECRET }}
       - run: yarn build
-      - name: ssh deploy
+      - name: Save SSH Key
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
           chmod 700 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.DEPLOY_HOST}} >> ~/.ssh/known_hosts
-          scp -o StrictHostKeyChecking=no -r ./.svelte-kit ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:test/
+      - name: Copy build files to Remote Server
+        run: |
+          scp -r .svelte-kit prisma package.json yarn.lock ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:test/
