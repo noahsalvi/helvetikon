@@ -23,4 +23,9 @@ jobs:
           REMOTE_USER: ${{ secrets.DEPLOY_USER }}
           SOURCE: ".svelte-kit"
           TARGET: ${{ secrets.DEPLOY_TARGET }}
-      - run: ssh root@${{ secrets.DEPLOY_HOST }} systemctl restart swissgerman.service
+      - uses: fifsky/ssh-action@master
+        with:
+          command: systemctl restart swissgerman.service
+          host: ${{ secrets.DEPLOY_HOST }}
+          user: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_KEY }}
