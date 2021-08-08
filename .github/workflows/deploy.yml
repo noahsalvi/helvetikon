@@ -23,3 +23,4 @@ jobs:
           REMOTE_USER: ${{ secrets.DEPLOY_USER }}
           SOURCE: ".svelte-kit"
           TARGET: ${{ secrets.DEPLOY_TARGET }}
+      - run: ssh root@${{ secrets.DEPLOY_HOST }} systemctl restart swissgerman.service
