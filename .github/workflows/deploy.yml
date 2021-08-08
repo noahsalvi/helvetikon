@@ -14,6 +14,10 @@ jobs:
           node-version: 16
       - run: npm i -g yarn
       - run: yarn install --frozen-lockfile
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          VITE_JWT_SECRET: ${{ secrets.JWT_SECRET }}
       - run: yarn build
       - name: ssh deploy
         uses: easingthemes/ssh-deploy@v2.1.4
