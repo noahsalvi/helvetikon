@@ -111,3 +111,7 @@
     </div>
   </form>
 </main>
+
+<svelte:head>
+  <title>Registrieren</title>
+</svelte:head>

@@ -47,5 +47,5 @@
 </main>
 
 <svelte:head>
-  <title>SwissGerman</title>
+  <title>SwissGerman🇨🇭</title>
 </svelte:head>
