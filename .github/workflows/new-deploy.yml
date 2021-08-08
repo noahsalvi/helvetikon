@@ -27,4 +27,5 @@ jobs:
           ssh-keyscan -H ${{ secrets.DEPLOY_HOST}} >> ~/.ssh/known_hosts
       - name: Copy build files to Remote Server
         run: |
-          rsync -a --delete --exclude '.env' prisma package.json yarn.lock ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:test
+          rsync -a --delete --exclude '.env' build prisma package.json yarn.lock ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:test
+          ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} cd test && yarn install --prod
