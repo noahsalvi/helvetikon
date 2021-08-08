@@ -25,4 +25,4 @@ jobs:
           echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
           chmod 700 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.DEPLOY_HOST}} >> ~/.ssh/known_hosts
-          scp -o StrictHostKeyChecking=no -r ./svelte-kit ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:test/
+          scp -o StrictHostKeyChecking=no -r ./.svelte-kit ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:test/
