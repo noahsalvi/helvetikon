@@ -27,4 +27,4 @@ jobs:
           ssh-keyscan -H ${{ secrets.DEPLOY_HOST}} >> ~/.ssh/known_hosts
       - name: Copy build files to Remote Server
         run: |
-          scp -r .svelte-kit prisma package.json yarn.lock ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:test/
+          rsync -a build prisma package.json yarn.lock ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:test/temp
