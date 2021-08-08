@@ -45,3 +45,7 @@
     {/if}
   </div>
 </main>
+
+<svelte:head>
+  <title>SwissGerman</title>
+</svelte:head>
