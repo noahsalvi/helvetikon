@@ -40,6 +40,8 @@
 
   <Search />
   <div class="mt-5 flex justify-center">
-    <AddWordButton />
+    {#if $session.user}
+      <AddWordButton />
+    {/if}
   </div>
 </main>
