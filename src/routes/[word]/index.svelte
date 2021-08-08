@@ -53,10 +53,12 @@
       {word.swissGerman}
     </h1>
 
-    <div>
-      <span class="text-primaryDark text-xl">(DE) </span>
-      <span class="font-bold text-2xl">{word.german}</span>
-    </div>
+    {#if word.german}
+      <div>
+        <span class="text-primaryDark text-xl">(DE) </span>
+        <span class="font-bold text-2xl">{word.german}</span>
+      </div>
+    {/if}
 
     <div class="mb-4 text-sm italic">
       {#each word.spellings as spelling, index}

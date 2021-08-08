@@ -9,7 +9,7 @@
   const placeholder = "Öpfu";
   const form = useForm({
     swissGerman: { validators: [required] },
-    german: { validators: [required] },
+    german: { validators: [] },
   });
 
   let swissGerman = "";

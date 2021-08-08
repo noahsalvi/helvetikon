@@ -48,7 +48,9 @@
   <div class="h-10" />
   <h1 class="font-bold text-5xl text-coal mb-2">
     {interpretation.word.swissGerman}
-    <span class="text-2xl">= {interpretation.word.german}</span>
+    {#if interpretation.word.german}
+      <span class="text-2xl">= {interpretation.word.german}</span>
+    {/if}
   </h1>
 
   <hr class="bg-primary h-1 rounded mb-3" />
