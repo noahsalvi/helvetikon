@@ -44,5 +44,4 @@
       <AddWordButton />
     {/if}
   </div>
-  test CD
 </main>
