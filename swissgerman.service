@@ -1,0 +1,13 @@
+[Unit]
+Description=Swiss-GermanServer
+
+[Service]
+ExecStart=/usr/bin/npm --prefix /root/swiss-german run preview -- --host --https --port 443
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=nodejs-example
+#User=<alternate user>
+#Group=<alternate group>
+
+[Install]
+WantedBy=multi-user.target
