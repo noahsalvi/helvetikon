@@ -10,11 +10,12 @@
 
 <script lang="ts">
   import Nav from "$lib/components/Nav.svelte";
-  import type { Word } from ".prisma/client";
+  import type { Word } from "@prisma/client";
   import Examples from "./_Examples.svelte";
 
   import { goto } from "$app/navigation";
   import FloatingButton from "$lib/components/FloatingButton.svelte";
+  import api from "$lib/api";
 
   export let word: Word;
 
@@ -25,15 +26,11 @@
 
   const submit = async () => {
     loading = true;
-    const body = JSON.stringify({ meaning, examples });
+    const data = { meaning, examples };
     const path = `/api/words/${word.id}/interpretations`;
-    await fetch(path, {
-      body,
-      method: "POST",
-    }).then(() => {
-      goto("../");
+    await api.post(path, data).then(() => {
+      goto(".");
     });
-
     loading = false;
   };
 </script>

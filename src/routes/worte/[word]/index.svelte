@@ -3,6 +3,10 @@
     const { word } = page.params;
     const result = await fetch("/api/words/word-" + word);
 
+    if (!result.ok) {
+      return { status: result.status };
+    }
+
     const wordData = await result.json();
 
     return { props: { word: wordData } };

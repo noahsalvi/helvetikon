@@ -7,7 +7,7 @@ type WordInterpretationDraft = { meaning: string; examples: string[] };
 export async function post({ params, body, locals }) {
   const user = authorize(locals);
   const wordId = parseInt(params.wordId);
-  const newInterpretation: WordInterpretationDraft = JSON.parse(body);
+  const newInterpretation: WordInterpretationDraft = body;
 
   const interpretation = await prisma.wordInterpretation.create({
     data: {

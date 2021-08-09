@@ -52,7 +52,10 @@
 
   const vote = ({ upvote, downvote }) => {
     api
-      .put(`api/interpretations/${interpretationId}/vote`, { upvote, downvote })
+      .put(`/api/interpretations/${interpretationId}/vote`, {
+        upvote,
+        downvote,
+      })
       .then((response) => {
         upvotes = response.upvotes;
         downvotes = response.downvotes;
