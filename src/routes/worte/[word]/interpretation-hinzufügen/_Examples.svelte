@@ -37,11 +37,10 @@
           id="example-{index}"
           placeholder="Schweizerdeutscher Satz"
         />
-        {#if examples.length > 1}
-          <button on:click={() => deleteExample(index)} class="px-3">
-            <Icon data={faTrash} scale={1.2} />
-          </button>
-        {/if}
+
+        <button on:click={() => deleteExample(index)} class="px-3">
+          <Icon data={faTrash} scale={1.2} />
+        </button>
       </div>
     {/each}
   </div>
