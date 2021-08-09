@@ -16,8 +16,6 @@
 
   import { goto } from "$app/navigation";
   import api from "$lib/api";
-  import Button from "$lib/components/Button.svelte";
-  import ReturnButton from "$lib/components/ReturnButton.svelte";
   import FloatingButton from "$lib/components/FloatingButton.svelte";
 
   export let interpretation: WordInterpretation & { word: Word };
