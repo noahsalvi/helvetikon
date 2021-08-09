@@ -69,7 +69,7 @@
 
     <div class="h-6" />
     <div class="flex justify-center items-center">
-      <a href="./register"
+      <a href="./registrieren"
         >Neu hier? <span class="text-primary text-opacity-70 underline"
           >Registrieren</span
         ></a

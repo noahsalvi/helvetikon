@@ -38,7 +38,7 @@
   };
 
   const editWord = () => {
-    const path = $page.path + "/edit";
+    const path = $page.path + "/bearbeiten";
     goto(path);
   };
 </script>

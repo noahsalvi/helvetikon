@@ -25,7 +25,7 @@
       body: JSON.stringify({ swissGerman, german, spellings }),
     }).then((result) =>
       result.json().then((word: Word) => {
-        const path = `/${word.swissGerman}`;
+        const path = `/worte/${word.swissGerman}`;
         goto(path);
       })
     );

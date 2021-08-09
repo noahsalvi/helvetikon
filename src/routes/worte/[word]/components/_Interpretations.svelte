@@ -25,7 +25,7 @@
   const addInterpretation = () => {
     if (!$session.user)
       return alert("Melde dich an, um Interpretationen hinzuzufügen");
-    goto(`${$page.path}/interpretations/add`);
+    goto(`${$page.path}/interpretation-hinzufügen`);
   };
 
   const belongsToUser = (user: User) => {
@@ -44,7 +44,7 @@
         >
           {#if belongsToUser(interpretation.createdBy)}
             <a
-              href="{$page.path}/interpretations/{interpretation.id}/edit"
+              href="{$page.path}/interpretationen/{interpretation.id}/bearbeiten"
               class="absolute top-0 right-0 p-3 text-sm text-primaryDark"
             >
               Bearbeiten

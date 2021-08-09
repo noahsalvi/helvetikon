@@ -103,7 +103,7 @@
 
     <div class="h-6" />
     <div class="flex justify-center items-center">
-      <a href="./login"
+      <a href="./anmelden"
         >Du hast bereits ein Account? <span
           class="text-primary text-opacity-70 underline">Anmelden</span
         ></a

@@ -45,7 +45,7 @@
   <div class="absolute w-full bg-white text-black rounded-lg shadow-lg">
     {#each searchResultWords as word}
       <a
-        href="/{word.swissGerman}"
+        href="/worte/{word.swissGerman}"
         class="flex items-center px-3 py-2 border-light-700 not-last:border-b-2"
       >
         <div class="bg-accent text-white p-1 mr-3 rounded-md">
