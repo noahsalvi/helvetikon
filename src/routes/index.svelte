@@ -44,12 +44,12 @@
 
   <Search />
   <div class="mt-5 flex gap-5">
-    {#if $session.user}
-      <LandingAction icon={faPlus} href="/wort-hinzufügen"
-        >Wort hinzufügen</LandingAction
-      >
-    {/if}
     <LandingAction icon={faBook} href="/worte">Alle Wörter</LandingAction>
+    {#if $session.user}
+      <LandingAction icon={faPlus} href="/wort-hinzufügen">
+        Wort hinzufügen
+      </LandingAction>
+    {/if}
   </div>
 </main>
 
