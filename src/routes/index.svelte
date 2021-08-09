@@ -47,5 +47,9 @@
 </main>
 
 <svelte:head>
-  <title>SwissGerman🇨🇭</title>
+  <title>{config.appName} | Schweizerdeutsches Wörterbuch 📔</title>
+  <meta
+    name="description"
+    content="Ein Oline-Wörterbuch für die schweizerdeutsche Sprache, das von jedem verbessert werden kann."
+  />
 </svelte:head>

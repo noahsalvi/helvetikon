@@ -1,3 +1,3 @@
 export default {
-  appName: "Schweizerdeutsch",
+  appName: "SwissGerman",
 };
