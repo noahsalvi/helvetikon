@@ -2,7 +2,7 @@
   import Button from "./Button.svelte";
   import ReturnButton from "./ReturnButton.svelte";
 
-  export let href = "../";
+  export let href = ".";
   export let loading = false;
   export let valid = true;
 </script>
