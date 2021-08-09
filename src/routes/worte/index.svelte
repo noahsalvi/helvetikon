@@ -15,7 +15,7 @@
 
 <Nav />
 <main class="px-6 mt-10">
-  <h1 class="font-bold text-4xl text-coal">Alle Worte</h1>
+  <h1 class="font-bold text-4xl text-coal">Alle Wörter</h1>
   <h2 class="text-xl text-gray-500">Total: {words.length}</h2>
 
   <div class="h-6" />

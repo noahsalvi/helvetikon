@@ -35,8 +35,7 @@
     }, 200);
   };
 
-  const handleEnter = (e) => {
-    if (e.key !== "Enter") return;
+  const gotoFirstSearchResult = () => {
     const firstSearchResult = searchResultWords[0];
     if (firstSearchResult) {
       const path = `/worte/${firstSearchResult.swissGerman}`;
@@ -51,16 +50,18 @@
     <input
       bind:value={query}
       on:input={search}
-      on:keypress={handleEnter}
+      on:keypress={(e) => e.key === "Enter" && gotoFirstSearchResult()}
       class="w-full rounded-xl p-3 pr-12 font-bold h-14 text-black border !border-3 !border-light-900 placeholder-gray-500"
       type="text"
       placeholder="Zwetschgää.."
     />
-
-    <Icon
-      class="absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-500"
-      data={faSearch}
-    />
+    <button
+      disabled={!searchResultWords.length}
+      on:click={gotoFirstSearchResult}
+      class="p-1 absolute right-3 top-1/2 transform -translate-y-1/2 disabled:cursor-default"
+    >
+      <Icon class="text-gray-500" data={faSearch} />
+    </button>
   </div>
 
   <div class="h-3" />
