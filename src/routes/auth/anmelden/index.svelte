@@ -1,16 +1,4 @@
-<script context="module">
-  export function load({ session }) {
-    if (session.user) {
-      return { status: 302, redirect: "/" };
-    }
-
-    return {};
-  }
-</script>
-
 <script lang="ts">
-  import { goto } from "$app/navigation";
-
   import api from "$lib/api";
 
   import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";

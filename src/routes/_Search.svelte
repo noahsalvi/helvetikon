@@ -1,5 +1,10 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
+
+  import Icon from "$lib/components/Icon";
+
   import type { Word } from ".prisma/client";
+  import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
   let searchResultWords: Word[] = [];
 
@@ -13,7 +18,7 @@
   };
 
   const search = () => {
-    if (query.length < 2) {
+    if (query.length < 1) {
       searchResultWords = [];
       return;
     }
@@ -22,23 +27,41 @@
     debounce(() => {
       fetch(path).then((result) =>
         result.json().then((words) => {
-          searchResultWords = words;
           loading = false;
+          if (query.length < 1) return;
+          searchResultWords = words;
         })
       );
     }, 200);
+  };
+
+  const handleEnter = (e) => {
+    if (e.key !== "Enter") return;
+    const firstSearchResult = searchResultWords[0];
+    if (firstSearchResult) {
+      const path = `/worte/${firstSearchResult.swissGerman}`;
+      goto(path);
+    }
   };
 </script>
 
 <div class="relative">
   <label for="search">Wortsuche</label>
-  <input
-    bind:value={query}
-    on:input={search}
-    class="w-full rounded-xl p-3 font-bold mt-2 h-14 text-black border !border-3 !border-light-900 placeholder-gray-500"
-    type="text"
-    placeholder="Zwetschgää.."
-  />
+  <div class="mt-2 relative">
+    <input
+      bind:value={query}
+      on:input={search}
+      on:keypress={handleEnter}
+      class="w-full rounded-xl p-3 pr-12 font-bold h-14 text-black border !border-3 !border-light-900 placeholder-gray-500"
+      type="text"
+      placeholder="Zwetschgää.."
+    />
+
+    <Icon
+      class="absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-500"
+      data={faSearch}
+    />
+  </div>
 
   <div class="h-3" />
 

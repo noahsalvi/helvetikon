@@ -25,8 +25,7 @@
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
 
-  import type { WordInterpretation } from ".prisma/client";
-  import type { User } from "@prisma/client";
+  import type { User, WordInterpretation } from "@prisma/client";
 
   export let word: Word & {
     createdBy: User;
@@ -44,6 +43,11 @@
   const editWord = () => {
     const path = $page.path + "/bearbeiten";
     goto(path);
+  };
+
+  const getMetaSpellingList = () => {
+    const length = word.spellings.length - 1;
+    return word.spellings.join(", ");
   };
 </script>
 
@@ -86,11 +90,16 @@
 <HomeButton />
 
 <svelte:head>
-  <title>{word.swissGerman}</title>
+  <title>
+    {word.swissGerman} ({getMetaSpellingList()}) | Schweizerdeutsches Wörterbuch
+  </title>
   {#if word.interpretations.length}
     <meta
       name="description"
-      content="{word.german}, {word.interpretations[0].meaning}"
+      content="(DE){word.german}
+      {word.interpretations[0].meaning
+        ? `, Bedeutung: ${word.interpretations[0].meaning}`
+        : ''}"
     />
   {/if}
 </svelte:head>

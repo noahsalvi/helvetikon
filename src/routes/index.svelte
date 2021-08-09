@@ -5,9 +5,13 @@
 
   import Icon from "$lib/components/Icon";
   import UserButton from "$lib/components/UserButton.svelte";
-  import { faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+  import {
+    faBook,
+    faLayerGroup,
+    faPlus,
+  } from "@fortawesome/free-solid-svg-icons";
   import config from "../lib/config";
-  import AddWordButton from "./_AddWordButton.svelte";
+  import LandingAction from "./_LandingAction.svelte";
   import Search from "./_Search.svelte";
 
   const logout = () => {
@@ -39,10 +43,13 @@
   <div class="h-10" />
 
   <Search />
-  <div class="mt-5 flex justify-center">
+  <div class="mt-5 flex gap-5">
     {#if $session.user}
-      <AddWordButton />
+      <LandingAction icon={faPlus} href="/wort-hinzufügen"
+        >Wort hinzufügen</LandingAction
+      >
     {/if}
+    <LandingAction icon={faBook} href="/worte">Alle Wörter</LandingAction>
   </div>
 </main>
 

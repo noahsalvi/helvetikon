@@ -45,17 +45,3 @@ model User {
   downvotedInterpretations WordInterpretation[] @relation("WordInterpretationDownvotes")
   password                 String
 }
-
-// model WordHistory {
-//   id              Int      @id @default(autoincrement())
-//   wordId          Int
-//   word            Word     @relation(fields: [wordId], references: [id])
-//   swissGerman     String
-//   german          String
-//   spellings       String[]
-//   meanings        String[]
-//   examples        String[]
-//   createdAt       DateTime @default(now())
-//   createdByUserId Int      @map("updatedByUserId")
-//   createdBy       User     @relation(fields: [createdByUserId], references: [id])
-// }

@@ -1,3 +1,13 @@
+<script context="module">
+  export function load({ session }) {
+    if (session.user) {
+      return { status: 302, redirect: "/" };
+    }
+
+    return {};
+  }
+</script>
+
 <script>
   import LogoButton from "$lib/components/LogoButton.svelte";
 </script>
