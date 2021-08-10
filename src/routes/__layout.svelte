@@ -1,8 +1,10 @@
 <script>
   import "virtual:windi.css";
   import "$lib/components/WindiComponents.css";
+  import Toaster from "$lib/components/Toaster/Toaster.svelte";
 </script>
 
+<Toaster />
 <slot />
 
 <style global>
