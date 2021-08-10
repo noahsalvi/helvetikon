@@ -64,3 +64,7 @@
 
   <FloatingButton on:click={submit} {loading}>Interpretieren</FloatingButton>
 </main>
+
+<svelte:head>
+  <title>Interpretation Hinzufügen | {word.swissGerman}</title>
+</svelte:head>

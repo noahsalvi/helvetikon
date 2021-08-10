@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { faFileWord } from "@fortawesome/free-solid-svg-icons";
+
   export let spellings: string[];
 
   let spellingInput: HTMLInputElement;

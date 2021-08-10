@@ -46,7 +46,8 @@
 
   const getMetaSpellingList = () => {
     const length = word.spellings.length - 1;
-    return word.spellings.join(", ");
+    const spellingsList = word.spellings.join(", ");
+    return length ? spellingsList + " " : "";
   };
 </script>
 
@@ -90,7 +91,8 @@
 
 <svelte:head>
   <title>
-    {word.swissGerman} ({getMetaSpellingList()}) | Schweizerdeutsches Wörterbuch
+    {word.swissGerman}
+    {getMetaSpellingList()}| Schweizerdeutsches Wörterbuch
   </title>
   {#if word.interpretations.length}
     <meta

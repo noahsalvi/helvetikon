@@ -77,3 +77,7 @@
     Erstellen
   </FloatingButton>
 </main>
+
+<svelte:head>
+  <title>Wort Hinzufügen</title>
+</svelte:head>

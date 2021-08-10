@@ -19,6 +19,7 @@
   import api from "$lib/api";
   import FloatingButton from "$lib/components/FloatingButton.svelte";
   import { success, warn } from "$lib/components/Toaster/toast";
+  import { faFileWord } from "@fortawesome/free-solid-svg-icons";
 
   export let interpretation: WordInterpretation & { word: Word };
 
@@ -79,3 +80,7 @@
     Aktualisieren
   </FloatingButton>
 </main>
+
+<svelte:head>
+  <title>Interpretation Bearbeiten | {interpretation.word.swissGerman}</title>
+</svelte:head>

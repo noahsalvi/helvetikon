@@ -31,3 +31,7 @@
     {/each}
   </div>
 </main>
+
+<svelte:head>
+  <title>Alle Wörter</title>
+</svelte:head>
