@@ -2,6 +2,10 @@
   import { session } from "$app/stores";
   import api from "$lib/api";
   import Icon from "$lib/components/Icon";
+  import {
+    successNextVisit,
+    warnNextVisit,
+  } from "$lib/components/Toaster/toast";
   import UserButton from "$lib/components/UserButton.svelte";
   import {
     faBook,
@@ -14,6 +18,7 @@
 
   const logout = () => {
     api.post("/api/auth/logout").then(() => {
+      warnNextVisit("Du hast dich abgemeldet 🏃‍♂️");
       location.reload();
     });
   };

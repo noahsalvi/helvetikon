@@ -4,8 +4,9 @@
   import { fly } from "svelte/transition";
   import { ToastType } from "./toastProps";
 
-  export let type: ToastType;
   export let content: string;
+  export let type: ToastType;
+  export let link: { title: string; href: string } = null;
   export let timeout: number = 2000;
 
   const dispatch = createEventDispatcher();
@@ -28,7 +29,10 @@
 <div
   on:click={destroy}
   transition:fly
-  class="px-4 py-1 rounded min-w-30 font-semibold shadow-md {styling}"
+  class="px-4 py-1.5 rounded min-w-30 shadow-md {styling}"
 >
   {content}
+  {#if link}
+    &nbsp;<a class="font-bold text-sm" href={link.href}>{link.title}</a>
+  {/if}
 </div>

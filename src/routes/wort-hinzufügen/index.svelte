@@ -29,7 +29,14 @@
         goto(path).then(() => success(`Wort wurde erstellt 🎉`));
       })
       .catch((reason) => {
-        error(reason.status === 409 && "Wort existiert bereits 😕");
+        switch (reason.status) {
+          case 409:
+            return error("Wort existiert bereits 😕", 3000, {
+              title: "Ansehen",
+              href: `/worte/${swissGerman}`,
+            });
+        }
+        error();
       });
 
     loading = false;

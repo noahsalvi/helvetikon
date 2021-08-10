@@ -1,6 +1,6 @@
 <script lang="ts">
   import api from "$lib/api";
-  import { error } from "$lib/components/Toaster/toast";
+  import { error, successNextVisit } from "$lib/components/Toaster/toast";
 
   import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
   import { maxLength, minLength, required, useForm } from "svelte-use-form";
@@ -19,7 +19,8 @@
     const data = $form.values;
     api
       .post("/api/auth/login", data)
-      .then((result) => {
+      .then((_) => {
+        successNextVisit("Du bist jetzt angemeldet 👍");
         location.pathname = "/";
         // Or set the user from the response
       })
