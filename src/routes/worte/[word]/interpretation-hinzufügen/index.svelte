@@ -16,6 +16,7 @@
   import { goto } from "$app/navigation";
   import FloatingButton from "$lib/components/FloatingButton.svelte";
   import api from "$lib/api";
+  import { error, success } from "$lib/components/Toaster/toast";
 
   export let word: Word;
 
@@ -28,9 +29,12 @@
     loading = true;
     const data = { meaning, examples };
     const path = `/api/words/${word.id}/interpretations`;
-    await api.post(path, data).then(() => {
-      goto(".");
-    });
+    await api
+      .post(path, data)
+      .then(() => {
+        goto(".").then(() => success("Interpretation wurde erstellt 🤝"));
+      })
+      .catch(() => error());
     loading = false;
   };
 </script>
@@ -60,3 +64,7 @@
 
   <FloatingButton on:click={submit} {loading}>Interpretieren</FloatingButton>
 </main>
+
+<svelte:head>
+  <title>Interpretation Hinzufügen | {word.swissGerman}</title>
+</svelte:head>

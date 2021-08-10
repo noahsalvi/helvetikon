@@ -1,3 +1,10 @@
+<script context="module" lang="ts">
+  export async function load({ page }) {
+    const wordPage = page.path.match(/\//g).length === 2;
+    if (wordPage) return {};
+  }
+</script>
+
 <script>
   import { page } from "$app/stores";
   import Nav from "$lib/components/Nav.svelte";

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { seedValue } from "faker";
+  import { faFileWord } from "@fortawesome/free-solid-svg-icons";
 
   export let spellings: string[];
 

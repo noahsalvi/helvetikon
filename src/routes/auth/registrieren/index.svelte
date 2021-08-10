@@ -12,6 +12,7 @@
   } from "svelte-use-form";
   import Button from "../../../lib/components/Button.svelte";
   import TextFieldWithIcon from "../_TextFieldWithIcon.svelte";
+  import { error } from "$lib/components/Toaster/toast";
 
   let loading = false;
 
@@ -41,7 +42,17 @@
         // Or set the user from the response
       })
       .catch(async (reason: Response) => {
-        alert(await reason.text());
+        switch (reason.status) {
+          case 409:
+            if (await (await reason.text()).includes("Username")) {
+              error("Der Benutzername ist bereits vergeben");
+            } else {
+              error("Die E-Mail-Adresse wird bereits genutzt");
+            }
+            break;
+          default:
+            error();
+        }
       })
 
       .finally(() => {

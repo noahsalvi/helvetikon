@@ -9,6 +9,7 @@
   import { page, session } from "$app/stores";
   import { goto } from "$app/navigation";
   import Voting from "./_Voting.svelte";
+  import { warn } from "$lib/components/Toaster/toast";
 
   export let interpretations: (WordInterpretation & {
     createdBy: User;
@@ -24,7 +25,7 @@
 
   const addInterpretation = () => {
     if (!$session.user)
-      return alert("Melde dich an, um Interpretationen hinzuzufügen");
+      return warn("Melde dich an, um Interpretationen hinzuzufügen");
     goto(`${$page.path}/interpretation-hinzufügen`);
   };
 

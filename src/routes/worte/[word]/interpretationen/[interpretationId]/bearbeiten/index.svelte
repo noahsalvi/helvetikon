@@ -2,8 +2,9 @@
   export async function load({ page, fetch }) {
     const { interpretationId } = page.params;
     const res = await fetch("/api/interpretations/" + interpretationId);
-    const interpretation = await res.json();
+    if (!res.ok) return res;
 
+    const interpretation = await res.json();
     return { props: { interpretation } };
   }
 </script>
@@ -17,6 +18,8 @@
   import { goto } from "$app/navigation";
   import api from "$lib/api";
   import FloatingButton from "$lib/components/FloatingButton.svelte";
+  import { success, warn } from "$lib/components/Toaster/toast";
+  import { faFileWord } from "@fortawesome/free-solid-svg-icons";
 
   export let interpretation: WordInterpretation & { word: Word };
 
@@ -29,11 +32,14 @@
         meaning: interpretation.meaning,
         examples: interpretation.examples,
       })
-      .then((res) => {
-        goto("../../");
+      .then((_) => {
+        goto("../../").then(() => success("Interpretation aktualisiert"));
       })
-      .catch((res) => {
-        alert("Du hast nicht die Rechte, um das zu bearbeiten.");
+      .catch((reason) => {
+        warn(
+          reason.status === 401 &&
+            "Du hast nicht die Rechte, um das zu bearbeiten."
+        );
       });
 
     loading = false;
@@ -74,3 +80,7 @@
     Aktualisieren
   </FloatingButton>
 </main>
+
+<svelte:head>
+  <title>Interpretation Bearbeiten | {interpretation.word.swissGerman}</title>
+</svelte:head>

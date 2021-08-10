@@ -1,5 +1,6 @@
 <script lang="ts">
   import api from "$lib/api";
+  import { error } from "$lib/components/Toaster/toast";
 
   import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
   import { maxLength, minLength, required, useForm } from "svelte-use-form";
@@ -21,6 +22,15 @@
       .then((result) => {
         location.pathname = "/";
         // Or set the user from the response
+      })
+      .catch((reason) => {
+        switch (reason.status) {
+          case 401:
+            error("Benutzername oder Passwort sind falsch 😬");
+            break;
+          default:
+            error();
+        }
       })
       .finally(() => {
         loading = false;
