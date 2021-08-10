@@ -1,6 +1,4 @@
-import prisma from "$lib/prisma";
-import type { Word } from "@prisma/client";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
+import prisma, { PrismaClientKnownRequestError } from "$lib/prisma";
 import authorize from "../_middlewares/authorize";
 
 export async function get({}) {
