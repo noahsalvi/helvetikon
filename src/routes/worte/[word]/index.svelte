@@ -45,9 +45,8 @@
   };
 
   const getMetaSpellingList = () => {
-    const length = word.spellings.length - 1;
     const spellingsList = word.spellings.join(", ");
-    return length ? spellingsList + " " : "";
+    return spellingsList && `(${spellingsList}) `;
   };
 </script>
 
@@ -97,10 +96,8 @@
   {#if word.interpretations.length}
     <meta
       name="description"
-      content="(DE){word.german}
-      {word.interpretations[0].meaning
-        ? `, Bedeutung: ${word.interpretations[0].meaning}`
-        : ''}"
+      content="{word.german && `(DE)${word.german}\n`}{word.interpretations[0]
+        .meaning && `Bedeutung: ${word.interpretations[0].meaning}`}"
     />
   {/if}
 </svelte:head>
