@@ -15,7 +15,6 @@
 
 <script lang="ts">
   import Nav from "$lib/components/Nav.svelte";
-  import type { Word } from "$lib/models/word";
   import { faCopy, faPen, faVolumeUp } from "@fortawesome/free-solid-svg-icons";
   import Icon from "$lib/components/Icon";
   import ActionButton from "./components/_ActionButton.svelte";
@@ -25,7 +24,7 @@
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
 
-  import type { User, WordInterpretation } from "@prisma/client";
+  import type { User, Word, WordInterpretation } from "@prisma/client";
 
   export let word: Word & {
     createdBy: User;

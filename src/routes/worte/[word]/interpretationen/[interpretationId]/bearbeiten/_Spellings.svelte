@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { seedValue } from "faker";
-
   export let spellings: string[];
 
   let spellingInput: HTMLInputElement;

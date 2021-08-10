@@ -12,7 +12,7 @@
 
   const stylingConfig = {
     [ToastType.Success]: "bg-green-500 text-white",
-    [ToastType.Warning]: "bg-hint text-white",
+    [ToastType.Warning]: "bg-yellow-400 text-white",
     [ToastType.Error]: "bg-red-500 text-white",
   };
 

@@ -5,6 +5,8 @@
   import { required, useForm } from "svelte-use-form";
   import type { Word } from ".prisma/client";
   import FloatingButton from "$lib/components/FloatingButton.svelte";
+  import { error, success } from "$lib/components/Toaster/toast";
+  import api from "$lib/api";
 
   const placeholder = "Öpfu";
   const form = useForm({
@@ -20,15 +22,15 @@
 
   const submit = async () => {
     loading = true;
-    await fetch("/api/words", {
-      method: "POST",
-      body: JSON.stringify({ swissGerman, german, spellings }),
-    }).then((result) =>
-      result.json().then((word: Word) => {
+    await api
+      .post("/api/words", { swissGerman, german, spellings })
+      .then((word: Word) => {
         const path = `/worte/${word.swissGerman}`;
-        goto(path);
+        goto(path).then(() => success(`Wort wurde erstellt 🎉`));
       })
-    );
+      .catch((reason) => {
+        error(reason.status === 409 && "Wort existiert bereits 😕");
+      });
 
     loading = false;
   };

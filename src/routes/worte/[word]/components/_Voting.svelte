@@ -2,6 +2,7 @@
   import { session } from "$app/stores";
   import api from "$lib/api";
   import Icon from "$lib/components/Icon";
+  import { warn } from "$lib/components/Toaster/toast";
   import {
     faArrowCircleDown,
     faArrowCircleUp,
@@ -63,7 +64,7 @@
   };
 
   const authorizeVote = (callback) => {
-    if (!$session.user) return alert("Nur angemeldete Nutzer dürfen abstimmen");
+    if (!$session.user) return warn("Nur angemeldete Nutzer dürfen abstimmen");
     callback();
   };
 
