@@ -44,7 +44,7 @@
       .catch(async (reason: Response) => {
         switch (reason.status) {
           case 409:
-            if (await (await reason.text()).includes("Username")) {
+            if ((await reason.text()).includes("Username")) {
               error("Der Benutzername ist bereits vergeben");
             } else {
               error("Die E-Mail-Adresse wird bereits genutzt");
@@ -67,7 +67,7 @@
     Hier kannst du dich registrieren um ein Mitglied von {config.appName} zu werden.
   </div>
 
-  <form use:form class="mt-20" on:submit|preventDefault={register}>
+  <form use:form class="mt-10" on:submit|preventDefault={register}>
     <TextFieldWithIcon
       name="username"
       placeholder="Benutzername"
@@ -103,9 +103,8 @@
     <div class="h-6" />
     <div class="flex justify-center items-center">
       <a href="./anmelden"
-        >Du hast bereits ein Account? <span
-          class="text-primary text-opacity-70 underline">Anmelden</span
-        ></a
+        >Du hast bereits ein Account?
+        <span class="text-primary text-opacity-70 underline">Anmelden</span></a
       >
     </div>
   </form>

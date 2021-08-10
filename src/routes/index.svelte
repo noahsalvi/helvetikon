@@ -1,8 +1,6 @@
 <script>
   import { session } from "$app/stores";
-
   import api from "$lib/api";
-
   import Icon from "$lib/components/Icon";
   import UserButton from "$lib/components/UserButton.svelte";
   import {
