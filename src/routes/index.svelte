@@ -1,6 +1,5 @@
 <script context="module">
   export async function load({ fetch }) {
-    console.log("test");
     const fetchRecentWords = fetch("/api/words/recent");
     const fetchPopularWords = fetch("api/words/popular");
     const [recentWordsResponse, popularWordsResponse] = await Promise.all([

@@ -37,7 +37,8 @@
       <input
         on:blur={(e) => deleteExistingSpelling(e, index)}
         on:input={(e) => editExistingSpelling(e, index)}
-        class="bg-accent py-1 px-2 rounded-2xl font-mono focus:bg-primary"
+        on:keypress={({ key }) => key === "Enter" && spellingInput.focus()}
+        class="bg-gray-800 text-white py-1 px-2 rounded-lg font-mono focus:bg-black"
         value={spelling}
         size={spelling ? spelling.length : 1}
       />
@@ -46,7 +47,8 @@
       bind:this={spellingInput}
       on:input={resizeInput}
       on:blur={addSpelling}
-      class="bg-primary py-1 px-2 rounded-2xl placeholder-white placeholder-shown:(text-center focus:placeholder-transparent)"
+      on:keypress={({ key }) => key === "Enter" && addSpelling()}
+      class="bg-gray-800 py-1 px-2 rounded-lg placeholder-white placeholder-shown:(text-center focus:placeholder-transparent)"
       placeholder="+"
       size="1"
     />

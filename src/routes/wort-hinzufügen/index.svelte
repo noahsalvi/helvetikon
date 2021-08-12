@@ -67,6 +67,7 @@
     </section>
 
     <Spellings bind:spellings />
+
     <section class="mb-3">
       <label for="german">Deutsche Übersetzung</label>
       <input
