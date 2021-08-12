@@ -1,11 +1,27 @@
+<script context="module">
+  export async function load({ fetch }) {
+    console.log("test");
+    const fetchRecentWords = fetch("/api/words/recent");
+    const fetchPopularWords = fetch("api/words/popular");
+    const [recentWordsResponse, popularWordsResponse] = await Promise.all([
+      fetchRecentWords,
+      fetchPopularWords,
+    ]);
+
+    if (!recentWordsResponse.ok || !popularWordsResponse.ok) return;
+
+    const recentWords = await recentWordsResponse.json();
+    const popularWords = await popularWordsResponse.json();
+
+    return { props: { recentWords, popularWords } };
+  }
+</script>
+
 <script>
   import { session } from "$app/stores";
   import api from "$lib/api";
   import Icon from "$lib/components/Icon";
-  import {
-    successNextVisit,
-    warnNextVisit,
-  } from "$lib/components/Toaster/toast";
+  import { warnNextVisit } from "$lib/components/Toaster/toast";
   import UserButton from "$lib/components/UserButton.svelte";
   import {
     faBook,
@@ -15,6 +31,11 @@
   import config from "../lib/config";
   import LandingAction from "./_LandingAction.svelte";
   import Search from "./_Search.svelte";
+  import PopularWords from "./_PopularWords.svelte";
+  import NewWords from "./_NewWords.svelte";
+
+  export let recentWords;
+  export let popularWords;
 
   const logout = () => {
     api.post("/api/auth/logout").then(() => {
@@ -24,7 +45,7 @@
   };
 </script>
 
-<main class="bg-primary h-screen px-6 text-white">
+<main class="bg-primary min-h-screen px-6 text-white">
   <header class="pb-5">
     <div class="flex justify-between items-center h-15 dark">
       {#if $session.user}
@@ -43,10 +64,11 @@
     </div>
   </header>
 
-  <div class="h-10" />
-
   <Search />
-  <div class="mt-5 flex gap-5">
+
+  <div class="h-2" />
+
+  <div class="flex gap-5">
     <LandingAction icon={faBook} href="/worte">Alle Wörter</LandingAction>
     {#if $session.user}
       <LandingAction icon={faPlus} href="/wort-hinzufügen">
@@ -54,6 +76,16 @@
       </LandingAction>
     {/if}
   </div>
+
+  <div class="h-10" />
+
+  <NewWords {recentWords} />
+
+  <div class="h-10" />
+
+  <PopularWords {popularWords} />
+
+  <div class="h-6" />
 </main>
 
 <svelte:head>
