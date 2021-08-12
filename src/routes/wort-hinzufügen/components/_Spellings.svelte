@@ -31,8 +31,8 @@
 </script>
 
 <section class="mb-3">
-  <label for="nothing">Alternative Schreibweisen</label><br />
-  <div class="text-sm text-white flex flex-wrap gap-1">
+  <!-- <label for="nothing">Alternative Schreibweisen</label><br /> -->
+  <div class="text-lg text-white flex flex-wrap gap-1">
     {#each spellings as spelling, index}
       <input
         on:blur={(e) => deleteExistingSpelling(e, index)}

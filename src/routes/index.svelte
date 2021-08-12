@@ -76,7 +76,7 @@
     {/if}
   </div>
 
-  <div class="h-20" />
+  <div class="h-15" />
 
   <NewWords {recentWords} />
 

@@ -29,10 +29,14 @@
 <div
   on:click={destroy}
   transition:fly
-  class="px-4 py-1.5 rounded min-w-30 shadow-md {styling}"
+  class="px-4 py-1.5 rounded min-w-30 shadow-md {styling} flex items-center gap-3"
 >
-  {content}
+  <div>
+    {content}
+  </div>
   {#if link}
-    &nbsp;<a class="font-bold text-sm" href={link.href}>{link.title}</a>
+    <div>
+      <a class="font-bold text-sm" href={link.href}>{link.title}</a>
+    </div>
   {/if}
 </div>
