@@ -77,15 +77,15 @@
     {/if}
   </div>
 
-  <div class="h-10" />
+  <div class="h-20" />
 
   <NewWords {recentWords} />
 
-  <div class="h-10" />
+  <div class="h-5" />
 
   <PopularWords {popularWords} />
 
-  <div class="h-6" />
+  <div class="h-3" />
 </main>
 
 <svelte:head>
