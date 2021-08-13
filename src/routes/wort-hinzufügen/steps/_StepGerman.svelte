@@ -43,10 +43,11 @@
   }
 </script>
 
-<StepLayout
-  title="Deutsche Übersetzung (Optional)"
-  description="Hat das Wort im Hochdeutschen ein verständliches Gegenstück?"
->
+<StepLayout>
+  <span slot="title">Deutsche Übersetzung (Optional)</span>
+  <span slot="description">
+    Hat das Wort im Hochdeutschen ein verständliches Gegenstück?
+  </span>
   <form use:form>
     <input
       type="text"

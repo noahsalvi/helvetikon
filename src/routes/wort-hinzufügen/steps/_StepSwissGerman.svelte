@@ -37,10 +37,19 @@
   };
 </script>
 
-<StepLayout
-  title="Wie heisst das Wort?"
-  description="Das Schweizerdeutsche Wort, das du erfassen willst."
->
+<StepLayout>
+  <span slot="title">Wie heisst das Wort?</span>
+  <span slot="description">
+    Das Schweizerdeutsche Wort, das du erfassen willst. <br />
+    (Achte dich auf die
+    <a
+      class="underline"
+      href="https://www.duden.de/sprachwissen/rechtschreibregeln/Gro%C3%9F-%20und%20Kleinschreibung"
+    >
+      Grosschreibung
+    </a>
+    )
+  </span>
   <form use:form>
     <input
       type="text"

@@ -10,10 +10,11 @@
   let loading = false;
 </script>
 
-<StepLayout
-  title="Alternative Schreibwesen"
-  description={`Gibt es noch andere Arten das Wort "${$data.swissGerman}" zu schreiben? `}
->
+<StepLayout>
+  <span slot="title">Alternative Schreibwesen</span>
+  <span slot="description">
+    Gibt es noch andere Arten das Wort "{$data.swissGerman}" zu schreiben?
+  </span>
   <Spellings bind:spellings={$data.spellings} />
 
   <div class="h-5" />

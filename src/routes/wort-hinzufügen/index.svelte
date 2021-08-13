@@ -50,7 +50,7 @@
     Schritt {currentStep + 1} von {steps.length}
   </div>
 
-  <div class="h-2" />
+  <div class="h-5" />
 
   {#each steps as step, index}
     <div class:hidden={currentStep !== index}>
@@ -60,7 +60,7 @@
 
   <button
     class="fixed bottom-6 left-6
-  rounded-full bg-primary h-14 w-14 text-white p-4"
+  rounded-full bg-primary h-14 w-14 text-white p-4 shadow-md"
     on:click={() => (currentStep ? previousStep() : goto("/"))}
   >
     <Icon data={faArrowLeft} class="!block h-full w-full" />
