@@ -32,16 +32,10 @@
   import Search from "./_Search.svelte";
   import PopularWords from "./_PopularWords.svelte";
   import NewWords from "./_NewWords.svelte";
+  import { logout } from "$lib/logout";
 
   export let recentWords;
   export let popularWords;
-
-  const logout = () => {
-    api.post("/api/auth/logout").then(() => {
-      warnNextVisit("Du hast dich abgemeldet 🏃‍♂️");
-      location.reload();
-    });
-  };
 </script>
 
 <main class="bg-primary min-h-screen px-6 text-white">
