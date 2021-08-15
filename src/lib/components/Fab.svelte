@@ -6,7 +6,7 @@
   export let href = "";
   export let invert = false;
 
-  const buttonStyling = `fixed bottom-6 left-6 rounded-full h-14 w-14 p-4 shadow-lg 
+  const buttonStyling = `fixed z-10 bottom-6 left-6 rounded-full h-14 w-14 p-4 shadow-lg 
   ${invert ? "bg-white text-primary" : "bg-primary text-white"}`;
 </script>
 

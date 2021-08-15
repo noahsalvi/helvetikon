@@ -41,14 +41,17 @@
   <span slot="title">Wie heisst das Wort?</span>
   <span slot="description">
     Das Schweizerdeutsche Wort, das du erfassen willst. <br />
-    (Achte dich auf die
-    <a
-      class="underline"
-      href="https://www.duden.de/sprachwissen/rechtschreibregeln/Gro%C3%9F-%20und%20Kleinschreibung"
-    >
-      Grosschreibung
-    </a>
-    )
+    <ul class="list-disc list-inside">
+      <li>
+        Achte dich auf die
+        <a
+          class="underline"
+          href="https://www.duden.de/sprachwissen/rechtschreibregeln/Gro%C3%9F-%20und%20Kleinschreibung"
+        >
+          Gross- und Kleinschreibung
+        </a>
+      </li>
+    </ul>
   </span>
   <form use:form>
     <input

@@ -14,6 +14,16 @@
   <span slot="title">Alternative Schreibwesen</span>
   <span slot="description">
     Gibt es noch andere Arten das Wort "{$data.swissGerman}" zu schreiben?
+    <ul class="list-disc list-inside">
+      <li>
+        Hier geht es um kleinere Abweichungen wie das Wort geschrieben wird.
+        z.B. Öpfel und Apfu sind alternative Schreibweisen für das Wort Öpfu
+      </li>
+      <li>
+        Weiteres Beispiel: Modi und Meitli unterscheiden sich zu fest, um als
+        alternative Schreibweise zu gelten
+      </li>
+    </ul>
   </span>
   <Spellings bind:spellings={$data.spellings} />
 
