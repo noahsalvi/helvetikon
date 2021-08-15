@@ -16,6 +16,7 @@
 <script lang="ts">
   import Nav from "$lib/components/Nav.svelte";
   import {
+    faHome,
     faPen,
     faShare,
     faVolumeUp,
@@ -23,12 +24,12 @@
   import Icon from "$lib/components/Icon";
   import ActionButton from "./components/_ActionButton.svelte";
   import SwissCross from "./components/_SwissCross.svelte";
-  import HomeButton from "./components/_HomeButton.svelte";
   import Interpretations from "./components/_Interpretations.svelte";
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
 
   import type { User, Word, WordInterpretation } from "@prisma/client";
+  import Fab from "$lib/components/Fab.svelte";
 
   export let word: Word & {
     createdBy: User;
@@ -90,7 +91,7 @@
   <Interpretations interpretations={word.interpretations} />
 </main>
 
-<HomeButton />
+<Fab icon={faHome} href="/" />
 
 <svelte:head>
   <title>

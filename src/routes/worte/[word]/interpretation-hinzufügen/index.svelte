@@ -14,7 +14,7 @@
   import Examples from "./_Examples.svelte";
 
   import { goto } from "$app/navigation";
-  import FloatingButton from "$lib/components/FloatingButton.svelte";
+  import ButtonBar from "$lib/components/ButtonBar.svelte";
   import api from "$lib/api";
   import { error, success } from "$lib/components/Toaster/toast";
 
@@ -62,7 +62,7 @@
 
   <Examples bind:examples />
 
-  <FloatingButton on:click={submit} {loading}>Interpretieren</FloatingButton>
+  <ButtonBar on:click={submit} {loading}>Interpretieren</ButtonBar>
 </main>
 
 <svelte:head>

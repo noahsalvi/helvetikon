@@ -7,7 +7,7 @@
   export let valid = true;
 </script>
 
-<div class="fixed bottom-4 left-0 px-3 w-full flex gap-3">
+<div class="fixed bottom-6 left-0 px-6 w-full flex gap-3">
   <ReturnButton {href} />
 
   <div class="flex-grow">

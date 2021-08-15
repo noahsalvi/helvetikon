@@ -9,8 +9,7 @@
 
 <script lang="ts">
   import { goto } from "$app/navigation";
-
-  import Icon from "$lib/components/Icon";
+  import Fab from "$lib/components/Fab.svelte";
   import Nav from "$lib/components/Nav.svelte";
   import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
   import { setContext } from "svelte";
@@ -58,11 +57,5 @@
     </div>
   {/each}
 
-  <button
-    class="fixed bottom-6 left-6
-  rounded-full bg-primary h-14 w-14 text-white p-4 shadow-md"
-    on:click={() => (currentStep ? previousStep() : goto("/"))}
-  >
-    <Icon data={faArrowLeft} class="!block h-full w-full" />
-  </button>
+  <Fab on:click={() => (currentStep ? previousStep() : goto("/"))} />
 </main>

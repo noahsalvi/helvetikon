@@ -12,14 +12,11 @@
 <script lang="ts">
   import Nav from "$lib/components/Nav.svelte";
   import type { Word, WordInterpretation } from ".prisma/client";
-
   import Examples from "./_Examples.svelte";
-
   import { goto } from "$app/navigation";
   import api from "$lib/api";
-  import FloatingButton from "$lib/components/FloatingButton.svelte";
+  import ButtonBar from "$lib/components/ButtonBar.svelte";
   import { success, warn } from "$lib/components/Toaster/toast";
-  import { faFileWord } from "@fortawesome/free-solid-svg-icons";
 
   export let interpretation: WordInterpretation & { word: Word };
 
@@ -71,14 +68,14 @@
 
   <Examples bind:examples={interpretation.examples} />
 
-  <FloatingButton
+  <ButtonBar
     on:click={submit}
     {loading}
     href="../../"
     valid={!!interpretation.meaning.length}
   >
     Aktualisieren
-  </FloatingButton>
+  </ButtonBar>
 </main>
 
 <svelte:head>
