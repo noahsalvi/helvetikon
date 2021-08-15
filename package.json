@@ -11,8 +11,8 @@
   "devDependencies": {
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
-    "@sveltejs/adapter-node": "next",
-    "@sveltejs/kit": "next",
+    "@sveltejs/adapter-node": "^1.0.0-next.41",
+    "@sveltejs/kit": "^1.0.0-next.150",
     "@types/bcrypt": "^5.0.0",
     "@types/cookie": "^0.4.1",
     "@types/faker": "^5.5.7",

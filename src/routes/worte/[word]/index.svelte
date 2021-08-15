@@ -15,7 +15,11 @@
 
 <script lang="ts">
   import Nav from "$lib/components/Nav.svelte";
-  import { faCopy, faPen, faVolumeUp } from "@fortawesome/free-solid-svg-icons";
+  import {
+    faPen,
+    faShare,
+    faVolumeUp,
+  } from "@fortawesome/free-solid-svg-icons";
   import Icon from "$lib/components/Icon";
   import ActionButton from "./components/_ActionButton.svelte";
   import SwissCross from "./components/_SwissCross.svelte";
@@ -35,8 +39,8 @@
     })[];
   };
 
-  const copyURL = () => {
-    navigator.clipboard.writeText(location.toString());
+  const share = () => {
+    navigator.share({ url: location.toString() });
   };
 
   const editWord = () => {
@@ -76,7 +80,7 @@
     <!-- Actions -->
     <div class="flex space-x-2 mb-6">
       <ActionButton on:click={null}><Icon data={faVolumeUp} /></ActionButton>
-      <ActionButton on:click={copyURL}><Icon data={faCopy} /></ActionButton>
+      <ActionButton on:click={share}><Icon data={faShare} /></ActionButton>
       <!-- <ActionButton on:click={editWord}><Icon data={faPen} /></ActionButton> -->
     </div>
 

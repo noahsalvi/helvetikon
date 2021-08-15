@@ -23,19 +23,19 @@ async function send({ method, path, data }) {
     });
 }
 
-function get(path) {
+function get(path: string) {
   return send({ method: "GET", path, data: null });
 }
 
-function del(path) {
+function del(path: string) {
   return send({ method: "DELETE", path, data: null });
 }
 
-function post(path, data) {
+function post(path: string, data) {
   return send({ method: "POST", path, data });
 }
 
-function put(path, data) {
+function put(path: string, data) {
   return send({ method: "PUT", path, data });
 }
 
