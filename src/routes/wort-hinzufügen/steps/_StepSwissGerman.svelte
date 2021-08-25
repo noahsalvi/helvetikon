@@ -2,7 +2,6 @@
   import api from "$lib/api";
   import { error } from "$lib/components/Toaster/toast";
   import type { Word } from ".prisma/client";
-
   import { getContext } from "svelte";
   import { Hint, maxLength, required, useForm } from "svelte-use-form";
   import type { Writable } from "svelte/store";
@@ -48,7 +47,7 @@
           class="underline"
           href="https://www.duden.de/sprachwissen/rechtschreibregeln/Gro%C3%9F-%20und%20Kleinschreibung"
         >
-          Gross- und Kleinschreibung
+          Grossschreibung
         </a>
       </li>
     </ul>

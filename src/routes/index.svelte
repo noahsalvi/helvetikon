@@ -18,9 +18,7 @@
 
 <script>
   import { session } from "$app/stores";
-  import api from "$lib/api";
   import Icon from "$lib/components/Icon";
-  import { warnNextVisit } from "$lib/components/Toaster/toast";
   import UserButton from "$lib/components/UserButton.svelte";
   import {
     faBook,
@@ -28,10 +26,10 @@
     faPlus,
   } from "@fortawesome/free-solid-svg-icons";
   import config from "../lib/config";
-  import LandingAction from "./_LandingAction.svelte";
-  import Search from "./_Search.svelte";
-  import PopularWords from "./_PopularWords.svelte";
-  import NewWords from "./_NewWords.svelte";
+  import LandingAction from "./components/_LandingAction.svelte";
+  import Search from "./components/_Search.svelte";
+  import PopularWords from "./components/_PopularWords.svelte";
+  import NewWords from "./components/_NewWords.svelte";
   import { logout } from "$lib/logout";
 
   export let recentWords;
