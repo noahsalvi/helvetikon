@@ -1,3 +1,7 @@
-<a href="/" class="font-bold">
-  <span class="text-primary">Swiss</span>German
+<script>
+  import config from "$lib/config";
+</script>
+
+<a href="/" class="font-bold text-primary">
+  {config.appName}
 </a>
