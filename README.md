@@ -1,24 +1,21 @@
-# create-svelte
+<h1 align="center">[Helvetikon.org](https://helvetikon.org)</h1> 
+<p align="center">A community maintained dictionary for the swiss german language</p>
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm init svelte@next
-
-# create a new project in my-app
-npm init svelte@next my-app
-```
-
-> Note: the `@next` is temporary
+<hr>
+<!-- <p align="center"><a href="docs/screenshots.md">Screenshots</a> &bull; <a href="https://github.com/varbhat/exatorrent/releases/latest">Releases</a> &bull; <a href="#features">Features</a> &bull; <a href="#installation"> Installation </a> &bull; <a href="docs/usage.md"> Usage</a> &bull; <a href="docs/docker.md">Docker</a> &bull; <a href="docs/build.md"> Build </a> &bull; <a href="LICENSE">License</a></p>
+<hr> -->
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+This project uses [yarn](https://classic.yarnpkg.com/en/docs/install) instead of npm as the package manager.
+
+Install project dependencies
+
+```bash
+yarn install
+```
+
+Start development server
 
 ```bash
 npm run dev
@@ -29,10 +26,21 @@ npm run dev -- --open
 
 ## Building
 
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
+To build and run the production version of the app.
 
 ```bash
-npm run build
+yarn build
 ```
 
 > You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+
+And to run the nodejs app
+
+```bash
+node build/
+```
+
+## Resources
+
+- [Deployment on VPS](https://www.youtube.com/watch?v=oykl1Ih9pMg&t=793s)
+- [Hosting Mail Server on VPS](https://www.youtube.com/watch?v=9zP7qooM4pY)
