@@ -20,6 +20,13 @@ export async function post({ body, locals }) {
   const passwordCorrect = await bcrypt.compare(password, user.password);
   if (!passwordCorrect) return authenticationFailed;
 
+  if (!user.verified)
+    return {
+      status: 401,
+      body: "Account ist not verified",
+      headers: { reason: "verified" },
+    };
+
   const jwtCookie = createJWTCookie(user);
 
   return {

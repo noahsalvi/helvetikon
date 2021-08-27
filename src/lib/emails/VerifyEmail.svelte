@@ -1,8 +1,14 @@
 <script>
+  import { dev } from "$app/env";
+
   import EmailDefaultLayout from "./EmailDefaultLayout.svelte";
 
-  export let link = "https://google.com";
   export let user;
+  export let token;
+
+  const href = `${
+    dev ? "http://localhost:3000" : "https://www.helvetikon.org"
+  }/verifizieren?token=${token}`;
 </script>
 
 <EmailDefaultLayout title="E-Mail verifizieren">
@@ -18,10 +24,12 @@
       </p>
     </td>
   </tr>
-  <tr style="height:100px" />
+  <tr>
+    <td style="height:100px" />
+  </tr>
   <tr>
     <td align="center">
-      <a class="verify-button" href={link}>E-Mail verifizieren</a>
+      <a class="verify-button" {href}>E-Mail verifizieren</a>
     </td>
   </tr>
 </EmailDefaultLayout>

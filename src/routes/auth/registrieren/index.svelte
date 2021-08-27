@@ -12,7 +12,8 @@
   } from "svelte-use-form";
   import Button from "../../../lib/components/Button.svelte";
   import TextFieldWithIcon from "../_TextFieldWithIcon.svelte";
-  import { error, successNextVisit } from "$lib/components/Toaster/toast";
+  import { error, successNextVisit, warn } from "$lib/components/Toaster/toast";
+  import { goto } from "$app/navigation";
 
   let loading = false;
 
@@ -37,9 +38,7 @@
     api
       .post("/api/auth/register", data)
       .then((_) => {
-        successNextVisit("Du bist nun registriert 👮‍♂️");
-        location.pathname = "/";
-        // Or set the user from the response
+        goto("verifizieren");
       })
       .catch(async (reason: Response) => {
         switch (reason.status) {

@@ -27,7 +27,11 @@
       .catch((reason) => {
         switch (reason.status) {
           case 401:
-            error("Benutzername oder Passwort sind falsch 😬");
+            if (reason.headers.get("reason") === "verified") {
+              error("Du musst zuerst deine E-Mail-Adresse bestätigen", 4000);
+            } else {
+              error("Benutzername oder Passwort sind falsch 😬");
+            }
             break;
           default:
             error();

@@ -7,3 +7,6 @@ node_modules
 /package
 # Keep environment variables out of version control
 .env
+
+# Helper files
+/src/routes/email.ts

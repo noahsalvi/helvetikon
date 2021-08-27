@@ -5,7 +5,7 @@
 <table id="parent">
   <tbody>
     <tr>
-      <td>
+      <td align="center">
         <div class="card">
           <table class="frame">
             <tbody>
@@ -20,6 +20,9 @@
                 </td>
               </tr>
               <slot />
+              <tr>
+                <td style="height:20px" />
+              </tr>
             </tbody>
           </table>
         </div>
@@ -31,15 +34,14 @@
 <style global>
   #parent {
     width: 100%;
-    height: 100%;
     font-family: Helvetica;
+    background: white;
   }
 
   .card {
     width: 100%;
     max-width: 800px;
-    margin: 100px auto;
-    padding: 20px;
+    margin-top: 20px;
     border-radius: 5px;
   }
 
@@ -56,7 +58,6 @@
 
   tr {
     vertical-align: top;
-    padding: 20px;
   }
 
   a {

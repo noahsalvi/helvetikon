@@ -1,21 +1,10 @@
-import TestEmail from "./emails/TestEmail.svelte";
-import { juiceResources, Options as JuiceOptions } from "juice";
+import juicePkg from "juice";
 
-export async function getEmailHTML() {
-  return await renderMail(TestEmail as any, {
-    data: {
-      link: "https://helvetikon.org",
-      user: { username: "noahsalvi" },
-    },
-  });
-}
-
-interface SvelteSSRComponent {
-  render(data: {}): { html: string; css: { code: string }; head: string };
-}
+const { juiceResources } = juicePkg;
+type JuiceOptions = juicePkg.Options;
 
 export async function renderMail(
-  Component: SvelteSSRComponent,
+  Component: any,
   { data = {}, ...options }: { data?: {} } & JuiceOptions = {}
 ) {
   const { html: rawHtml, css, head } = Component.render(data);
@@ -33,7 +22,5 @@ export async function renderMail(
     );
   });
 
-  return {
-    html,
-  };
+  return html;
 }
