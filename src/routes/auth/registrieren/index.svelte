@@ -12,16 +12,11 @@
   } from "svelte-use-form";
   import Button from "../../../lib/components/Button.svelte";
   import TextFieldWithIcon from "../_TextFieldWithIcon.svelte";
-  import { error, successNextVisit, warn } from "$lib/components/Toaster/toast";
+  import { error } from "$lib/components/Toaster/toast";
   import { goto } from "$app/navigation";
+  import { passwordMatch } from "$lib/validators/password-match";
 
   let loading = false;
-
-  const passwordMatch = (value, f) => {
-    if (value !== f.values.password) {
-      return { passwordMatch: true };
-    }
-  };
 
   const form = useForm({
     username: { validators: [required, minLength(4), maxLength(20)] },

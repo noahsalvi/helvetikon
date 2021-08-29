@@ -10,7 +10,9 @@
   on:click
   disabled={!valid || loading}
   class="w-full h-14 bg-primary rounded-lg text-white font-semibold text-xl 
-  {loading ? '' : 'disabled:bg-opacity-70'} {$$props.class}"
+  {loading
+    ? ''
+    : 'disabled:(bg-opacity-50 cursor-not-allowed)'} {$$props.class}"
 >
   {#if loading}
     <Icon data={faSpinner} spin />

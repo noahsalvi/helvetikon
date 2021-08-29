@@ -17,7 +17,7 @@ export async function post({ body }) {
     from: NOREPLY_FROM,
     to: `${user.username} <${user.email}>`,
     subject: "Passwort vergessen 😬",
-    html: `<a href="https://helvetikon.org/passwort-vergessen?token=${token}">Passwort vergessen</a>`,
+    html: `<a href="http://localhost:3000/auth/passwort-zurücksetzen?token=${token}">Passwort vergessen</a>`,
   });
 
   return successResponse;
