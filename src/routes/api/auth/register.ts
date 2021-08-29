@@ -37,7 +37,7 @@ export function post({ body }) {
         data: { email, username, password: passwordHashedAndSalted },
       });
 
-      sendVerificationToken(user);
+      sendVerificationEmail(user);
 
       return {
         status: 201,
@@ -47,10 +47,10 @@ export function post({ body }) {
   );
 }
 
-async function sendVerificationToken(user: User) {
+async function sendVerificationEmail(user: User) {
   const safeUser = { id: user.id, email: user.email, username: user.username };
   const secret = import.meta.env.VITE_EMAIL_SECRET as string;
-  const token = jwt.sign(safeUser, secret, { expiresIn: "1d" });
+  const token = jwt.sign(safeUser, secret);
 
   const html = await renderMail(VerifyEmail, { data: { user, token } });
   noreplyTransporter.sendMail({

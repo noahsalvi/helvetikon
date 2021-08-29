@@ -1,10 +1,11 @@
+import DELETE_ACCESS_TOKEN_COOKIE from "$lib/utils/delete-access-token-cookie";
+
 export function post({ locals }) {
   delete locals.user;
 
   return {
     headers: {
-      "set-cookie":
-        "jwt=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT",
+      "set-cookie": [DELETE_ACCESS_TOKEN_COOKIE],
     },
     body: {
       ok: true,

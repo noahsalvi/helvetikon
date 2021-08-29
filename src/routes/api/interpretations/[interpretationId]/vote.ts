@@ -7,7 +7,7 @@ export async function put({ params, locals, body }) {
   const data: { upvote: boolean; downvote: boolean } = body;
 
   if (data.upvote && data.downvote)
-    throw { status: 409, body: "Upvote and Downvote can't both be true" };
+    return { status: 409, body: "Upvote and Downvote can't both be true" };
 
   const user = await prisma.user.findUnique({
     where: { id: userId },

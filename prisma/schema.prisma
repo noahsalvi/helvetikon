@@ -45,4 +45,12 @@ model User {
   upvotedInterpretations   WordInterpretation[] @relation("WordInterpretationUpvotes")
   downvotedInterpretations WordInterpretation[] @relation("WordInterpretationDownvotes")
   password                 String
+  sessions                 Session[]
+}
+
+model Session {
+  token     String   @id
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  createdAt DateTime @default(now())
 }

@@ -1,7 +1,10 @@
 import prisma from "$lib/prisma";
 import type { User } from "@prisma/client";
 import jwt from "jsonwebtoken";
-import createJWTCookie from "../_utils/createJWTCookie";
+import {
+  createAccessToken,
+  createAccessTokenCookie,
+} from "../_utils/access-token";
 
 export async function get({ query }) {
   const token = query.get("token");
@@ -23,7 +26,7 @@ export async function get({ query }) {
       data: { verified: true },
     });
 
-    const jwtCookie = createJWTCookie(user);
+    const jwtCookie = createAccessTokenCookie(await createAccessToken(user));
 
     return {
       status: 201,

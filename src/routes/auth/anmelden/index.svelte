@@ -10,8 +10,8 @@
   let loading = false;
 
   const form = useForm({
-    username: { validators: [required, minLength(4), maxLength(20)] },
-    password: { validators: [required, minLength(5), maxLength(20)] },
+    username: { validators: [required, minLength(4)] },
+    password: { validators: [required, minLength(5)] },
   });
 
   const login = () => {

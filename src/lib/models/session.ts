@@ -3,7 +3,6 @@ export type Session = {
     id: number;
     email: string;
     username: string;
-    iat: number;
   };
 };
 
@@ -12,6 +11,5 @@ export type Locals = {
     id: number;
     email: string;
     username: string;
-    iat: number;
   };
 };

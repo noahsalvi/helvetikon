@@ -1,6 +1,9 @@
 import prisma from "$lib/prisma";
 import bcrypt from "bcrypt";
-import createJWTCookie from "../_utils/createJWTCookie";
+import {
+  createAccessToken,
+  createAccessTokenCookie,
+} from "../_utils/access-token";
 
 export async function post({ body, locals }) {
   const username: string = body.username;
@@ -27,7 +30,7 @@ export async function post({ body, locals }) {
       headers: { reason: "verified" },
     };
 
-  const jwtCookie = createJWTCookie(user);
+  const jwtCookie = createAccessTokenCookie(await createAccessToken(user));
 
   return {
     headers: {

@@ -42,5 +42,8 @@ node build/
 
 ## Resources
 
+- [JWT Authentication](https://stackoverflow.com/a/41250085/13475809)
+  This is a slightly different approach to the nomal access and refreshn token approach
 - [Deployment on VPS](https://www.youtube.com/watch?v=oykl1Ih9pMg&t=793s)
-- [Hosting Mail Server on VPS](https://www.youtube.com/watch?v=9zP7qooM4pY) Solution for a problem i had [Issue](https://github.com/LukeSmithxyz/emailwiz/issues/73#issuecomment-686157796)
+- [Hosting Mail Server on VPS](https://www.youtube.com/watch?v=9zP7qooM4pY)
+  Solution for a problem i had [Issue](https://github.com/LukeSmithxyz/emailwiz/issues/73#issuecomment-686157796)
