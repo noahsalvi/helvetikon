@@ -5,48 +5,58 @@ import jwt from "jsonwebtoken";
 
 const accessTokensBeingUpdated = new Map<string, Promise<string>>();
 
-export async function createAccessToken(user: User) {
-  const safeUser = { id: user.id, email: user.email, username: user.username };
-  const secret = import.meta.env.VITE_JWT_SECRET as string;
-  const token = jwt.sign(safeUser, secret, { expiresIn: "3s" });
-  await prisma.session.create({ data: { token, userId: user.id } });
+const expiresIn = "10m";
 
-  return token;
-}
+namespace AccessToken {
+  export async function create(user: User) {
+    const userSafe = {
+      id: user.id,
+      email: user.email,
+      username: user.username,
+    };
+    const secret = import.meta.env.VITE_JWT_SECRET as string;
+    const token = jwt.sign(userSafe, secret, { expiresIn });
+    await prisma.session.create({ data: { token, userId: user.id } });
 
-export async function updateAccessToken(token: string) {
-  const existingNewTokenPromise = accessTokensBeingUpdated.get(token);
-  if (existingNewTokenPromise) {
-    return await existingNewTokenPromise;
+    return token;
   }
 
-  let newTokenPromiseResolver: (text: string) => void;
-  const newTokenPromise = new Promise<string>(
-    (res) => (newTokenPromiseResolver = res)
-  );
-  accessTokensBeingUpdated.set(token, newTokenPromise);
+  export async function update(token: string) {
+    const existingNewTokenPromise = accessTokensBeingUpdated.get(token);
+    if (existingNewTokenPromise) {
+      return await existingNewTokenPromise;
+    }
 
-  const session = await prisma.session.findUnique({
-    where: { token },
-    include: { user: true },
-  });
+    let newTokenPromiseResolver: (text: string) => void;
+    const newTokenPromise = new Promise<string>(
+      (res) => (newTokenPromiseResolver = res)
+    );
+    accessTokensBeingUpdated.set(token, newTokenPromise);
 
-  if (!session) {
-    newTokenPromiseResolver(null);
-    return null;
+    const session = await prisma.session.findUnique({
+      where: { token },
+      include: { user: true },
+    });
+
+    if (!session) {
+      newTokenPromiseResolver(null);
+      return null;
+    }
+
+    await prisma.session.delete({ where: { token } });
+    const newAccessToken = await create(session.user);
+    newTokenPromiseResolver(newAccessToken);
+    setTimeout(() => accessTokensBeingUpdated.delete(token), 2000);
+
+    return newAccessToken;
   }
 
-  await prisma.session.delete({ where: { token } });
-  const newAccessToken = await createAccessToken(session.user);
-  newTokenPromiseResolver(newAccessToken);
-  setTimeout(() => accessTokensBeingUpdated.delete(token), 2000);
-
-  return newAccessToken;
+  export function createCookie(token: string) {
+    return cookie.serialize("access-token", token, {
+      path: "/",
+      httpOnly: true,
+    });
+  }
 }
 
-export function createAccessTokenCookie(token: string) {
-  return cookie.serialize("access-token", token, {
-    path: "/",
-    httpOnly: true,
-  });
-}
+export default AccessToken;

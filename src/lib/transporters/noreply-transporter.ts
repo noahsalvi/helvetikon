@@ -9,3 +9,5 @@ export default nodemailer.createTransport({
     pass: import.meta.env.VITE_EMAIL_NOREPLY_PASSWORD as string,
   },
 });
+
+export const NOREPLY_FROM = "Helvetikon 🇨🇭 <noreply@helvetikon.org>";

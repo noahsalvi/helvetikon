@@ -1,9 +1,6 @@
 import type { Locals } from "$lib/models/session";
 import DELETE_ACCESS_TOKEN_COOKIE from "$lib/utils/delete-access-token-cookie";
-import {
-  updateAccessToken,
-  createAccessTokenCookie,
-} from "../routes/api/_utils/access-token";
+import AccessToken from "../routes/api/_utils/access-token";
 import cookie from "cookie";
 import jwt from "jsonwebtoken";
 
@@ -29,7 +26,7 @@ export async function handle({
     } catch (e) {
       if (e instanceof jwt.JsonWebTokenError) {
         if (e instanceof jwt.TokenExpiredError) {
-          const newAccessToken = await updateAccessToken(token);
+          const newAccessToken = await AccessToken.update(token);
           let accessTokenCookie: string;
 
           if (newAccessToken) {
@@ -42,7 +39,7 @@ export async function handle({
               email: payload.email,
               username: payload.username,
             };
-            accessTokenCookie = createAccessTokenCookie(newAccessToken);
+            accessTokenCookie = AccessToken.createCookie(newAccessToken);
           } else {
             delete request.locals.user;
             accessTokenCookie = DELETE_ACCESS_TOKEN_COOKIE;

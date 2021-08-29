@@ -4,7 +4,9 @@ import validator from "validator";
 import _validate from "../_middlewares/validate";
 import jwt from "jsonwebtoken";
 import type { User } from "@prisma/client";
-import noreplyTransporter from "$lib/transporters/noreply-transporter";
+import noreplyTransporter, {
+  NOREPLY_FROM,
+} from "$lib/transporters/noreply-transporter";
 import { renderMail } from "$lib/email-renderer";
 import VerifyEmail from "$lib/emails/VerifyEmail.svelte";
 
@@ -54,7 +56,7 @@ async function sendVerificationEmail(user: User) {
 
   const html = await renderMail(VerifyEmail, { data: { user, token } });
   noreplyTransporter.sendMail({
-    from: "Helvetikon 🇨🇭 <noreply@helvetikon.org>",
+    from: NOREPLY_FROM,
     to: `${user.username} <${user.email}>`,
     subject: "E-Mail verifizieren",
     html,

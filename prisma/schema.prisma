@@ -37,8 +37,8 @@ model WordInterpretation {
 
 model User {
   id                       Int                  @id @default(autoincrement())
-  username                 String
-  email                    String
+  username                 String               @unique
+  email                    String               @unique
   verified                 Boolean              @default(false)
   createdWords             Word[]
   createdInterpretations   WordInterpretation[]
