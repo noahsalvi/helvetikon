@@ -3,7 +3,10 @@
   import jwtDecode from "jwt-decode";
 
   export function load({ page }) {
-    const user = jwtDecode<{ email: string }>(page.query.get("token"));
+    const token = page.query.get("token");
+    if (!token) return { status: 302, redirect: "/" };
+
+    const user = jwtDecode<{ email: string }>(token);
     return { props: { user } };
   }
 </script>
@@ -86,8 +89,8 @@
   <h1 class="text-2xl font-bold">Passwort zurücksetzen</h1>
   <div class="text-lg text-gray-500">
     Setze ein neues Passwort für den Benutzer:
-    <span class="font-bold">{user.username}</span><br />
-    Keine Angst, das passiert uns allen mal 🤣
+    <span class="font-bold">{user.username}</span><br /><br />
+    Versuch es dieses mal nicht zu vergessen / verlieren 🤡
   </div>
 
   <form use:form class="mt-20" on:submit|preventDefault={reset}>

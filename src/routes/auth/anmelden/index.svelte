@@ -64,7 +64,7 @@
     />
 
     <div class="mt-3 flex justify-end">
-      <a href="/implement">Passwort vergessen?</a>
+      <a href="passwort-vergessen">Passwort vergessen?</a>
     </div>
     <div class="h-6" />
 
