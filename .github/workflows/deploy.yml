@@ -40,5 +40,5 @@ jobs:
       - name: Install Production Dependencies | Remote
         run: ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "cd swiss-german && yarn install --prod"
 
-      - name: Migrate Database && Restart Server | Remote
-        run: ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "cd swiss-german && prisma migrate deploy && pm2 reload helvetikon"
+      - name: Migrate Database & Restart Server | Remote
+        run: ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "cd swiss-german && prisma generate && prisma migrate deploy && pm2 reload helvetikon"
