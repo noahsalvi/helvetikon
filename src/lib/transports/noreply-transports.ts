@@ -1,7 +1,7 @@
-import nodemailer, { Transport, TransportOptions } from "nodemailer";
+import nodemailer from "nodemailer";
 import type Mail from "nodemailer/lib/mailer";
 import type SMTPTransport from "nodemailer/lib/smtp-transport";
-import { getTestransportOptions } from "./test-transport";
+import { getTestTansportOptions } from "./test-transport";
 
 const production = process.env.NODE_ENV === "production";
 const productionTransportOptions: SMTPTransport.Options = {
@@ -22,7 +22,7 @@ export async function sendMailNoreply(mailOptions: Mail.Options) {
     transportOptions = productionTransportOptions;
   } else {
     const account = await nodemailer.createTestAccount();
-    transportOptions = getTestransportOptions(account);
+    transportOptions = getTestTansportOptions(account);
   }
   const transport = nodemailer.createTransport(transportOptions);
 

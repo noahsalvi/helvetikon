@@ -1,6 +1,6 @@
 import type { TestAccount } from "nodemailer";
 
-export function getTestransportOptions(account: TestAccount) {
+export function getTestTansportOptions(account: TestAccount) {
   return {
     host: account.smtp.host,
     port: account.smtp.port,
