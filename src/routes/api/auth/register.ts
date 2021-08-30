@@ -51,7 +51,7 @@ export function post({ body }) {
 
 async function sendVerificationEmail(user: User) {
   const safeUser = { id: user.id, email: user.email, username: user.username };
-  const secret = import.meta.env.VITE_EMAIL_SECRET as string;
+  const secret = import.meta.env.VITE_EMAIL_VERIFICATION_SECRET as string;
   const token = jwt.sign(safeUser, secret);
 
   const html = await renderMail(VerifyEmail, { data: { user, token } });

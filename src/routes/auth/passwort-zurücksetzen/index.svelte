@@ -14,15 +14,9 @@
     error,
     successNextVisit,
     toast,
-    warn,
-    warnNextVisit,
   } from "$lib/components/Toaster/toast";
 
-  import {
-    faAt,
-    faLock,
-    faUserFriends,
-  } from "@fortawesome/free-solid-svg-icons";
+  import { faAt, faLock } from "@fortawesome/free-solid-svg-icons";
   import { email, minLength, required, useForm } from "svelte-use-form";
   import Button from "../../../lib/components/Button.svelte";
   import TextFieldWithIcon from "../_TextFieldWithIcon.svelte";
@@ -125,11 +119,11 @@
 
     <div class="h-6" />
 
-    <Button {loading} valid={$form.valid}>Passwort setzen</Button>
+    <Button {loading} valid={$form.valid}>Senden</Button>
 
     <div class="h-6" />
     <div class="flex justify-center items-center">
-      <a href="./registrieren">
+      <a href="registrieren">
         Neu hier?
         <span class="text-primary text-opacity-70 underline">
           Registrieren
@@ -140,5 +134,5 @@
 </main>
 
 <svelte:head>
-  <title>Login</title>
+  <title>Passwort zurücksetzen</title>
 </svelte:head>

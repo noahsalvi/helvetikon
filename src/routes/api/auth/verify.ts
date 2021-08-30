@@ -5,7 +5,7 @@ import AccessToken from "../_utils/access-token";
 
 export async function get({ query }) {
   const token = query.get("token");
-  const secret = import.meta.env.VITE_EMAIL_SECRET as string;
+  const secret = import.meta.env.VITE_EMAIL_VERIFICATION_SECRET as string;
   try {
     const payload = jwt.verify(token, secret);
 

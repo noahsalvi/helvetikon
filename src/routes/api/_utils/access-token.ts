@@ -14,7 +14,7 @@ namespace AccessToken {
       email: user.email,
       username: user.username,
     };
-    const secret = import.meta.env.VITE_JWT_SECRET as string;
+    const secret = import.meta.env.VITE_PASSWORD_SECRET as string;
     const token = jwt.sign(userSafe, secret, { expiresIn });
     await prisma.session.create({ data: { token, userId: user.id } });
 

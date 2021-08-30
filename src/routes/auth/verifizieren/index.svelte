@@ -24,3 +24,7 @@
     >
   </div>
 </main>
+
+<svelte:head>
+  <title>E-Mail verifizieren</title>
+</svelte:head>

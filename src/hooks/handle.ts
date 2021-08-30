@@ -11,7 +11,7 @@ export async function handle({
   request: { locals: Locals; headers: any; path: string };
   resolve: Function;
 }) {
-  const secret = import.meta.env.VITE_JWT_SECRET as string;
+  const secret = import.meta.env.VITE_PASSWORD_SECRET as string;
   const token = cookie.parse(request.headers.cookie || "")["access-token"];
 
   // Replace token with newer token if one was set in a parallel call
