@@ -6,15 +6,13 @@
 <hr> -->
 
 ## Setup
-
-[Prisma](https://prisma.com)
 Create a .env file in the project root with the following keys
 
 ```
 DATABASE_URL="postgresql://user:password@localhost:5432/database-name?schema=public"
-VITE_PASSWORD_SECRET="password-secret-key"
-VITE_PASSWORD_RESET_SECRET="password-reset-secret"
-VITE_EMAIL_VERIFICATION_SECRET="secret-key"
+VITE_PASSWORD_SECRET="SECRET"
+VITE_PASSWORD_RESET_SECRET="SECRET"
+VITE_EMAIL_VERIFICATION_SECRET="SECRET"
 ```
 
 Also a postgresql database needs to be created and connected via the DATABASE_URL secret.
