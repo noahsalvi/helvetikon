@@ -39,7 +39,6 @@ model User {
   id                       Int                  @id @default(autoincrement())
   username                 String               @unique
   email                    String               @unique
-  verified                 Boolean              @default(false)
   createdWords             Word[]
   createdInterpretations   WordInterpretation[]
   upvotedInterpretations   WordInterpretation[] @relation("WordInterpretationUpvotes")
