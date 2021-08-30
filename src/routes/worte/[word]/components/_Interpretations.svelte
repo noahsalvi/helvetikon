@@ -1,15 +1,14 @@
 <script lang="ts">
   import type { User, WordInterpretation } from ".prisma/client";
   import Examples from "./_Examples.svelte";
-  import "swiper/swiper-bundle.min.css";
-  import Swiper from "swiper/esm/svelte/swiper.svelte";
-  import SwiperSlide from "swiper/esm/svelte/swiper-slide.svelte";
+  import { Swiper, SwiperSlide } from "swiper/svelte";
   import Icon from "$lib/components/Icon";
   import { faPlus } from "@fortawesome/free-solid-svg-icons";
   import { page, session } from "$app/stores";
   import { goto } from "$app/navigation";
   import Voting from "./_Voting.svelte";
   import { warn } from "$lib/components/Toaster/toast";
+  import "swiper/css";
 
   export let interpretations: (WordInterpretation & {
     createdBy: User;
