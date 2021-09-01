@@ -40,7 +40,7 @@
 
   .card {
     width: 100%;
-    max-width: 800px;
+    max-width: 600px;
     margin-top: 20px;
     border-radius: 5px;
   }

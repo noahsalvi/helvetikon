@@ -22,7 +22,8 @@
       .post("/api/auth/forgot", data)
       .then((_) => {
         successNextVisit(
-          "Anfrage wurde verarbeitet, prüfe deinen Posteingang 📨"
+          "Anfrage wurde verarbeitet, prüfe deinen Posteingang 📨",
+          4000
         );
         location.replace("/");
       })
@@ -39,9 +40,9 @@
   <h1 class="text-2xl font-bold">Passwort vergessen?</h1>
   <div class="text-lg text-gray-500 max-w-prose">
     Gib folgend die E-Mail-Adresse deines Benutzers an. Falls ein Konto
-    existiert, wirst du ein E-Mail erhalten, mit welchem du dann dein Passwort
+    existiert, wirst du ein E-Mail erhalten, mit welchem du dein Passwort
     zurücksetzen kannst. <br /><br />
-    Keine Sorge, das passiert uns allen mal… 🤣
+    Keine Sorge, das passiert uns allen… 🤣
   </div>
 
   <form use:form class="mt-10" on:submit|preventDefault={forget}>

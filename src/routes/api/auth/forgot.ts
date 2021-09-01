@@ -1,6 +1,8 @@
+import { renderMail } from "$lib/email-renderer";
 import prisma from "$lib/prisma";
 import { sendMailNoreply } from "$lib/transports/noreply-transports";
 import PasswordResetToken from "../_utils/password-reset-token";
+import ForgotPasswordEmail from "$lib/emails/ForgotPasswordEmail.svelte";
 
 const successResponse = { body: "Password reset mail sent" };
 
@@ -14,7 +16,7 @@ export async function post({ body }) {
   sendMailNoreply({
     to: `${user.username} <${user.email}>`,
     subject: "Passwort vergessen 😬",
-    html: `<a href="http://localhost:3000/auth/passwort-zurücksetzen?token=${token}">Passwort vergessen</a>`,
+    html: await renderMail(ForgotPasswordEmail, { data: { user, token } }),
   });
 
   return successResponse;
