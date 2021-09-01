@@ -3,6 +3,7 @@ import DELETE_ACCESS_TOKEN_COOKIE from "$lib/utils/delete-access-token-cookie";
 import AccessToken from "$lib/api/tokens/access-token";
 import cookie from "cookie";
 import jwt from "jsonwebtoken";
+import { PASSWORD_SECRET } from "$lib/api/secrets";
 
 export async function handle({
   request,
@@ -11,13 +12,12 @@ export async function handle({
   request: { locals: Locals; headers: any; path: string };
   resolve: Function;
 }) {
-  const secret = import.meta.env.VITE_PASSWORD_SECRET as string;
   const token = cookie.parse(request.headers.cookie || "")["access-token"];
 
   // Replace token with newer token if one was set in a parallel call
   if (token && request.path !== "/api/auth/logout") {
     try {
-      const payload = jwt.verify(token, secret) as jwt.JwtPayload;
+      const payload = jwt.verify(token, PASSWORD_SECRET) as jwt.JwtPayload;
       request.locals.user = {
         id: payload.id,
         email: payload.email,
@@ -32,7 +32,7 @@ export async function handle({
           if (newAccessToken) {
             const payload = jwt.verify(
               newAccessToken,
-              secret
+              PASSWORD_SECRET
             ) as jwt.JwtPayload;
             request.locals.user = {
               id: payload.id,

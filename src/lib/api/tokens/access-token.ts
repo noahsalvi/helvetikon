@@ -2,6 +2,7 @@ import prisma from "$lib/prisma";
 import type { User } from "@prisma/client";
 import cookie from "cookie";
 import jwt from "jsonwebtoken";
+import { PASSWORD_SECRET } from "../secrets";
 
 const accessTokensBeingUpdated = new Map<string, Promise<string>>();
 
@@ -14,8 +15,8 @@ namespace AccessToken {
       email: user.email,
       username: user.username,
     };
-    const secret = import.meta.env.VITE_PASSWORD_SECRET as string;
-    const token = jwt.sign(userSafe, secret, { expiresIn });
+
+    const token = jwt.sign(userSafe, PASSWORD_SECRET, { expiresIn });
     await prisma.session.create({ data: { token, userId: user.id } });
 
     return token;

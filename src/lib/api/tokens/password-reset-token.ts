@@ -1,5 +1,6 @@
 import type { User } from "@prisma/client";
 import jwt from "jsonwebtoken";
+import { PASSWORD_RESET_SECRET } from "../secrets";
 
 const expiresIn = "10min";
 namespace PasswordResetToken {
@@ -10,8 +11,7 @@ namespace PasswordResetToken {
       username: user.username,
     };
 
-    const secret = import.meta.env.VITE_PASSWORD_RESET_SECRET as string;
-    const token = jwt.sign(userSafe, secret, { expiresIn });
+    const token = jwt.sign(userSafe, PASSWORD_RESET_SECRET, { expiresIn });
 
     return token;
   }

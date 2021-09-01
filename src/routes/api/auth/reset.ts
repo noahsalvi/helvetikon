@@ -3,6 +3,7 @@ import type { User } from "@prisma/client";
 import prisma from "$lib/prisma";
 import bcrypt from "bcrypt";
 import AccessToken from "$lib/api/tokens/access-token";
+import { PASSWORD_RESET_SECRET } from "$lib/api/secrets";
 
 export async function post({ body, query, headers }) {
   const password: string = body.password;
@@ -10,8 +11,7 @@ export async function post({ body, query, headers }) {
 
   let payload: jwt.JwtPayload & User;
   try {
-    const secret = import.meta.env.VITE_PASSWORD_RESET_SECRET as string;
-    payload = jwt.verify(token, secret) as any;
+    payload = jwt.verify(token, PASSWORD_RESET_SECRET) as any;
   } catch (e) {
     if (e instanceof jwt.TokenExpiredError) {
       return {

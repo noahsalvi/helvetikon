@@ -1,3 +1,4 @@
+import { EMAIL_NOREPLY_PASSWORD } from "$lib/api/secrets";
 import nodemailer from "nodemailer";
 import type Mail from "nodemailer/lib/mailer";
 import type SMTPTransport from "nodemailer/lib/smtp-transport";
@@ -9,7 +10,7 @@ const productionTransportOptions: SMTPTransport.Options = {
   port: 587,
   auth: {
     user: "noreply@helvetikon.org",
-    pass: import.meta.env.VITE_EMAIL_NOREPLY_PASSWORD as string,
+    pass: EMAIL_NOREPLY_PASSWORD,
   },
 };
 const from = "Helvetikon 🇨🇭 <noreply@helvetikon.org>";

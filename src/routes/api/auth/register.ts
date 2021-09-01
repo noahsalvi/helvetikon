@@ -7,6 +7,7 @@ import type { User } from "@prisma/client";
 import { renderMail } from "$lib/email-renderer";
 import VerifyEmail from "$lib/emails/VerifyEmail.svelte";
 import { sendMailNoreply } from "$lib/transports/noreply-transports";
+import { EMAIL_VERIFICATION_SECRET } from "$lib/api/secrets";
 
 export function post({ body }) {
   const username: string = body.username || "";
@@ -49,8 +50,7 @@ export function post({ body }) {
 
 async function sendVerificationEmail(user: User) {
   const safeUser = { id: user.id, email: user.email, username: user.username };
-  const secret = import.meta.env.VITE_EMAIL_VERIFICATION_SECRET as string;
-  const token = jwt.sign(safeUser, secret);
+  const token = jwt.sign(safeUser, EMAIL_VERIFICATION_SECRET);
 
   const html = await renderMail(VerifyEmail, { data: { user, token } });
   sendMailNoreply({

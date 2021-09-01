@@ -2,12 +2,12 @@ import prisma from "$lib/prisma";
 import type { User } from "@prisma/client";
 import jwt from "jsonwebtoken";
 import AccessToken from "$lib/api/tokens/access-token";
+import { EMAIL_VERIFICATION_SECRET } from "$lib/api/secrets";
 
 export async function get({ query }) {
   const token = query.get("token");
-  const secret = import.meta.env.VITE_EMAIL_VERIFICATION_SECRET as string;
   try {
-    const payload = jwt.verify(token, secret);
+    const payload = jwt.verify(token, EMAIL_VERIFICATION_SECRET);
 
     const user = payload as User;
     const userDB = await prisma.user.findUnique({ where: { id: user.id } });
