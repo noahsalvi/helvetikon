@@ -1,6 +1,6 @@
 <script>
+  // @ts-nocheck
   import { dev } from "$app/env";
-
   import EmailDefaultLayout from "./EmailDefaultLayout.svelte";
 
   export let user;

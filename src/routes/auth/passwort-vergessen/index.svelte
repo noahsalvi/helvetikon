@@ -42,7 +42,7 @@
     Gib folgend die E-Mail-Adresse deines Benutzers an. Falls ein Konto
     existiert, wirst du ein E-Mail erhalten, mit welchem du dein Passwort
     zurücksetzen kannst. <br /><br />
-    Keine Sorge, das passiert uns allen… 🤣
+    Keine Sorge, das passiert uns allen… 😅
   </div>
 
   <form use:form class="mt-10" on:submit|preventDefault={forget}>

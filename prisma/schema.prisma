@@ -46,6 +46,8 @@ model User {
   downvotedInterpretations WordInterpretation[] @relation("WordInterpretationDownvotes")
   password                 String
   sessions                 Session[]
+  lastForgotPasswordAt     DateTime?
+  lastPasswordResetAt      DateTime?
 }
 
 model Session {

@@ -34,6 +34,7 @@ export async function post({ body, query, headers }) {
     data: {
       password: { set: saltedAndHashedPassword },
       sessions: { deleteMany: {} },
+      lastPasswordResetAt: new Date(),
     },
   });
 
