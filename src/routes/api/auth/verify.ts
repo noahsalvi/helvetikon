@@ -1,7 +1,7 @@
 import prisma from "$lib/prisma";
 import type { User } from "@prisma/client";
 import jwt from "jsonwebtoken";
-import AccessToken from "../_utils/access-token";
+import AccessToken from "$lib/api/tokens/access-token";
 
 export async function get({ query }) {
   const token = query.get("token");

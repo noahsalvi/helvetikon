@@ -1,6 +1,6 @@
 import type { Locals } from "$lib/models/session";
 import DELETE_ACCESS_TOKEN_COOKIE from "$lib/utils/delete-access-token-cookie";
-import AccessToken from "../routes/api/_utils/access-token";
+import AccessToken from "$lib/api/tokens/access-token";
 import cookie from "cookie";
 import jwt from "jsonwebtoken";
 

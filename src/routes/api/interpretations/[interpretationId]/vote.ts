@@ -1,4 +1,4 @@
-import authorize from "../../_middlewares/authorize";
+import authorize from "$lib/api/middlewares/authorize";
 import prisma from "$lib/prisma";
 
 export async function put({ params, locals, body }) {

@@ -1,5 +1,5 @@
 import prisma from "$lib/prisma";
-import authorize from "../../../_middlewares/authorize";
+import authorize from "$lib/api/middlewares/authorize";
 
 type WordInterpretationDraft = { meaning: string; examples: string[] };
 

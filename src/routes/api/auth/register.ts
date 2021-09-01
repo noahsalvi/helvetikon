@@ -1,7 +1,7 @@
 import prisma from "$lib/prisma";
 import bcrypt from "bcrypt";
 import validator from "validator";
-import _validate from "../_middlewares/validate";
+import _validate from "$lib/api/middlewares/validate";
 import jwt from "jsonwebtoken";
 import type { User } from "@prisma/client";
 import { renderMail } from "$lib/email-renderer";

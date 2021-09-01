@@ -1,7 +1,7 @@
 import { renderMail } from "$lib/email-renderer";
 import prisma from "$lib/prisma";
 import { sendMailNoreply } from "$lib/transports/noreply-transports";
-import PasswordResetToken from "../_utils/password-reset-token";
+import PasswordResetToken from "$lib/api/tokens/password-reset-token";
 import ForgotPasswordEmail from "$lib/emails/ForgotPasswordEmail.svelte";
 
 const requestExpiration = 10 * 60 * 1000;

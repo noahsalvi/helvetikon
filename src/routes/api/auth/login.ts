@@ -1,6 +1,6 @@
 import prisma from "$lib/prisma";
 import bcrypt from "bcrypt";
-import AccessToken from "../_utils/access-token";
+import AccessToken from "$lib/api/tokens/access-token";
 
 export async function post({ body, locals }) {
   const username: string = body.username;
