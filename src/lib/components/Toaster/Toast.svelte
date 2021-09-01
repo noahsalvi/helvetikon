@@ -29,7 +29,7 @@
 <div
   on:click={destroy}
   transition:fly
-  class="px-4 py-1.5 rounded min-w-30 shadow-md {styling} flex items-center gap-3"
+  class="px-4 py-1.5 rounded min-w-30 shadow-md {styling} flex items-center gap-3 pointer-events-auto"
 >
   <div>
     {content}

@@ -16,7 +16,7 @@
   });
 </script>
 
-<section class="fixed w-full z-100">
+<section class="fixed w-full z-100 pointer-events-none">
   <div class="mx-auto mt-4 px-6 flex flex-col items-center gap-2">
     {#each $toasts as toast (toast)}
       <Toast on:destroy={() => removeToast(toast)} {...toast} />
