@@ -16,8 +16,9 @@
     Gibt es noch andere Arten das Wort "{$data.swissGerman}" zu schreiben?
     <ul class="list-disc list-inside">
       <li>
-        Hier geht es um kleinere Abweichungen wie das Wort geschrieben wird.
-        z.B. Öpfel und Apfu sind alternative Schreibweisen für das Wort Öpfu
+        Hier geht es um kleinere Abweichungen.
+        <div class="text-green-500">Bsp. Öpfu: Öpfel, Apfu, Epfel</div>
+        <div class="text-red-500">Bsp. Modi: Meitli, Mäitschi, Epfel</div>
       </li>
       <li>
         Weiteres Beispiel: Modi und Meitli unterscheiden sich zu fest, um als

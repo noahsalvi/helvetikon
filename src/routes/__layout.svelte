@@ -2,9 +2,11 @@
   import "virtual:windi.css";
   import "$lib/components/WindiComponents.css";
   import Toaster from "$lib/components/Toaster/Toaster.svelte";
+  import Status from "$lib/components/_Status.svelte";
 </script>
 
 <Toaster />
+<Status />
 <slot />
 
 <style global>
