@@ -14,6 +14,7 @@ namespace AccessToken {
       id: user.id,
       email: user.email,
       username: user.username,
+      preferredDialect: user.preferredDialect,
     };
 
     const token = jwt.sign(userSafe, PASSWORD_SECRET, { expiresIn });

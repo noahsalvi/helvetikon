@@ -19,11 +19,13 @@ export async function get({ query }) {
     }
 
     await prisma.user.update({
-      where: { id: user.id },
+      where: { id: userDB.id },
       data: { verified: true },
     });
 
-    const jwtCookie = AccessToken.createCookie(await AccessToken.create(user));
+    const jwtCookie = AccessToken.createCookie(
+      await AccessToken.create(userDB)
+    );
 
     return {
       status: 201,

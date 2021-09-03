@@ -5,7 +5,7 @@ CREATE TYPE "Dialect" AS ENUM ('BASEL', 'AARGAU', 'BERN', 'LUZERN', 'OSTSCHWEIZ'
 CREATE TABLE "Word" (
     "id" SERIAL NOT NULL,
     "swissGerman" TEXT NOT NULL,
-    "german" TEXT NOT NULL,
+    "german" TEXT,
     "spellings" TEXT[],
     "dialect" "Dialect" NOT NULL,
     "audioSamplePath" TEXT,

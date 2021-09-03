@@ -4,6 +4,7 @@
   import type { Writable } from "svelte/store";
   import StepButton from "../components/_StepButton.svelte";
   import StepLayout from "../components/_StepLayout.svelte";
+  import dialects from "$lib/dialects";
 
   const data: Writable<any> = getContext("add-word-data");
 
@@ -14,15 +15,20 @@
   <span slot="title">Alternative Schreibwesen</span>
   <span slot="description">
     Gibt es noch andere Arten das Wort "{$data.swissGerman}" zu schreiben?
-    <ul class="list-disc list-inside">
+    <ul class="list-disc ml-6">
       <li>
-        Hier geht es um kleinere Abweichungen.
-        <div class="text-green-500">Bsp. Öpfu: Öpfel, Apfu, Epfel</div>
-        <div class="text-red-500">Bsp. Modi: Meitli, Mäitschi, Epfel</div>
+        Achte dich auf die
+        <a
+          class="underline"
+          href="https://www.duden.de/sprachwissen/rechtschreibregeln/Gro%C3%9F-%20und%20Kleinschreibung"
+        >
+          Grossschreibung
+        </a>
       </li>
+      <li>Kleinere Abweichungen</li>
+      <li>Nur {dialects[$data.dialect]?.name} ist relevant</li>
       <li>
-        Weiteres Beispiel: Modi und Meitli unterscheiden sich zu fest, um als
-        alternative Schreibweise zu gelten
+        Bsp. <span class="font-semibold">Zwätschgä</span>: Zwetschgä, Zwetschge
       </li>
     </ul>
   </span>

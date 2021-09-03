@@ -22,6 +22,7 @@ export async function handle({
         id: payload.id,
         email: payload.email,
         username: payload.username,
+        preferredDialect: payload.preferredDialect,
       };
     } catch (e) {
       if (e instanceof jwt.JsonWebTokenError) {
@@ -38,6 +39,7 @@ export async function handle({
               id: payload.id,
               email: payload.email,
               username: payload.username,
+              preferredDialect: payload.preferredDialect,
             };
             accessTokenCookie = AccessToken.createCookie(newAccessToken);
           } else {
