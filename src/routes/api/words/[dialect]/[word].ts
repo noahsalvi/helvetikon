@@ -2,8 +2,12 @@ import prisma from "$lib/prisma";
 
 export async function get({ params }) {
   const query = params.word;
+  const dialect = params.dialect;
 
-  const word = await prisma.word.findUnique({
+  const word = await prisma.word.findFirst({
+    where: {
+      AND: { swissGerman: { equals: query }, dialect: { equals: dialect } },
+    },
     include: {
       createdBy: { select: { username: true } },
       interpretations: {
@@ -12,10 +16,10 @@ export async function get({ params }) {
           createdBy: { select: { username: true } },
           upvotes: { select: { username: true } },
           downvotes: { select: { username: true } },
+          meanings: true,
         },
       },
     },
-    where: { swissGerman: query },
   });
 
   if (!word) {

@@ -2,6 +2,7 @@
   import { goto } from "$app/navigation";
   import api from "$lib/api";
   import { error, success } from "$lib/components/Toaster/toast";
+  import dialects from "$lib/dialects";
   import type { Word } from ".prisma/client";
   import { getContext } from "svelte";
   import { Hint, maxLength, useForm } from "svelte-use-form";
@@ -30,7 +31,7 @@
     api
       .post("/api/words", wordData)
       .then((word: Word) => {
-        goto("/worte/" + word.swissGerman).then(() =>
+        goto(`/${dialects[word.dialect].slug}/${word.swissGerman}`).then(() =>
           success("Wort wurde erstellt 🎉")
         );
       })

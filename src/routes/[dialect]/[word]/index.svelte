@@ -1,7 +1,14 @@
 <script context="module">
   export async function load({ page, fetch }) {
-    const { word } = page.params;
-    const result = await fetch("/api/words/word-" + word);
+    const { dialect: dialectSlug, word } = page.params;
+
+    const dialect = Object.entries(dialects).find(
+      ([_, value]) => value.slug === dialectSlug
+    )?.[0];
+
+    if (!dialect) return;
+
+    const result = await fetch(`/api/words/${dialect}/${word}`);
 
     if (!result.ok) {
       return { status: result.status };
@@ -17,7 +24,6 @@
   import Nav from "$lib/components/Nav.svelte";
   import {
     faHome,
-    faPen,
     faShare,
     faVolumeUp,
   } from "@fortawesome/free-solid-svg-icons";
@@ -28,8 +34,16 @@
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
 
-  import type { User, Word, Interpretation } from "@prisma/client";
+  import type {
+    User,
+    Word,
+    Interpretation,
+    Dialect,
+    Meaning,
+  } from "@prisma/client";
   import Fab from "$lib/components/Fab.svelte";
+  import dialects from "$lib/dialects";
+  import { metaContent } from "$lib/utils/meta-content";
 
   export let word: Word & {
     createdBy: User;
@@ -37,6 +51,7 @@
       createdBy: User;
       upvotes: User[];
       downvotes: User[];
+      meanings: Meaning[];
     })[];
   };
 
@@ -96,13 +111,14 @@
 <svelte:head>
   <title>
     {word.swissGerman}
-    {getMetaSpellingList()}| Schweizerdeutsches Wörterbuch
+    {getMetaSpellingList()} - Helvetikon
   </title>
-  {#if word.interpretations.length}
-    <meta
-      name="description"
-      content="{word.german && `(DE)${word.german}\n`}{word.interpretations[0]
-        .meaning && `Bedeutung: ${word.interpretations[0].meaning}`}"
-    />
-  {/if}
+
+  <meta
+    name="description"
+    content="{metaContent('Deutsch: ## | ', word.german)}{metaContent(
+      '## | ',
+      word.interpretations[0]?.meanings[0]?.explanation
+    )}{metaContent('Dialekt: ##', dialects[word.dialect].name)}"
+  />
 </svelte:head>

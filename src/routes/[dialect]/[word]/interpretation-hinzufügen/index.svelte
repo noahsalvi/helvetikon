@@ -1,7 +1,7 @@
 <script context="module">
   export async function load({ page, fetch }) {
-    const { word } = page.params;
-    const result = await fetch("/api/words/word-" + word);
+    const { dialect, word } = page.params;
+    const result = await fetch(`/api/words/${dialect}/${word}`);
     const wordData = await result.json();
 
     return { props: { word: wordData } };

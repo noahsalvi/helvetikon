@@ -12,7 +12,7 @@ generator client {
 
 model Word {
   id              Int              @id @default(autoincrement())
-  swissGerman     String           @unique
+  swissGerman     String
   german          String?
   spellings       String[]
   dialect         Dialect
