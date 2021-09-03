@@ -5,7 +5,7 @@ export async function get({ params, locals }) {
   authorize(locals);
   const interpretationId = parseInt(params.interpretationId);
 
-  const interpretation = await prisma.wordInterpretation.findUnique({
+  const interpretation = await prisma.interpretation.findUnique({
     where: { id: interpretationId },
     include: { word: true },
   });
@@ -20,7 +20,7 @@ export async function put({ params, locals, body }) {
   const interpretationId = parseInt(params.interpretationId);
   const { meaning, examples } = body;
 
-  const interpretation = await prisma.wordInterpretation.findUnique({
+  const interpretation = await prisma.interpretation.findUnique({
     where: { id: interpretationId },
   });
 
@@ -30,7 +30,7 @@ export async function put({ params, locals, body }) {
       body: "You're not allowed to edit this interpretation",
     };
 
-  const updatedInterpretation = await prisma.wordInterpretation.update({
+  const updatedInterpretation = await prisma.interpretation.update({
     where: { id: interpretationId },
     data: { meaning, examples },
   });

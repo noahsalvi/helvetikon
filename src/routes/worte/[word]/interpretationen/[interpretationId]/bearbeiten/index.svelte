@@ -11,14 +11,14 @@
 
 <script lang="ts">
   import Nav from "$lib/components/Nav.svelte";
-  import type { Word, WordInterpretation } from ".prisma/client";
+  import type { Word, Interpretation } from ".prisma/client";
   import Examples from "./_Examples.svelte";
   import { goto } from "$app/navigation";
   import api from "$lib/api";
   import ButtonBar from "$lib/components/ButtonBar.svelte";
   import { success, warn } from "$lib/components/Toaster/toast";
 
-  export let interpretation: WordInterpretation & { word: Word };
+  export let interpretation: Interpretation & { word: Word };
 
   let loading = false;
 

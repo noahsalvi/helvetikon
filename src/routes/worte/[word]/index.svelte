@@ -28,12 +28,12 @@
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
 
-  import type { User, Word, WordInterpretation } from "@prisma/client";
+  import type { User, Word, Interpretation } from "@prisma/client";
   import Fab from "$lib/components/Fab.svelte";
 
   export let word: Word & {
     createdBy: User;
-    interpretations: (WordInterpretation & {
+    interpretations: (Interpretation & {
       createdBy: User;
       upvotes: User[];
       downvotes: User[];

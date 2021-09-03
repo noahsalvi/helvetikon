@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { User, WordInterpretation } from ".prisma/client";
+  import type { User, Interpretation } from ".prisma/client";
   import Examples from "./_Examples.svelte";
   import { Swiper, SwiperSlide } from "swiper/svelte";
   import Icon from "$lib/components/Icon";
@@ -10,7 +10,7 @@
   import { warn } from "$lib/components/Toaster/toast";
   import "swiper/css";
 
-  export let interpretations: (WordInterpretation & {
+  export let interpretations: (Interpretation & {
     createdBy: User;
     upvotes: User[];
     downvotes: User[];
