@@ -114,7 +114,6 @@
 
   <Interpretations interpretations={word.interpretations} />
 </main>
-
 <Fab icon={faHome} href="/" />
 
 <svelte:head>

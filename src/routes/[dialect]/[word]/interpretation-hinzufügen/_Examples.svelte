@@ -27,15 +27,15 @@
 
 <section>
   <label for="example">Beispielsätze</label>
-  <div class="flex flex-col gap-2 mb-3">
+  <div class="flex flex-col gap-2">
     {#each examples as example, index}
       <div class="flex">
         <input
           bind:value={example}
-          class="textfield"
+          class="w-full bg-light-300 rounded px-2 py-1"
           type="text"
           id="example-{index}"
-          placeholder="Schweizerdeutscher Satz"
+          placeholder="Schweizerdeutsch"
         />
 
         <button on:click={() => deleteExample(index)} class="px-3">
@@ -44,6 +44,9 @@
       </div>
     {/each}
   </div>
+
+  <div class="h-1" />
+
   <button on:click={addExample} class="text-primary font-bold text-sm"
     >+ Beispiel hinzufügen</button
   >

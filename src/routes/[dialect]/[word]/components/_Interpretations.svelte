@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { User, Interpretation } from ".prisma/client";
+  import type { User, Interpretation, Meaning } from ".prisma/client";
   import Examples from "./_Examples.svelte";
   import { Swiper, SwiperSlide } from "swiper/svelte";
   import Icon from "$lib/components/Icon";
@@ -9,11 +9,13 @@
   import Voting from "./_Voting.svelte";
   import { warn } from "$lib/components/Toaster/toast";
   import "swiper/css";
+  import { r } from "$lib/utils/meta-content";
 
   export let interpretations: (Interpretation & {
     createdBy: User;
     upvotes: User[];
     downvotes: User[];
+    meanings: Meaning[];
   })[];
 
   let activeIndex = 0;
@@ -51,20 +53,32 @@
             </a>
           {/if}
 
-          <div class="font-bold">Bedeutung</div>
-          <div>
-            {interpretation.meaning}
-          </div>
+          <h1 class="font-bold text-lg">Interpretation</h1>
 
-          <div class="h-3" />
-          {#if interpretation.examples.length}
-            <div class="font-bold">Beispiele</div>
-            <div class="italic">"{interpretation.examples[0]}"</div>
-          {/if}
-          <Examples examples={interpretation.examples} />
+          <div class="h-2" />
 
-          <div class="h-3" />
+          <ol class={r("list-decimal", interpretation.meanings.length > 1)}>
+            {#each interpretation.meanings as meaning}
+              <li class={r("ml-5", interpretation.meanings.length > 1)}>
+                <div>
+                  {meaning.explanation}
+                </div>
 
+                {#if meaning.examples.length}
+                  <div class="font-semibold">Beispiele:</div>
+                  <ul class="list-disc ml-5">
+                    {#each meaning.examples as example}
+                      <li>
+                        <div class="italic">{example}</div>
+                      </li>
+                    {/each}
+                  </ul>
+                {/if}
+
+                <div class="h-3" />
+              </li>
+            {/each}
+          </ol>
           <div class="flex justify-between items-baseline">
             <div>@{interpretation.createdBy.username}</div>
 
@@ -92,7 +106,7 @@
   </Swiper>
 
   <!-- Bottom Overview thingy -->
-  <div class="h-20 flex justify-center items-center">
+  <div class="h-23 flex justify-center items-center">
     <div class="flex space-x-2">
       {#each new Array(slidesLength) as _, index}
         <div
