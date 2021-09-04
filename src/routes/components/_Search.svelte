@@ -2,6 +2,7 @@
   import { goto } from "$app/navigation";
 
   import Icon from "$lib/components/Icon";
+  import dialects from "$lib/dialects";
 
   import type { Word } from ".prisma/client";
   import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -38,7 +39,9 @@
   const gotoFirstSearchResult = () => {
     const firstSearchResult = searchResultWords[0];
     if (firstSearchResult) {
-      const path = `/worte/${firstSearchResult.swissGerman}`;
+      const path = `/${dialects[firstSearchResult.dialect].slug}/${
+        firstSearchResult.swissGerman
+      }`;
       goto(path);
     }
   };
@@ -69,7 +72,7 @@
   <div class="absolute w-full bg-white text-black rounded-lg shadow-lg">
     {#each searchResultWords as word}
       <a
-        href="/worte/{word.swissGerman}"
+        href="/{dialects[word.dialect].slug}/{word.swissGerman}"
         class="flex items-center px-3 py-2 border-light-700 not-last:border-b-2"
       >
         <div class="bg-accent text-white p-1 mr-3 rounded-md">

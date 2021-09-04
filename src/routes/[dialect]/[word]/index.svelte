@@ -44,6 +44,7 @@
   import Fab from "$lib/components/Fab.svelte";
   import dialects from "$lib/dialects";
   import { metaContent } from "$lib/utils/meta-content";
+  import config from "$lib/config";
 
   export let word: Word & {
     createdBy: User;
@@ -119,7 +120,7 @@
 <svelte:head>
   <title>
     {word.swissGerman}
-    {getMetaSpellingList()} - Helvetikon
+    {getMetaSpellingList()} - {config.appName}
   </title>
 
   <meta
