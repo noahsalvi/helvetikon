@@ -1,5 +1,5 @@
 import { Dialect } from "$lib/prisma-browser";
-import { Dialect as DialectType } from "@prisma/client";
+import type { Dialect as DialectType } from "@prisma/client";
 
 const dialects: {
   [key in DialectType]: { name: string; slug: string; description?: string };

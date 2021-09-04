@@ -1,6 +1,6 @@
 import prisma, { PrismaClientKnownRequestError } from "$lib/prisma";
 import authorize from "$lib/api/middlewares/authorize";
-import { Dialect } from "@prisma/client";
+import type { Dialect } from "@prisma/client";
 
 export async function get({}) {
   const words = await prisma.word.findMany({ take: 50 });

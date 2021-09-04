@@ -34,13 +34,7 @@
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
 
-  import type {
-    User,
-    Word,
-    Interpretation,
-    Dialect,
-    Meaning,
-  } from "@prisma/client";
+  import type { User, Word, Interpretation, Meaning } from "@prisma/client";
   import Fab from "$lib/components/Fab.svelte";
   import dialects from "$lib/dialects";
   import { metaContent } from "$lib/utils/meta-content";
