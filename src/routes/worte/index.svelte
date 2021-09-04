@@ -8,6 +8,7 @@
 
 <script lang="ts">
   import Nav from "$lib/components/Nav.svelte";
+  import dialects from "$lib/dialects";
   import type { Word } from ".prisma/client";
 
   export let words: Word[];
@@ -25,8 +26,9 @@
   >
     {#each words as word, index}
       <a
-        class="text-primary font-semibold text-xl"
-        href="/worte/{word.swissGerman}">{index + 1}. {word.swissGerman}</a
+        class="text-primary font-semibold text-xl break-words"
+        href="/{dialects[word.dialect].slug}/{word.swissGerman}"
+        >{index + 1}. {word.swissGerman}</a
       >
     {/each}
   </div>

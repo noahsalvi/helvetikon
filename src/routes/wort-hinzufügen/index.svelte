@@ -11,9 +11,9 @@
   import { goto } from "$app/navigation";
   import Fab from "$lib/components/Fab.svelte";
   import Nav from "$lib/components/Nav.svelte";
-  import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
   import { setContext } from "svelte";
   import { writable } from "svelte/store";
+  import StepDialect from "./steps/_StepDialect.svelte";
   import StepGerman from "./steps/_StepGerman.svelte";
   import StepSpellings from "./steps/_StepSpellings.svelte";
   import StepSwissGerman from "./steps/_StepSwissGerman.svelte";
@@ -22,10 +22,11 @@
     swissGerman: "",
     spellings: [],
     german: "",
+    dialect: null,
     nextStep,
   });
 
-  const steps = [StepSwissGerman, StepSpellings, StepGerman];
+  const steps = [StepDialect, StepSwissGerman, StepSpellings, StepGerman];
 
   let currentStep = 0;
 

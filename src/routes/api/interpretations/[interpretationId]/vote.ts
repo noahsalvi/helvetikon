@@ -48,7 +48,7 @@ export async function put({ params, locals, body }) {
     },
   });
 
-  const updatedInterpretation = await prisma.wordInterpretation.findUnique({
+  const updatedInterpretation = await prisma.interpretation.findUnique({
     where: { id: interpretationId },
     select: {
       upvotes: { select: { username: true } },

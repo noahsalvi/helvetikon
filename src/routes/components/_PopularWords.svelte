@@ -1,12 +1,13 @@
 <script lang="ts">
   import Icon from "$lib/components/Icon";
+  import dialects from "$lib/dialects";
   import type { Word } from ".prisma/client";
   import { faAward } from "@fortawesome/free-solid-svg-icons";
-  type PopularWord = Word & {
+  type WordWithPopularity = Word & {
     popularity: number;
   };
 
-  export let popularWords: PopularWord[] = [];
+  export let popularWords: WordWithPopularity[] = [];
 </script>
 
 <section class="rounded-lg overflow-hidden">
@@ -16,7 +17,7 @@
   </div>
   {#each popularWords as word, index}
     <a
-      href="/worte/{word.swissGerman}"
+      href="/{dialects[word.dialect].slug}/{word.swissGerman}"
       class="bg-red-700 px-3 py-3 flex items-center gap-3"
     >
       <div

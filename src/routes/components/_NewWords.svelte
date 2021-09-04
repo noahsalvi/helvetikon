@@ -1,4 +1,5 @@
 <script lang="ts">
+  import dialects from "$lib/dialects";
   import type { Word } from ".prisma/client";
 
   export let recentWords: Word[] = [];
@@ -11,7 +12,7 @@
     {#each recentWords as word}
       <a
         class="bg-true-gray-900 text-opacity-50 px-2 py-1  rounded-md"
-        href="worte/{word.swissGerman}"
+        href="{dialects[word.dialect].slug}/{word.swissGerman}"
       >
         {word.swissGerman}
       </a>

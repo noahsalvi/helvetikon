@@ -1,5 +1,6 @@
 import prisma, { PrismaClientKnownRequestError } from "$lib/prisma";
 import authorize from "$lib/api/middlewares/authorize";
+import { Dialect } from "@prisma/client";
 
 export async function get({}) {
   const words = await prisma.word.findMany({ take: 50 });
@@ -8,7 +9,12 @@ export async function get({}) {
   };
 }
 
-type WordDraft = { swissGerman: string; german: string; spellings: string[] };
+type WordDraft = {
+  swissGerman: string;
+  german: string;
+  spellings: string[];
+  dialect: Dialect;
+};
 
 export async function post({ body, locals }) {
   const user = authorize(locals);

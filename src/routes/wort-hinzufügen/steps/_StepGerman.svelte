@@ -1,10 +1,9 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-
   import api from "$lib/api";
   import { error, success } from "$lib/components/Toaster/toast";
+  import dialects from "$lib/dialects";
   import type { Word } from ".prisma/client";
-
   import { getContext } from "svelte";
   import { Hint, maxLength, useForm } from "svelte-use-form";
   import type { Writable } from "svelte/store";
@@ -26,12 +25,13 @@
       swissGerman: $data.swissGerman,
       german: $data.german,
       spellings: $data.spellings,
+      dialect: $data.dialect,
     };
 
     api
       .post("/api/words", wordData)
       .then((word: Word) => {
-        goto("/worte/" + word.swissGerman).then(() =>
+        goto(`/${dialects[word.dialect].slug}/${word.swissGerman}`).then(() =>
           success("Wort wurde erstellt 🎉")
         );
       })
@@ -44,9 +44,21 @@
 </script>
 
 <StepLayout>
-  <span slot="title">Deutsche Übersetzung (Optional)</span>
+  <span slot="title">Deutsche Übersetzung</span>
   <span slot="description">
-    Hat das Wort im Hochdeutschen ein verständliches Gegenstück?
+    Hat das Wort im Hochdeutschen ein korrektes Gegenstück?
+    <ul class="list-disc ml-6">
+      <li>Optional</li>
+      <li>
+        Achte dich auf die
+        <a
+          class="underline"
+          href="https://www.duden.de/sprachwissen/rechtschreibregeln/Gro%C3%9F-%20und%20Kleinschreibung"
+        >
+          Grossschreibung
+        </a>
+      </li>
+    </ul>
   </span>
   <form use:form>
     <input
@@ -69,4 +81,11 @@
       {loading}
     />
   </form>
+
+  <div class="h-5" />
+
+  <div class="text-gray-500 bg-light-300 p-3 rounded-lg">
+    Im nächsten Schritt können Bedeutungen und Beispielsätze erfasst werden.
+    (Interpretation)
+  </div>
 </StepLayout>

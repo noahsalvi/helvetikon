@@ -1,18 +1,18 @@
 import prisma from "$lib/prisma";
 import authorize from "$lib/api/middlewares/authorize";
 
-type WordInterpretationDraft = { meaning: string; examples: string[] };
+type MeaningDraft = { explanation: string; examples: string[] };
 
 // Create an interpretation
 export async function post({ params, body, locals }) {
   const user = authorize(locals);
   const wordId = parseInt(params.wordId);
-  const newInterpretation: WordInterpretationDraft = body;
+  const newMeanings: MeaningDraft[] = body;
 
-  const interpretation = await prisma.wordInterpretation.create({
+  const interpretation = await prisma.interpretation.create({
     data: {
-      ...newInterpretation,
       word: { connect: { id: wordId } },
+      meanings: { createMany: { data: newMeanings, skipDuplicates: true } },
       createdBy: { connect: { id: user.id } },
     },
   });

@@ -1,4 +1,6 @@
 <script>
+  import config from "$lib/config";
+
   // @ts-nocheck
 
   export let title;
@@ -13,7 +15,9 @@
             <tbody>
               <tr>
                 <td>
-                  <a class="logo" href="https://helvetikon.org">Helvetikon</a>
+                  <a class="logo" href="https://helvetikon.org"
+                    >{config.appName}</a
+                  >
                 </td>
               </tr>
               <tr>

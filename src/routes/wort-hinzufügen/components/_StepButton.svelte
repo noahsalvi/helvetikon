@@ -11,7 +11,7 @@
   on:click|preventDefault
   class="bg-primary p-3 w-full rounded-lg text-white font-semibold transition
     disabled:bg-opacity-40"
-  disabled={!valid}
+  disabled={!valid || loading}
 >
   {#if loading}
     <Icon data={faSpinner} spin />

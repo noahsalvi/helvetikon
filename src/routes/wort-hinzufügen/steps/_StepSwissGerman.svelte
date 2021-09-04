@@ -1,7 +1,9 @@
 <script lang="ts">
   import api from "$lib/api";
   import { error } from "$lib/components/Toaster/toast";
-  import type { Word } from ".prisma/client";
+  import dialects from "$lib/dialects";
+  import { Dialect } from "$lib/prisma-browser";
+  import type { Word, Dialect as DialectType } from "@prisma/client";
   import { getContext } from "svelte";
   import { Hint, maxLength, required, useForm } from "svelte-use-form";
   import type { Writable } from "svelte/store";
@@ -20,8 +22,9 @@
     loading = true;
 
     const swissGerman = $form.swissGerman.value;
+    const dialect: DialectType = $data.dialect;
     api
-      .get("/api/words/available/" + swissGerman)
+      .get(`/api/words/available/${dialect}/${swissGerman}`)
       .then(() => $data.nextStep())
       .catch(async (reason) => {
         if (reason.status === 409) {
@@ -30,17 +33,22 @@
             href: `/worte/${word.swissGerman}`,
             title: "Ansehen",
           });
-        }
+        } else error();
       })
       .finally(() => (loading = false));
   };
+
+  $: selectedDialect =
+    $data.dialect === Dialect.OTHER
+      ? ""
+      : `${dialects[$data.dialect as DialectType]?.name}e`.toLowerCase();
 </script>
 
 <StepLayout>
   <span slot="title">Wie heisst das Wort?</span>
   <span slot="description">
-    Das Schweizerdeutsche Wort, das du erfassen willst. <br />
-    <ul class="list-disc list-inside">
+    Das {selectedDialect} Wort, das du erfassen willst. <br />
+    <ul class="list-disc ml-6">
       <li>
         Achte dich auf die
         <a
@@ -50,6 +58,7 @@
           Grossschreibung
         </a>
       </li>
+      <li>Wähle die populärste Schreibweise</li>
     </ul>
   </span>
   <form use:form>
