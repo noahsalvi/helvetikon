@@ -1,4 +1,4 @@
-<h1 align="center"><a href="https://helvetikon.org">Helvetikon</a></h1> 
+<h1 align="center"><a href="https://helvetikon.org">Helvetikon [In Development]</a></h1> 
 <p align="center">A community maintained dictionary for the swiss german language</p>
 
 <hr>
