@@ -84,7 +84,7 @@
     </div>
 
     <div class="h-3" />
-    <h1 class="font-bold text-5xl text-coal">
+    <h1 class="font-bold text-5xl text-coal break-words">
       {word.swissGerman}
     </h1>
 
