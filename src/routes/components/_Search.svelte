@@ -68,7 +68,7 @@
       on:keypress={(e) => e.key === "Enter" && gotoFirstSearchResult()}
       class="w-full rounded-xl p-3 pr-12 font-bold h-14 text-black border !border-3 !border-light-900 placeholder-gray-500"
       type="text"
-      placeholder="Zwetschgää.."
+      placeholder="Zwätschgä"
     />
     <button
       disabled={!searchResultWords.length}
