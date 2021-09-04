@@ -1,6 +1,11 @@
 <script context="module">
   export async function load({ page, fetch }) {
-    const { dialect, word } = page.params;
+    const { dialect: dialectSlug, word } = page.params;
+    const dialect = Object.entries(dialects).find(
+      ([_, dialect]) => dialect.slug === dialectSlug
+    )?.[0];
+
+    if (!dialect) return;
     const result = await fetch(`/api/words/${dialect}/${word}`);
     const wordData = await result.json();
 
@@ -17,6 +22,7 @@
   import ButtonBar from "$lib/components/ButtonBar.svelte";
   import api from "$lib/api";
   import { error, success } from "$lib/components/Toaster/toast";
+  import dialects from "$lib/dialects";
 
   export let word: Word;
 

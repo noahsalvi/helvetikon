@@ -70,28 +70,37 @@
   };
 </script>
 
-<SwissCross />
+<!-- <SwissCross /> -->
 
 <Nav />
-<main class="text-xl">
+<main>
   <div class="px-3">
-    <div class="h-16" />
+    <div class="h-10" />
+    <div
+      class="text-sm font-semibold bg-light-200 rounded flex w-min px-2 py-1"
+    >
+      {dialects[word.dialect].name}
+    </div>
+
+    <div class="h-3" />
     <h1 class="font-bold text-5xl text-coal">
       {word.swissGerman}
     </h1>
 
-    {#if word.german}
-      <div>
-        <span class="text-primaryDark text-xl">(DE) </span>
-        <span class="font-bold text-2xl">{word.german}</span>
-      </div>
-    {/if}
-
-    <div class="mb-4 text-sm italic">
+    <div class="text-lg font-semibold italic">
       {#each word.spellings as spelling, index}
         <span>{spelling}{index < word.spellings.length - 1 ? "," : ""} </span>
       {/each}
     </div>
+
+    {#if word.german}
+      <h2 class="text-2xl">
+        <span class="text-primaryDark ">(DE)</span>
+        <span class="font-bold">{word.german}</span>
+      </h2>
+    {/if}
+
+    <div class="h-4" />
 
     <!-- Actions -->
     <div class="flex space-x-2 mb-6">
