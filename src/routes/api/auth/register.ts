@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import validator from "validator";
 import _validate from "$lib/api/middlewares/validate";
 import jwt from "jsonwebtoken";
-import type { User } from "@prisma/client";
+import type { Dialect, User } from "@prisma/client";
 import { renderMail } from "$lib/email-renderer";
 import VerifyEmail from "$lib/emails/VerifyEmail.svelte";
 import { sendMailNoreply } from "$lib/transports/noreply-transports";
@@ -13,9 +13,15 @@ export function post({ body }) {
   const username: string = body.username || "";
   const email: string = body.email || "";
   const password: string = body.password || "";
+  const dialect: Dialect = body.dialect;
 
   return _validate(
-    [username.length > 3, validator.isEmail(email), password.length > 5],
+    [
+      username.length > 3,
+      validator.isEmail(email),
+      password.length > 5,
+      !!dialect,
+    ],
     async () => {
       const userWithSameUsername = await prisma.user.findFirst({
         where: { username },
@@ -35,7 +41,12 @@ export function post({ body }) {
       const passwordHashedAndSalted = await bcrypt.hash(password, 10);
 
       const user = await prisma.user.create({
-        data: { email, username, password: passwordHashedAndSalted },
+        data: {
+          email,
+          username,
+          preferredDialect: dialect,
+          password: passwordHashedAndSalted,
+        },
       });
 
       sendVerificationEmail(user);
