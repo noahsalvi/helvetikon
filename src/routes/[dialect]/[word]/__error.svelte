@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-  export async function load({ page }) {
+  export async function load({ page, status }) {
     const wordPage = page.path.match(/\//g).length === 2;
     if (wordPage) return {};
   }
