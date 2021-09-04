@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from "$lib/components/Icon";
   import dialects from "$lib/dialects";
-  import type { Word } from ".prisma/client";
+  import type { Word } from "@prisma/client";
   import { faAward } from "@fortawesome/free-solid-svg-icons";
   type WordWithPopularity = Word & {
     popularity: number;

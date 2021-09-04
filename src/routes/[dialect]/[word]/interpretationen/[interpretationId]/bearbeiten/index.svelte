@@ -11,7 +11,7 @@
 
 <script lang="ts">
   import Nav from "$lib/components/Nav.svelte";
-  import type { Word, Interpretation, Meaning } from ".prisma/client";
+  import type { Word, Interpretation, Meaning } from "@prisma/client";
   import Examples from "./_Examples.svelte";
   import { goto } from "$app/navigation";
   import api from "$lib/api";

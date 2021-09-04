@@ -6,7 +6,7 @@
   import dialects from "$lib/dialects";
   import { r } from "$lib/utils/meta-content";
 
-  import type { Word } from ".prisma/client";
+  import type { Word } from "@prisma/client";
   import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
   let searchResultWords: Word[] = [];

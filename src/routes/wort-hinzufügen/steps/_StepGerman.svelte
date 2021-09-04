@@ -3,7 +3,7 @@
   import api from "$lib/api";
   import { error, success } from "$lib/components/Toaster/toast";
   import dialects from "$lib/dialects";
-  import type { Word } from ".prisma/client";
+  import type { Word } from "@prisma/client";
   import { getContext } from "svelte";
   import { Hint, maxLength, useForm } from "svelte-use-form";
   import type { Writable } from "svelte/store";

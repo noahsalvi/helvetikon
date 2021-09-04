@@ -9,7 +9,7 @@
 <script lang="ts">
   import Nav from "$lib/components/Nav.svelte";
   import dialects from "$lib/dialects";
-  import type { Word } from ".prisma/client";
+  import type { Word } from "@prisma/client";
 
   export let words: Word[];
 </script>

@@ -1,6 +1,6 @@
 <script lang="ts">
   import dialects from "$lib/dialects";
-  import type { Word } from ".prisma/client";
+  import type { Word } from "@prisma/client";
 
   export let recentWords: Word[] = [];
 </script>

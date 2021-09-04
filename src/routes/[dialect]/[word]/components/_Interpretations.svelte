@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { User, Interpretation, Meaning } from ".prisma/client";
+  import type { User, Interpretation, Meaning } from "@prisma/client";
   import Examples from "./_Examples.svelte";
   import { Swiper, SwiperSlide } from "swiper/svelte";
   import Icon from "$lib/components/Icon";
