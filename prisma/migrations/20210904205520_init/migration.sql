@@ -72,9 +72,6 @@ CREATE TABLE "_InterpretationDownvotes" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Word.swissGerman_unique" ON "Word"("swissGerman");
-
--- CreateIndex
 CREATE UNIQUE INDEX "User.username_unique" ON "User"("username");
 
 -- CreateIndex
