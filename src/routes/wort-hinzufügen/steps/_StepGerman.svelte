@@ -46,9 +46,12 @@
 <StepLayout>
   <span slot="title">Deutsche Übersetzung</span>
   <span slot="description">
-    Hat das Wort im Hochdeutschen ein korrektes Gegenstück?
+    Hat das Wort im Hochdeutschen ein <span class="font-semibold"
+      >korrektes</span
+    >
+    Gegenstück?
     <ul class="list-disc ml-6">
-      <li>Optional</li>
+      <li>Optionale Angabe</li>
       <li>
         Achte dich auf die
         <a
