@@ -29,7 +29,6 @@
     "svelte": "^3.34.0",
     "svelte-awesome": "^2.3.2",
     "svelte-check": "^2.0.0",
-    "svelte-fa": "^2.2.1",
     "svelte-preprocess": "^4.9.0",
     "svelte-use-form": "^2.4.1",
     "tslib": "^2.0.0",

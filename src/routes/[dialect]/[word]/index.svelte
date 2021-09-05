@@ -89,10 +89,12 @@
     </div>
 
     {#if word.german}
-      <h2 class="text-2xl">
-        <span class="text-primaryDark ">(DE)</span>
-        <span class="font-bold">{word.german}</span>
-      </h2>
+      <a href="https://www.duden.de/rechtschreibung/{word.german}">
+        <h2 class="text-2xl">
+          <span class="text-primaryDark ">(DE)</span>
+          <span class="font-bold">{word.german}</span>
+        </h2>
+      </a>
     {/if}
 
     <div class="h-4" />
