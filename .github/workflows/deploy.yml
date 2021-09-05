@@ -35,7 +35,7 @@ jobs:
           ssh-keyscan -H ${{ secrets.DEPLOY_HOST}} >> ~/.ssh/known_hosts
 
       - name: Copy Build to Remote Server
-        run: rsync -a --delete build prisma package.json yarn.lock ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:swiss-german
+        run: rsync -a --delete build static prisma package.json yarn.lock ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:swiss-german
 
       - name: Install Production Dependencies | Remote
         run: ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "cd swiss-german && yarn install --prod"
