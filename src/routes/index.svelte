@@ -18,7 +18,7 @@
 
 <script>
   import { session } from "$app/stores";
-  import Icon from "$lib/components/Icon";
+
   import UserButton from "$lib/components/UserButton.svelte";
   import {
     faBook,
@@ -31,6 +31,7 @@
   import PopularWords from "./components/_PopularWords.svelte";
   import NewWords from "./components/_NewWords.svelte";
   import { logout } from "$lib/logout";
+  import LogoWithText from "$lib/components/LogoWithText.svelte";
 
   export let recentWords;
   export let popularWords;
@@ -49,10 +50,7 @@
 
     <div class="h-10" />
 
-    <div class="flex justify-center items-center">
-      <Icon data={faLayerGroup} scale={2} class="mr-3" />
-      <h1 class="text-3xl">{config.appName}</h1>
-    </div>
+    <LogoWithText />
   </header>
 
   <Search />

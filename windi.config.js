@@ -20,6 +20,7 @@ export default defineConfig({
     },
     fontFamily: {
       sans: ["Nunito", "sans-serif"],
+      serif: ["Kaisei HarunoUmi", "serif"],
     },
   },
   plugins: [formError],

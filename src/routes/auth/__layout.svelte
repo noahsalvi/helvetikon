@@ -9,12 +9,12 @@
 </script>
 
 <script>
-  import LogoButton from "$lib/components/LogoButton.svelte";
+  import LogoWithText from "$lib/components/LogoWithText.svelte";
 </script>
 
 <div class="h-screen">
   <header class="px-6 py-5 flex text-xl">
-    <LogoButton />
+    <LogoWithText logo={false} class="text-primary" />
   </header>
 
   <div class="h-16" />

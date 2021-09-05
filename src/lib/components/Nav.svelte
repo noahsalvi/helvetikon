@@ -6,6 +6,7 @@
   } from "@fortawesome/free-solid-svg-icons";
   import Icon from "./Icon";
   import UserButton from "./UserButton.svelte";
+  import LogoWithText from "./LogoWithText.svelte";
 </script>
 
 <!-- Placeholder -->
@@ -13,10 +14,7 @@
 <nav
   class="bg-white fixed h-15 px-6 w-full flex justify-between items-center shadow-md"
 >
-  <a href="/" class="flex items-center text-primary">
-    <Icon data={faLayerGroup} class="mr-4" scale={1.1} />
-    <h1 class="text-lg font-bold">{config.appName}</h1>
-  </a>
+  <LogoWithText class="text-primary transform scale-70 origin-left" />
 
   <UserButton />
 </nav>
