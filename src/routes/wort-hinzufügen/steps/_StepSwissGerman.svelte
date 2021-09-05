@@ -30,7 +30,7 @@
         if (reason.status === 409) {
           const word: Word = await reason.json();
           error(`"${swissGerman}" gibt es schon 😬`, 4000, {
-            href: `/worte/${word.swissGerman}`,
+            href: `/${dialects[word.dialect].slug}/${word.swissGerman}`,
             title: "Ansehen",
           });
         } else error();
