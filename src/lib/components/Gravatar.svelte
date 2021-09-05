@@ -9,5 +9,7 @@
 <img
   src="https://gravatar.com/avatar/{gravatarHash}"
   alt="Gravatar"
+  width="50"
+  height="50"
   class="h-full w-full"
 />

@@ -11,7 +11,7 @@
 </script>
 
 {#if href}
-  <a {href} class={buttonStyling}>
+  <a {href} class={buttonStyling} aria-label="Floating Action Button">
     <Icon data={icon} class="!block h-full w-full" />
   </a>
 {:else}

@@ -115,7 +115,7 @@
 
 <svelte:head>
   <title>
-    {word.swissGerman}&nbsp;{getMetaSpellingList()} - {config.appName}
+    {word.swissGerman}&nbsp;{getMetaSpellingList()}- {config.appName}
   </title>
 
   <meta
