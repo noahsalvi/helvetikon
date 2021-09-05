@@ -1,11 +1,11 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add -D svelte-preprocess
+  /usr/local/bin/node /usr/local/bin/yarn install
 
 PATH: 
   /Users/noahsalvi/development/flutter/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/noahsalvi/development/flutter/bin
 
 Yarn version: 
-  1.22.10
+  1.22.11
 
 Node version: 
   16.4.0
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: EACCES: permission denied, mkdir '/Users/noahsalvi/workspace/helvetikon/node_modules/tar/node_modules/mkdirp'
+  Error: EACCES: permission denied, unlink '/Users/noahsalvi/workspace/helvetikon/node_modules/tar/node_modules/mkdirp/CHANGELOG.md'
 
 npm manifest: 
   {
@@ -49,7 +49,7 @@ npm manifest:
       "svelte-awesome": "^2.3.2",
       "svelte-check": "^2.0.0",
       "svelte-fa": "^2.2.1",
-      "svelte-preprocess": "4.8.0",
+      "svelte-preprocess": "^4.9.0",
       "svelte-use-form": "^2.4.1",
       "tslib": "^2.0.0",
       "typescript": "^4.0.0",
@@ -1623,17 +1623,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/svelte-hmr/-/svelte-hmr-0.14.7.tgz#7fa8261c7b225d9409f0a86f3b9ea5c3ca6f6607"
     integrity sha512-pDrzgcWSoMaK6AJkBWkmgIsecW0GChxYZSZieIYfCP0v2oPyx2CYU/zm7TBIcjLVUPP714WxmViE9Thht4etog==
   
-  svelte-preprocess@4.8.0:
-    version "4.8.0"
-    resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.8.0.tgz#fd3ebc19aae1b8a49ac9e30db1af572bf4619245"
-    integrity sha512-i9Z17cwGlp+kuSSv3kJWdAdAP2L26A5yMzHHdDj8YL+86sN64Yz5/gfjQp3Xb6fiaToo4sB+wTpid/23Gz0yvw==
-    dependencies:
-      "@types/pug" "^2.0.4"
-      "@types/sass" "^1.16.0"
-      detect-indent "^6.0.0"
-      strip-indent "^3.0.0"
-  
-  svelte-preprocess@^4.0.0:
+  svelte-preprocess@^4.0.0, svelte-preprocess@^4.9.0:
     version "4.9.0"
     resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-4.9.0.tgz#ff16b9f247aed23f153dfd38a5c7520fccb0c46c"
     integrity sha512-9eMgTn6qOe9z/q4rSXO1G3vXudOAJC54q7QL4s0e5qZ/94Hqca/aVLyL0FUwt1Q52Hq9WGJ4oxQK/DIArcDeAA==

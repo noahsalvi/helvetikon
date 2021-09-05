@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "svelte-kit dev --host",
     "build": "svelte-kit build",
-    "postinstall": "prisma generate",
+    "postinstall": "prisma generate && node fix-prisma-module-specifier.js",
     "preview": "svelte-kit preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
@@ -13,7 +13,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@sveltejs/adapter-node": "^1.0.0-next.41",
-    "@sveltejs/kit": "1.0.0-next.160",
+    "@sveltejs/kit": "^1.0.0-next.160",
     "@types/bcrypt": "^5.0.0",
     "@types/cookie": "^0.4.1",
     "@types/jsonwebtoken": "^8.5.4",
