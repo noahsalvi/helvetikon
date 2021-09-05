@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "svelte-kit dev --host",
     "build": "svelte-kit build",
-    "postinstall": "prisma generate && node fix-prisma-module-specifier.js",
+    "postinstall": "prisma generate && node prisma/fix-prisma-module-specifier.js",
     "preview": "svelte-kit preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
