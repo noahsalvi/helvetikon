@@ -1,4 +1,5 @@
 import prisma from "$lib/prisma";
+import { COOKIE_MAX_AGE } from "$lib/utils/cookie-max-age";
 import type { User } from "@prisma/client";
 import cookie from "cookie";
 import jwt from "jsonwebtoken";
@@ -57,6 +58,7 @@ namespace AccessToken {
     return cookie.serialize("access-token", token, {
       path: "/",
       httpOnly: true,
+      maxAge: COOKIE_MAX_AGE,
     });
   }
 }
