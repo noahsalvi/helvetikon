@@ -59,7 +59,7 @@
 
 <Nav />
 
-<main class="px-3 text-lg">
+<main class="container px-3 text-lg">
   <div class="h-10" />
   <h1 class="font-bold text-[38px] text-coal mb-2">
     {word.swissGerman}

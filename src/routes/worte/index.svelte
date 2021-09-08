@@ -15,7 +15,7 @@
 </script>
 
 <Nav />
-<main class="px-6 mt-10">
+<main class="container px-6 mt-10">
   <h1 class="font-bold text-4xl text-coal">Alle Wörter</h1>
   <h2 class="text-xl text-gray-500">Total: {words.length}</h2>
 

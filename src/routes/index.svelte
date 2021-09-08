@@ -38,7 +38,7 @@
 </script>
 
 <main class="bg-primary min-h-screen px-6 text-white">
-  <header class="pb-5">
+  <header class="pb-5 max-w-screen-md mx-auto">
     <div class="flex justify-between items-center h-15 dark">
       {#if $session.user}
         <button on:click={logout}>Log out</button>
@@ -53,28 +53,30 @@
     <LogoWithText />
   </header>
 
-  <Search />
+  <div class="max-w-screen-md mx-auto">
+    <Search />
 
-  <div class="h-2" />
+    <div class="h-2" />
 
-  <div class="flex gap-5">
-    <LandingAction icon={faBook} href="/worte">Alle Wörter</LandingAction>
-    {#if $session.user}
-      <LandingAction icon={faPlus} href="/wort-hinzufügen">
-        Wort hinzufügen
-      </LandingAction>
-    {/if}
+    <div class="flex gap-5">
+      <LandingAction icon={faBook} href="/worte">Alle Wörter</LandingAction>
+      {#if $session.user}
+        <LandingAction icon={faPlus} href="/wort-hinzufügen">
+          Wort hinzufügen
+        </LandingAction>
+      {/if}
+    </div>
+
+    <div class="h-15" />
+
+    <NewWords {recentWords} />
+
+    <div class="h-5" />
+
+    <PopularWords {popularWords} />
+
+    <div class="h-3" />
   </div>
-
-  <div class="h-15" />
-
-  <NewWords {recentWords} />
-
-  <div class="h-5" />
-
-  <PopularWords {popularWords} />
-
-  <div class="h-3" />
 </main>
 
 <svelte:head>

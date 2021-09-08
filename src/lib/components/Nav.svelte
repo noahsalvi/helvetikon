@@ -11,11 +11,11 @@
 
 <!-- Placeholder -->
 
-<nav
-  class="bg-white fixed h-15 px-6 w-full flex justify-between items-center shadow-md"
->
-  <LogoWithText class="text-primary transform scale-70 origin-left" />
+<nav class="bg-white fixed h-15 px-6 w-full shadow-md">
+  <div class="container h-full flex justify-between items-center">
+    <LogoWithText class="text-primary transform scale-70 origin-left" />
 
-  <UserButton />
+    <UserButton />
+  </div>
 </nav>
 <div class="h-15" />

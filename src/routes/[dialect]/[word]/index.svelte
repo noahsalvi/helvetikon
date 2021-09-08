@@ -54,11 +54,6 @@
     navigator.share({ url: location.toString() });
   };
 
-  const editWord = () => {
-    const path = $page.path + "/bearbeiten";
-    goto(path);
-  };
-
   const getMetaSpellingList = () => {
     const spellingsList = word.spellings.join(", ");
     return spellingsList && `(${spellingsList}) `;
@@ -68,7 +63,7 @@
 <!-- <SwissCross /> -->
 
 <Nav />
-<main>
+<main class="max-w-screen-md mx-auto">
   <div class="px-3">
     <div class="h-10" />
     <div

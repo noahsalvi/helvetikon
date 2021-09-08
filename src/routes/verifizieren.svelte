@@ -6,7 +6,6 @@
   import { page } from "$app/stores";
   import api from "$lib/api";
   import {
-    success,
     successNextVisit,
     warnNextVisit,
   } from "$lib/components/Toaster/toast";
