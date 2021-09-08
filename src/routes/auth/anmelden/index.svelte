@@ -82,5 +82,5 @@
 </main>
 
 <svelte:head>
-  <title>Login</title>
+  <title>Anmelden</title>
 </svelte:head>
