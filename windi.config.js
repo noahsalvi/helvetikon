@@ -8,6 +8,7 @@ const formError = plugin(({ addVariant }) => [
 ]);
 
 export default defineConfig({
+  shortcuts: { container: "max-w-screen-md mx-auto" },
   theme: {
     extend: {
       colors: {
