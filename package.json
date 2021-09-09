@@ -7,7 +7,8 @@
     "preview": "svelte-kit preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
-    "generate": "prisma generate && node prisma/fix-prisma-module-specifier.js"
+    "generate": "prisma generate && node prisma/fix-prisma-module-specifier.js",
+    "postinstall": "yarn generate"
   },
   "devDependencies": {
     "@fortawesome/free-regular-svg-icons": "^5.15.4",

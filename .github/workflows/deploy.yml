@@ -25,9 +25,7 @@ jobs:
           VITE_PASSWORD_RESET_SECRET: ${{ secrets.PASSWORD_RESET_SECRET }}
           VITE_EMAIL_VERIFICATION_SECRET: ${{ secrets.EMAIL_VERIFICATION_SECRET }}
           VITE_EMAIL_NOREPLY_PASSWORD: ${{ secrets.EMAIL_NOREPLY_PASSWORD }}
-        run: |
-          yarn generate
-          yarn build
+        run: yarn build
 
       - name: Save SSH Key
         run: |
@@ -43,4 +41,4 @@ jobs:
         run: ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "cd helvetikon && yarn install --prod"
 
       - name: Migrate Database & Restart Server | Remote
-        run: ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "cd helvetikon && npx prisma migrate deploy"
+        run: ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "cd helvetikon && npx prisma migrate deploy && pm2 reload helvetikon && pm2 reload helvetikon-prisma"
