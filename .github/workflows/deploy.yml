@@ -43,4 +43,4 @@ jobs:
         run: ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "cd helvetikon && yarn install --prod"
 
       - name: Migrate Database & Restart Server | Remote
-        run: ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "cd helvetikon && npx prisma migrate deploy && pm2 reload helvetikon"
+        run: ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "cd helvetikon && npx prisma migrate deploy"
