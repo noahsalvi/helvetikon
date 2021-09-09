@@ -11,7 +11,7 @@ export async function get({}) {
 
 type WordDraft = {
   swissGerman: string;
-  german: string;
+  german?: string;
   spellings: string[];
   dialect: Dialect;
 };
@@ -19,10 +19,16 @@ type WordDraft = {
 export async function post({ body, locals }) {
   const user = authorize(locals);
   const wordDraft: WordDraft = body;
+  const wordDraftSanitized: WordDraft = {
+    swissGerman: wordDraft.swissGerman?.trim() || null,
+    german: wordDraft.german?.trim() || null,
+    spellings: wordDraft.spellings.map((spelling) => spelling?.trim() || null),
+    dialect: wordDraft.dialect,
+  };
 
   try {
     const word = await prisma.word.create({
-      data: { ...wordDraft, createdBy: { connect: { id: user.id } } },
+      data: { ...wordDraftSanitized, createdBy: { connect: { id: user.id } } },
     });
 
     return {
