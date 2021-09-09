@@ -4,10 +4,10 @@
   "scripts": {
     "dev": "svelte-kit dev --host",
     "build": "svelte-kit build",
-    "postinstall": "prisma generate && node prisma/fix-prisma-module-specifier.js",
     "preview": "svelte-kit preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
+    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+    "generate": "prisma generate && node prisma/fix-prisma-module-specifier.js"
   },
   "devDependencies": {
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
