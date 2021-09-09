@@ -21,6 +21,8 @@ model Word {
   createdAt       DateTime         @default(now())
   createdBy       User             @relation(fields: [createdByUserId], references: [id])
   createdByUserId Int
+
+  @@unique([swissGerman, dialect])
 }
 
 model Interpretation {
