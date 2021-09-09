@@ -25,7 +25,7 @@ model Word {
 
 model Interpretation {
   id              Int       @id @default(autoincrement())
-  word            Word      @relation(fields: [wordId], references: [id])
+  word            Word      @relation(fields: [wordId], references: [id], onDelete: Cascade)
   wordId          Int
   meanings        Meaning[]
   upvotes         User[]    @relation("InterpretationUpvotes")
@@ -38,7 +38,7 @@ model Interpretation {
 
 model Meaning {
   id               Int            @id @default(autoincrement())
-  interpretation   Interpretation @relation(fields: [interpretationId], references: [id])
+  interpretation   Interpretation @relation(fields: [interpretationId], references: [id], onDelete: Cascade)
   interpretationId Int
   explanation      String
   examples         String[]
@@ -62,7 +62,7 @@ model User {
 
 model Session {
   token     String   @id
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int
   createdAt DateTime @default(now())
 }
