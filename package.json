@@ -1,5 +1,5 @@
 {
-  "name": "swiss-german",
+  "name": "helvetikon",
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev --host",
