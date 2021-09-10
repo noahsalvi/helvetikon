@@ -21,6 +21,7 @@
     "@types/jsonwebtoken": "^8.5.4",
     "@types/nodemailer": "^6.4.4",
     "@types/validator": "^13.6.3",
+    "@types/wavesurfer.js": "^5.2.0",
     "cookie": "^0.4.1",
     "jsonwebtoken": "^8.5.1",
     "juice": "^8.0.0",
@@ -37,7 +38,8 @@
     "typescript": "^4.0.0",
     "uuid": "^8.3.2",
     "validator": "^13.6.0",
-    "vite-plugin-windicss": "^1.2.7"
+    "vite-plugin-windicss": "^1.2.7",
+    "wavesurfer.js": "^5.2.0"
   },
   "type": "module",
   "dependencies": {

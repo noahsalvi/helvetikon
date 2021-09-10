@@ -41,7 +41,7 @@
   <header class="pb-5 max-w-screen-md mx-auto">
     <div class="flex justify-between items-center h-15 dark">
       {#if $session.user}
-        <button on:click={logout}>Log out</button>
+        <button on:click={logout}>Abmelden</button>
       {:else}
         <div />
       {/if}

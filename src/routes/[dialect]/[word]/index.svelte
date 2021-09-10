@@ -22,16 +22,18 @@
 
 <script lang="ts">
   import { dev } from "$app/env";
+  import { page, session } from "$app/stores";
 
   import Fab from "$lib/components/Fab.svelte";
   import Icon from "$lib/components/Icon";
   import Nav from "$lib/components/Nav.svelte";
-  import { error } from "$lib/components/Toaster/toast";
+  import { error, warn } from "$lib/components/Toaster/toast";
   import config from "$lib/config";
   import dialects from "$lib/dialects";
   import { metaContent } from "$lib/utils/meta-content";
   import {
     faHome,
+    faMicrophone,
     faShare,
     faVolumeOff,
     faVolumeUp,
@@ -87,6 +89,10 @@
       alert(err);
     };
   };
+
+  const addAudioSampleHandler = () => {
+    if (!$session.user) warn("Dafür musst du angemeldet sein 👮‍♂️");
+  };
 </script>
 
 <!-- <SwissCross /> -->
@@ -130,20 +136,19 @@
           <Icon data={faVolumeUp} />
         </ActionButton>
       {:else}
-        <button
+        <a
+          href={$session.user
+            ? `${$page.path}/hörbeispiel-hinzufügen`
+            : $page.path}
+          on:click={addAudioSampleHandler}
           class="h-12 p-3.5 flex justify-between items-center space-x-2
       bg-primary bg-opacity-5 rounded-full"
         >
-          <Icon
-            data={faVolumeOff}
-            class="h-full w-5 aspect-${1}  flex-shrink-0"
-          />
+          <Icon data={faMicrophone} class="h-full aspect-${1}  flex-shrink-0" />
           <div>Hörbeispiel hinzufügen</div>
-        </button>
+        </a>
       {/if}
       <ActionButton on:click={share}><Icon data={faShare} /></ActionButton>
-
-      <!-- <ActionButton on:click={editWord}><Icon data={faPen} /></ActionButton> -->
     </div>
 
     <hr class="bg-primary h-1 rounded mb-3" />

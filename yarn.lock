@@ -131,6 +131,11 @@
   resolved "https://registry.yarnpkg.com/@types/cookie/-/cookie-0.4.1.tgz#bfd02c1f2224567676c1545199f87c3a861d878d"
   integrity sha512-XW/Aa8APYr6jSVVA1y/DEIZX0/GMKLEVekNG727R8cs56ahETkRAy/3DR7+fJyh7oUgGwNQaRfXCun0+KbWY7Q==
 
+"@types/debounce@*":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@types/debounce/-/debounce-1.2.0.tgz#9ee99259f41018c640b3929e1bb32c3dcecdb192"
+  integrity sha512-bWG5wapaWgbss9E238T0R6bfo5Fh3OkeoSt245CM7JJwVwpw6MEBCbIxLq5z8KzsE3uJhzcIuQkyiZmzV3M/Dw==
+
 "@types/dom-mediacapture-record@^1.0.10":
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/@types/dom-mediacapture-record/-/dom-mediacapture-record-1.0.10.tgz#3b96ead62f89b01eb2b9d5d080f29b2373f2493c"
@@ -176,6 +181,13 @@
   version "13.6.3"
   resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.6.3.tgz#31ca2e997bf13a0fffca30a25747d5b9f7dbb7de"
   integrity sha512-fWG42pMJOL4jKsDDZZREnXLjc3UE0R8LOJfARWYg6U966rxDT7TYejYzLnUF5cvSObGg34nd0+H2wHHU5Omdfw==
+
+"@types/wavesurfer.js@^5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@types/wavesurfer.js/-/wavesurfer.js-5.2.0.tgz#b1ed9928ba7759ad1ff1bd8566b61303a77ae33b"
+  integrity sha512-K9wnw6D9yDRdazRbYdQnWZ1W6z+1eHiinW2vFO/UWKX86TuOwAbNmmt+S79jbzKizA24ufI9NuqJcav6cKE4XA==
+  dependencies:
+    "@types/debounce" "*"
 
 "@windicss/config@1.3.0":
   version "1.3.0"
@@ -1704,6 +1716,11 @@ vite@^2.5.3:
     rollup "^2.38.5"
   optionalDependencies:
     fsevents "~2.3.2"
+
+wavesurfer.js@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/wavesurfer.js/-/wavesurfer.js-5.2.0.tgz#efae107b5b561e9bfe3fffc50e6158136a17643e"
+  integrity sha512-SkPlTXfvKy+ZnEA7f7g7jn6iQg5/8mAvWpVV5vRbIS/FF9TB2ak9J7VayQfzfshOLW/CqccTiN6DDR/fZA902g==
 
 web-resource-inliner@^5.0.0:
   version "5.0.0"
