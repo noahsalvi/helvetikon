@@ -63,7 +63,7 @@
 <!-- <SwissCross /> -->
 
 <Nav />
-<main class="max-w-screen-md mx-auto">
+<main class="container">
   <div class="px-3">
     <div class="h-10" />
     <div
