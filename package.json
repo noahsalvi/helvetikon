@@ -17,6 +17,7 @@
     "@sveltejs/kit": "^1.0.0-next.160",
     "@types/bcrypt": "^5.0.0",
     "@types/cookie": "^0.4.1",
+    "@types/dom-mediacapture-record": "^1.0.10",
     "@types/jsonwebtoken": "^8.5.4",
     "@types/nodemailer": "^6.4.4",
     "@types/validator": "^13.6.3",
@@ -26,7 +27,7 @@
     "jwt-decode": "^3.1.2",
     "md5": "^2.3.0",
     "nodemailer": "^6.6.3",
-    "prisma": "^3.0.1",
+    "prisma": "^3.0.2",
     "svelte": "^3.34.0",
     "svelte-awesome": "^2.3.2",
     "svelte-check": "^2.0.0",
@@ -40,7 +41,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@prisma/client": "^3.0.1",
+    "@prisma/client": "^3.0.2",
     "bcrypt": "^5.0.1",
     "swiper": "^7.0.1"
   }

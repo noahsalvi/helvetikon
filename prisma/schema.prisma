@@ -17,7 +17,7 @@ model Word {
   spellings       String[]
   dialect         Dialect
   interpretations Interpretation[]
-  audioSamplePath String?
+  audioSamples    AudioSample[]
   createdAt       DateTime         @default(now())
   createdBy       User             @relation(fields: [createdByUserId], references: [id])
   createdByUserId Int
@@ -53,6 +53,7 @@ model User {
   verified                 Boolean          @default(false)
   preferredDialect         Dialect          @default(OTHER)
   createdWords             Word[]
+  audioSamples             AudioSample[]
   createdInterpretations   Interpretation[]
   upvotedInterpretations   Interpretation[] @relation("InterpretationUpvotes")
   downvotedInterpretations Interpretation[] @relation("InterpretationDownvotes")
@@ -66,6 +67,16 @@ model Session {
   token     String   @id
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int
+  createdAt DateTime @default(now())
+}
+
+model AudioSample {
+  id        String   @id @default(uuid())
+  word      Word     @relation(fields: [wordId], references: [id], onDelete: SetNull)
+  wordId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userId    Int
+  path      String
   createdAt DateTime @default(now())
 }
 

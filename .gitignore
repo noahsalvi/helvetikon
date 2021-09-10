@@ -5,8 +5,9 @@ node_modules
 /functions
 /.svelte-kit
 /package
-# Keep environment variables out of version control
-.env
 
+.env
+# User generated files
+/static/audio-samples
 # Helper files
 /src/routes/email.ts

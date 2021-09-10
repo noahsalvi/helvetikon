@@ -1,5 +1,5 @@
-<script>
-  import { browser } from "$app/env";
+<script lang="ts">
+  import api from "$lib/api";
   import { onMount } from "svelte";
 
   let audioSource;
@@ -11,23 +11,27 @@
       audio: true,
       video: false,
     });
+
     const mediaRecorder = new MediaRecorder(stream);
     mediaRecorder.addEventListener("dataavailable", (ev) => {
-      if (ev.data.size > 0) {
-        recordedChunks.push(ev.data);
-      } else {
-        console.log("this is actually needed lol");
-      }
+      recordedChunks.push(ev.data);
     });
 
-    mediaRecorder.addEventListener("stop", () => {
+    mediaRecorder.addEventListener("stop", async () => {
       const blob = new Blob(recordedChunks, { type: "audio/mpeg" });
-      console.log(blob);
+      // api
+      //   .post("/api/words/1/audio-samples", blob)
+      //   .then((result) => console.log(result));
+
+      fetch("/api/words/1/audio-samples", {
+        method: "POST",
+        body: blob,
+      });
       const audioURL = URL.createObjectURL(blob);
       audioSource = audioURL;
     });
     mediaRecorder.start();
-    setTimeout(() => mediaRecorder.stop(), 3000);
+    setTimeout(() => mediaRecorder.stop(), 2000);
   };
 
   onMount(() => {});
