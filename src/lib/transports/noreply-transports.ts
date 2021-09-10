@@ -4,10 +4,11 @@ import type Mail from "nodemailer/lib/mailer";
 import type SMTPTransport from "nodemailer/lib/smtp-transport";
 import { getTestTansportOptions } from "./test-transport";
 
-const production = process.env.NODE_ENV === "production";
+const production = process.env.NODE_ENV !== "production";
 const productionTransportOptions: SMTPTransport.Options = {
-  host: "mail.helvetikon.org",
-  port: 587,
+  host: "smtp.zoho.eu",
+  port: 465,
+  secure: true,
   auth: {
     user: "noreply@helvetikon.org",
     pass: EMAIL_NOREPLY_PASSWORD,
