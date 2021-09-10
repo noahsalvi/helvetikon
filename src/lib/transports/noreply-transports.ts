@@ -4,7 +4,7 @@ import type Mail from "nodemailer/lib/mailer";
 import type SMTPTransport from "nodemailer/lib/smtp-transport";
 import { getTestTansportOptions } from "./test-transport";
 
-const production = process.env.NODE_ENV !== "production";
+const production = process.env.NODE_ENV === "production";
 const productionTransportOptions: SMTPTransport.Options = {
   host: "smtp.zoho.eu",
   port: 465,
