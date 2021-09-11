@@ -97,7 +97,7 @@
           {word.swissGerman}
         </div>
         <div>
-          {word.german}
+          {word.german ?? ""}
         </div>
         <div class="ml-auto text-1/2 flex-grow-0 overflow-ellipsis">
           {dialects[word.dialect].name}

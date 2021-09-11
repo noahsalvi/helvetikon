@@ -41,6 +41,11 @@
   let loading = false;
 
   const publish = async () => {
+    const allowed = confirm(
+      "Hiermit übergibst du uns jegliche Rechte an dieser Aufnahme"
+    );
+    if (!allowed) return;
+
     loading = true;
 
     const path = `/api/words/${word.id}/audio-samples`;
@@ -113,14 +118,21 @@
 
 <Nav />
 
-<main class="container px-3 text-lg">
+<main class="container px-3">
   <div class="h-10" />
-  <h1 class="font-bold text-[38px] text-coal mb-2">
-    {word.swissGerman}
-  </h1>
+  <h1 class="font-bold text-3xl text-coal mb-2">Hörbeispiel aufnehmen</h1>
 
-  <hr class="bg-primary h-1 rounded mb-3" />
-  <h2>Starte die Aufnahme und sag '{word.swissGerman}' ins Mikrofon</h2>
+  <h2 class="text-lg text-gray-500">
+    Starte die Aufnahme und sprich
+    <span class="font-semibold">
+      '{word.swissGerman}'
+    </span>
+    ins Mikrofon.
+    <ul class="list-disc ml-6">
+      <li>Rede {dialects[word.dialect].name.toLowerCase()} und deutlich</li>
+      <li>Sobald veröffentlicht, wird deine Aufnahme frei zugänglich sein.</li>
+    </ul>
+  </h2>
   <div id="waveform" class="min-h-50" />
   {#if blob}
     <div class="h-16 text-white flex justify-center gap-2">
