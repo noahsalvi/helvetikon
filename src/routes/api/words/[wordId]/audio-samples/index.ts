@@ -23,7 +23,7 @@ export async function post({ body, params, locals }) {
   const buffer = Buffer.from(blob);
 
   const rootPath = production
-    ? "../static-helvetikon/audio-samples"
+    ? "static-helvetikon/audio-samples/"
     : "static/audio-samples/";
   const path = `${word.dialect}/${word.swissGerman}/${user.username}/`;
   const fileName = `${uuid}.mp3`;
