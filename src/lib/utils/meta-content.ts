@@ -5,7 +5,9 @@ export function metaContent(text: string, value: any, replacement = "") {
   return text.replace("##", value);
 }
 
-/** Windi scanner does not detect using dynamic classes (class:bg-green-300={bool}), this is a replacement */
+/** Windi scanner does not detect using dynamic classes (class:bg-green-300={bool}), this is a replacement
+ * TODO not true anymore replace
+ */
 export function r(className: string, show: boolean, replacement = "") {
   if (!show) return replacement;
 
