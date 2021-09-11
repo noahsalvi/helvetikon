@@ -6,6 +6,7 @@
 <hr> -->
 
 ## Setup
+
 Create a .env file in the project root with the following keys
 
 ```
@@ -59,5 +60,3 @@ node build/
 - Deployment on VPS
   Helvetikon is hosted on a vps, using OpenLiteSpeed as it's reverse proxy.
   FYI: Cyberpanel was the preferred option but since the current vps only has 512mb RAM it couldn't be installed.
-- [Hosting Mail Server on VPS](https://www.youtube.com/watch?v=9zP7qooM4pY)
-  Solution for a problem i had [Issue](https://github.com/LukeSmithxyz/emailwiz/issues/73#issuecomment-686157796)
