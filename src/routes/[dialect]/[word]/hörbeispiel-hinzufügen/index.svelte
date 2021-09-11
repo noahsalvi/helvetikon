@@ -157,5 +157,5 @@
 </main>
 
 <svelte:head>
-  <title>Interpretation Hinzufügen | {word.swissGerman}</title>
+  <title>Hörbeispiel Hinzufügen | {word.swissGerman}</title>
 </svelte:head>
