@@ -21,27 +21,36 @@
 </script>
 
 <script lang="ts">
-  import Nav from "$lib/components/Nav.svelte";
-  import {
-    faHome,
-    faShare,
-    faVolumeUp,
-  } from "@fortawesome/free-solid-svg-icons";
-  import Icon from "$lib/components/Icon";
-  import ActionButton from "./components/_ActionButton.svelte";
-  import SwissCross from "./components/_SwissCross.svelte";
-  import Interpretations from "./components/_Interpretations.svelte";
-  import { goto } from "$app/navigation";
-  import { page } from "$app/stores";
+  import { dev } from "$app/env";
+  import { page, session } from "$app/stores";
 
-  import type { User, Word, Interpretation, Meaning } from "@prisma/client";
   import Fab from "$lib/components/Fab.svelte";
+  import Icon from "$lib/components/Icon";
+  import Nav from "$lib/components/Nav.svelte";
+  import { error, warn } from "$lib/components/Toaster/toast";
+  import config from "$lib/config";
   import dialects from "$lib/dialects";
   import { metaContent } from "$lib/utils/meta-content";
-  import config from "$lib/config";
+  import {
+    faHome,
+    faMicrophone,
+    faShare,
+    faVolumeOff,
+    faVolumeUp,
+  } from "@fortawesome/free-solid-svg-icons";
+  import type {
+    AudioSample,
+    Interpretation,
+    Meaning,
+    User,
+    Word,
+  } from "@prisma/client";
+  import ActionButton from "./components/_ActionButton.svelte";
+  import Interpretations from "./components/_Interpretations.svelte";
 
   export let word: Word & {
     createdBy: User;
+    audioSamples: AudioSample[];
     interpretations: (Interpretation & {
       createdBy: User;
       upvotes: User[];
@@ -50,6 +59,9 @@
     })[];
   };
 
+  const hasAudioSample = !!word.audioSamples.length;
+  let playingAudio = false;
+
   const share = () => {
     navigator.share({ url: location.toString() });
   };
@@ -57,6 +69,29 @@
   const getMetaSpellingList = () => {
     const spellingsList = word.spellings.join(", ");
     return spellingsList && `(${spellingsList}) `;
+  };
+
+  const playAudioSample = async () => {
+    if (playingAudio) return;
+    const path = word.audioSamples[0]?.path;
+    if (!path) return error("Konnte Audio nicht abspielen 😲");
+    const rootPath = dev
+      ? "/audio-samples/"
+      : "https://static.helvetikon.org/audio-samples/";
+    const audio = new Audio(rootPath + path);
+    playingAudio = true;
+    await audio.play();
+    audio.onended = (_) => {
+      playingAudio = false;
+    };
+    audio.onerror = (err) => {
+      playingAudio = false;
+      alert(err);
+    };
+  };
+
+  const addAudioSampleHandler = () => {
+    if (!$session.user) warn("Dafür musst du angemeldet sein 👮‍♂️");
   };
 </script>
 
@@ -96,9 +131,24 @@
 
     <!-- Actions -->
     <div class="flex space-x-2 mb-6">
-      <ActionButton on:click={null}><Icon data={faVolumeUp} /></ActionButton>
+      {#if hasAudioSample}
+        <ActionButton on:click={playAudioSample} active={playingAudio}>
+          <Icon data={faVolumeUp} />
+        </ActionButton>
+      {:else}
+        <a
+          href={$session.user
+            ? `${$page.path}/hörbeispiel-hinzufügen`
+            : $page.path}
+          on:click={addAudioSampleHandler}
+          class="h-12 p-3.5 flex justify-between items-center space-x-2
+      bg-primary bg-opacity-5 rounded-full"
+        >
+          <Icon data={faMicrophone} class="h-full aspect-${1}  flex-shrink-0" />
+          <div>Hörbeispiel hinzufügen</div>
+        </a>
+      {/if}
       <ActionButton on:click={share}><Icon data={faShare} /></ActionButton>
-      <!-- <ActionButton on:click={editWord}><Icon data={faPen} /></ActionButton> -->
     </div>
 
     <hr class="bg-primary h-1 rounded mb-3" />
