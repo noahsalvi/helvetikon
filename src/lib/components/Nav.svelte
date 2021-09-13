@@ -5,7 +5,7 @@
 
 <!-- Placeholder -->
 
-<nav class="z-50 bg-white fixed h-15 px-6 w-full shadow-md">
+<nav class="z-50 bg-white fixed left-0 h-15 px-6 w-full shadow-md">
   <div class="container h-full flex justify-between items-center">
     <LogoWithText class="text-primary transform scale-70 origin-left" />
 
