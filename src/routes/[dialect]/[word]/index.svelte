@@ -25,6 +25,7 @@
   import { page, session } from "$app/stores";
 
   import Fab from "$lib/components/Fab.svelte";
+  import Footer from "$lib/components/Footer.svelte";
   import Icon from "$lib/components/Icon";
   import Nav from "$lib/components/Nav.svelte";
   import { error, warn } from "$lib/components/Toaster/toast";
@@ -97,65 +98,71 @@
 
 <!-- <SwissCross /> -->
 
-<Nav />
-<main class="container">
-  <div class="px-3">
-    <div class="h-10" />
-    <div
-      class="text-sm font-semibold bg-light-200 rounded flex w-min px-2 py-1"
-    >
-      {dialects[word.dialect].name}
-    </div>
+<main class="container min-h-screen flex flex-col">
+  <Nav />
+  <div class="flex-grow">
+    <div class="px-3">
+      <div class="h-10" />
+      <div
+        class="text-sm font-semibold bg-light-200 rounded flex w-min px-2 py-1"
+      >
+        {dialects[word.dialect].name}
+      </div>
 
-    <div class="h-3" />
-    <h1 class="font-bold text-5xl text-coal break-words">
-      {word.swissGerman}
-    </h1>
+      <div class="h-3" />
+      <h1 class="font-bold text-5xl text-coal break-words">
+        {word.swissGerman}
+      </h1>
 
-    <div class="text-lg font-semibold italic">
-      {#each word.spellings as spelling, index}
-        <span>{spelling}{index < word.spellings.length - 1 ? "," : ""} </span>
-      {/each}
-    </div>
+      <div class="text-lg font-semibold italic">
+        {#each word.spellings as spelling, index}
+          <span>{spelling}{index < word.spellings.length - 1 ? "," : ""} </span>
+        {/each}
+      </div>
 
-    {#if word.german}
-      <a href="https://www.duden.de/rechtschreibung/{word.german}">
-        <h2 class="text-2xl">
-          <span class="text-primaryDark ">(DE)</span>
-          <span class="font-bold">{word.german}</span>
-        </h2>
-      </a>
-    {/if}
-
-    <div class="h-4" />
-
-    <!-- Actions -->
-    <div class="flex space-x-2 mb-6">
-      {#if hasAudioSample}
-        <ActionButton on:click={playAudioSample} active={playingAudio}>
-          <Icon data={faVolumeUp} />
-        </ActionButton>
-      {:else}
-        <a
-          href={$session.user
-            ? `${$page.path}/hörbeispiel-hinzufügen`
-            : $page.path}
-          on:click={addAudioSampleHandler}
-          class="h-12 p-3.5 flex justify-between items-center space-x-2
-      bg-primary bg-opacity-5 rounded-full"
-        >
-          <Icon data={faMicrophone} class="h-full aspect-${1}  flex-shrink-0" />
-          <div>Hörbeispiel hinzufügen</div>
+      {#if word.german}
+        <a href="https://www.duden.de/rechtschreibung/{word.german}">
+          <h2 class="text-2xl">
+            <span class="text-primaryDark ">(DE)</span>
+            <span class="font-bold">{word.german}</span>
+          </h2>
         </a>
       {/if}
-      <ActionButton on:click={share}><Icon data={faShare} /></ActionButton>
+
+      <div class="h-4" />
+
+      <!-- Actions -->
+      <div class="flex space-x-2 mb-6">
+        {#if hasAudioSample}
+          <ActionButton on:click={playAudioSample} active={playingAudio}>
+            <Icon data={faVolumeUp} />
+          </ActionButton>
+        {:else}
+          <a
+            href={$session.user
+              ? `${$page.path}/hörbeispiel-hinzufügen`
+              : $page.path}
+            on:click={addAudioSampleHandler}
+            class="h-12 p-3.5 flex justify-between items-center space-x-2
+      bg-primary bg-opacity-5 rounded-full"
+          >
+            <Icon
+              data={faMicrophone}
+              class="h-full aspect-${1}  flex-shrink-0"
+            />
+            <div>Hörbeispiel hinzufügen</div>
+          </a>
+        {/if}
+        <ActionButton on:click={share}><Icon data={faShare} /></ActionButton>
+      </div>
+
+      <hr class="bg-primary h-1 rounded mb-3" />
     </div>
 
-    <hr class="bg-primary h-1 rounded mb-3" />
+    <Interpretations interpretations={word.interpretations} />
   </div>
-
-  <Interpretations interpretations={word.interpretations} />
 </main>
+<Footer />
 <Fab icon={faHome} href="/" />
 
 <svelte:head>

@@ -14,7 +14,6 @@ export async function handle({
 }) {
   const token = cookie.parse(request.headers.cookie || "")["access-token"];
 
-  // Replace token with newer token if one was set in a parallel call
   if (token && request.path !== "/api/auth/logout") {
     try {
       const payload = jwt.verify(token, PASSWORD_SECRET) as jwt.JwtPayload;
@@ -27,6 +26,7 @@ export async function handle({
     } catch (e) {
       if (e instanceof jwt.JsonWebTokenError) {
         if (e instanceof jwt.TokenExpiredError) {
+          // Replace token with newer token if one was set in a parallel call
           const newAccessToken = await AccessToken.update(token);
           let accessTokenCookie: string;
 

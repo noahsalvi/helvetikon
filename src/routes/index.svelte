@@ -32,6 +32,7 @@
   import NewWords from "./components/_NewWords.svelte";
   import { logout } from "$lib/logout";
   import LogoWithText from "$lib/components/LogoWithText.svelte";
+  import Footer from "$lib/components/Footer.svelte";
 
   export let recentWords;
   export let popularWords;
@@ -78,6 +79,7 @@
     <div class="h-3" />
   </div>
 </main>
+<Footer />
 
 <svelte:head>
   <title>{config.appName} | Schweizerdeutsches Wörterbuch 📔</title>
