@@ -7,6 +7,8 @@
 
 ## Setup
 
+### .env
+
 Create a .env file in the project root with the following keys
 
 ```
@@ -16,7 +18,14 @@ VITE_PASSWORD_RESET_SECRET="SECRET"
 VITE_EMAIL_VERIFICATION_SECRET="SECRET"
 ```
 
+### PostgreSQL
+
 Also a postgresql database needs to be created and connected via the DATABASE_URL secret.
+
+### FFMPEG
+
+FFMPEG needs to be installed on the server so that the audio samples endpoint can convert audio blobs to mp3.
+If you don't want to do that, just don't use the the "add audio sample" feature in DEV :)
 
 ## Developing
 
