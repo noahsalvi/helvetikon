@@ -76,7 +76,7 @@
 
     <PopularWords {popularWords} />
 
-    <div class="h-3" />
+    <div class="h-10" />
   </div>
 </main>
 <Footer />
