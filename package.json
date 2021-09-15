@@ -24,7 +24,6 @@
     "@types/validator": "^13.6.3",
     "@types/wavesurfer.js": "^5.2.0",
     "cookie": "^0.4.1",
-    "ffmpeg": "^0.0.4",
     "jsonwebtoken": "^8.5.1",
     "juice": "^8.0.0",
     "jwt-decode": "^3.1.2",
@@ -47,6 +46,7 @@
   "dependencies": {
     "@prisma/client": "^3.0.2",
     "bcrypt": "^5.0.1",
+    "ffmpeg": "^0.0.4",
     "swiper": "^7.0.1"
   }
 }
