@@ -33,8 +33,6 @@
     <div class="flex items-center justify-center">
       <a href="https://github.com/noahsalvi/helvetikon">Github</a>
       <div class="h-1 w-1 mx-3 rounded-full bg-gray-300" />
-      <a href="/impressum">Impressum</a>
-      <div class="h-1 w-1 mx-3 rounded-full bg-gray-300" />
       <a href="/faq">FAQ</a>
     </div>
   </div>
