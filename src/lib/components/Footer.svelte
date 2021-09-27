@@ -6,8 +6,8 @@
 
   onMount(() => {
     // Set the email via javascript to prevent it from being scraped by crawlers
-    const user = "hello";
-    const domain = "helvetikon.org";
+    const user = "helvetikon";
+    const domain = "noahsalvi.ch";
     const symbol = "@";
     email = user + symbol + domain;
   });

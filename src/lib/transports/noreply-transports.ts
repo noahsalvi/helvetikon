@@ -1,20 +1,32 @@
-import { EMAIL_NOREPLY_PASSWORD } from "$lib/api/secrets";
+import {
+  EMAIL_ICLOUD_PASSWORD,
+  EMAIL_ICLOUD_USER,
+  EMAIL_NOREPLY_PASSWORD,
+} from "$lib/api/secrets";
 import nodemailer from "nodemailer";
 import type Mail from "nodemailer/lib/mailer";
 import type SMTPTransport from "nodemailer/lib/smtp-transport";
 import { getTestTansportOptions } from "./test-transport";
 
 const production = process.env.NODE_ENV === "production";
+// const productionTransportOptions: SMTPTransport.Options = {
+//   host: "smtp.zoho.eu",
+//   port: 465,
+//   secure: true,
+//   auth: {
+//     user: "noreply@helvetikon.org",
+//     pass: EMAIL_NOREPLY_PASSWORD,
+//   },
+// };
+// const from = "Helvetikon 🇨🇭 <noreply@helvetikon.org>";
 const productionTransportOptions: SMTPTransport.Options = {
-  host: "smtp.zoho.eu",
-  port: 465,
-  secure: true,
+  service: "iCloud",
   auth: {
-    user: "noreply@helvetikon.org",
-    pass: EMAIL_NOREPLY_PASSWORD,
+    user: EMAIL_ICLOUD_USER,
+    pass: EMAIL_ICLOUD_PASSWORD,
   },
 };
-const from = "Helvetikon 🇨🇭 <noreply@helvetikon.org>";
+const from = "Helvetikon 🇨🇭 <helvetikon@noahsalvi.ch>";
 
 export async function sendMailNoreply(mailOptions: Mail.Options) {
   mailOptions.from ||= from;
