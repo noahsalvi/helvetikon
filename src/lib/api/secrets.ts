@@ -8,8 +8,3 @@ export const EMAIL_VERIFICATION_SECRET = import.meta.env
 
 export const EMAIL_NOREPLY_PASSWORD = import.meta.env
   .VITE_EMAIL_NOREPLY_PASSWORD as string;
-
-export const EMAIL_ICLOUD_USER = import.meta.env
-  .VITE_EMAIL_ICLOUD_USER as string;
-export const EMAIL_ICLOUD_PASSWORD = import.meta.env
-  .VITE_EMAIL_ICLOUD_PASSWORD as string;
