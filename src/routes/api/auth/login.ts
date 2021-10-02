@@ -1,9 +1,11 @@
 import prisma from "$lib/prisma";
 import bcrypt from "bcrypt";
 import AccessToken from "$lib/api/tokens/access-token";
+import cookie from "cookie";
+import { COOKIE_MAX_AGE } from "$lib/utils/cookie-max-age";
 
 export async function post({ body, locals }) {
-  const username: string = body.username;
+  const email: string = body.email;
   const password: string = body.password;
 
   const authenticationFailed = {
@@ -12,7 +14,7 @@ export async function post({ body, locals }) {
   };
 
   const user = await prisma.user.findFirst({
-    where: { username },
+    where: { email },
   });
 
   if (!user) return authenticationFailed;
@@ -28,10 +30,14 @@ export async function post({ body, locals }) {
     };
 
   const jwtCookie = AccessToken.createCookie(await AccessToken.create(user));
+  const hasLoggedInBefore = cookie.serialize("not-new", "true", {
+    maxAge: COOKIE_MAX_AGE,
+    path: "/",
+  });
 
   return {
     headers: {
-      "set-cookie": [jwtCookie],
+      "set-cookie": [jwtCookie, hasLoggedInBefore],
     },
     body: "Logged In, JWT-Cookie set",
   };

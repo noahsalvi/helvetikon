@@ -8,9 +8,11 @@ import { renderMail } from "$lib/email-renderer";
 import VerifyEmail from "$lib/emails/VerifyEmail.svelte";
 import { sendMailNoreply } from "$lib/transports/noreply-transports";
 import { EMAIL_VERIFICATION_SECRET } from "$lib/api/secrets";
+import cookie from "cookie";
+import { COOKIE_MAX_AGE } from "$lib/utils/cookie-max-age";
 
 export function post({ body }) {
-  const username: string = body.username || "";
+  const username: string = body.nickname || "";
   const email: string = body.email || "";
   const password: string = body.password || "";
   const dialect: Dialect = body.dialect;
@@ -51,9 +53,17 @@ export function post({ body }) {
 
       sendVerificationEmail(user);
 
+      const hasLoggedInBefore = cookie.serialize("not-new", "true", {
+        maxAge: COOKIE_MAX_AGE,
+        path: "/",
+      });
+
       return {
         status: 201,
         body: "User registered, verification email sent",
+        headers: {
+          "set-cookie": [hasLoggedInBefore],
+        },
       };
     }
   );

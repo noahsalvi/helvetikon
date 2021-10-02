@@ -1,6 +1,3 @@
-<script context="module">
-</script>
-
 <script lang="ts">
   import { goto } from "$app/navigation";
   import api from "$lib/api";
@@ -30,7 +27,7 @@
   let loading = false;
 
   const form = useForm({
-    username: {
+    nickname: {
       validators: [required, minLength(4), maxLength(20)],
     },
     email: {
@@ -87,9 +84,9 @@
 
   <form use:form class="mt-10" on:submit|preventDefault={register}>
     <TextFieldWithIcon
-      name="username"
-      placeholder="Benutzername"
-      value={$registrationState.username}
+      name="nickname"
+      placeholder="Spitzname"
+      value={$registrationState.nickname}
       icon={faUser}
     />
 

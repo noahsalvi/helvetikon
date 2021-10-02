@@ -8,6 +8,7 @@
   export let type = "text";
   export let disabled = false;
   export let readonly = false;
+  export let autocomplete = "";
 </script>
 
 <div class="relative">
@@ -21,7 +22,7 @@
     {type}
     {disabled}
     {readonly}
-    autocomplete={name}
+    autocomplete={autocomplete || name}
   />
   <Icon
     data={icon}

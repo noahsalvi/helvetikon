@@ -3,7 +3,6 @@
 
   import api from "$lib/api";
   import { error, successNextVisit } from "$lib/components/Toaster/toast";
-
   import { faAt } from "@fortawesome/free-solid-svg-icons";
   import { email, required, useForm } from "svelte-use-form";
   import Button from "../../../lib/components/Button.svelte";
@@ -11,8 +10,10 @@
 
   let loading = false;
 
+  const queryEmail = $page.query.get("email");
+
   const form = useForm({
-    email: { validators: [required, email] },
+    email: { validators: [required, email], initial: queryEmail },
   });
 
   const forget = () => {

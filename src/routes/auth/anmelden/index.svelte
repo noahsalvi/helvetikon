@@ -2,15 +2,15 @@
   import api from "$lib/api";
   import { error, successNextVisit } from "$lib/components/Toaster/toast";
 
-  import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
-  import { maxLength, minLength, required, useForm } from "svelte-use-form";
+  import { faAt, faLock } from "@fortawesome/free-solid-svg-icons";
+  import { minLength, required, useForm } from "svelte-use-form";
   import Button from "../../../lib/components/Button.svelte";
   import TextFieldWithIcon from "../_TextFieldWithIcon.svelte";
 
   let loading = false;
 
   const form = useForm({
-    username: { validators: [required, minLength(4)] },
+    email: { validators: [required, minLength(4)] },
     password: { validators: [required, minLength(5)] },
   });
 
@@ -48,11 +48,7 @@
   <div class="text-lg text-gray-500">Schön dich wieder zu sehen.</div>
 
   <form use:form class="mt-20" on:submit|preventDefault={login}>
-    <TextFieldWithIcon
-      name="username"
-      placeholder="Benutzername"
-      icon={faUser}
-    />
+    <TextFieldWithIcon name="email" placeholder="E-Mail" icon={faAt} />
 
     <div class="h-3" />
 
@@ -64,7 +60,9 @@
     />
 
     <div class="mt-3 flex justify-end">
-      <a href="passwort-vergessen">Passwort vergessen?</a>
+      <a href={"passwort-vergessen?email=" + $form.email.value}
+        >Passwort vergessen?</a
+      >
     </div>
     <div class="h-6" />
 
@@ -72,11 +70,10 @@
 
     <div class="h-6" />
     <div class="flex justify-center items-center">
-      <a href="./registrieren"
-        >Neu hier? <span class="text-primary text-opacity-70 underline"
-          >Registrieren</span
-        ></a
-      >
+      <a href="./registrieren">
+        Neu hier?
+        <span class="text-primary text-opacity-70 underline">Registrieren</span>
+      </a>
     </div>
   </form>
 </main>
