@@ -21,7 +21,7 @@
 
     <div class="h-3" />
 
-    <div class="text-center text-gray-300 text-sm">Kontaktiere uns unter:</div>
+    <div class="text-center text-gray-300 text-sm">Kontaktiere mich unter:</div>
     <div class="text-center text-xl">
       <a href="mailto:{email || 'stop-collecting@emails.org'}">
         {email || "Aktivere javascript"}
