@@ -21,6 +21,3 @@
 
   <slot />
 </div>
-
-<style global>
-</style>

@@ -20,11 +20,7 @@
   import { session } from "$app/stores";
 
   import UserButton from "$lib/components/UserButton.svelte";
-  import {
-    faBook,
-    faLayerGroup,
-    faPlus,
-  } from "@fortawesome/free-solid-svg-icons";
+  import { faBook, faPlus } from "@fortawesome/free-solid-svg-icons";
   import config from "../lib/config";
   import LandingAction from "./components/_LandingAction.svelte";
   import Search from "./components/_Search.svelte";
@@ -82,7 +78,7 @@
 <Footer />
 
 <svelte:head>
-  <title>{config.appName} | Schweizerdeutsches Wörterbuch 📔</title>
+  <title>{config.appName} | Schweizerdeutsches Wörterbuch</title>
   <meta
     name="description"
     content="Ein Oline-Wörterbuch für die schweizerdeutsche Sprache, das von jedem verbessert werden kann."
