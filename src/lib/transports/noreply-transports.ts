@@ -6,11 +6,9 @@ import { getTestTansportOptions } from "./test-transport";
 
 const production = process.env.NODE_ENV === "production";
 const productionTransportOptions: SMTPTransport.Options = {
-  host: "smtp.zoho.eu",
-  port: 465,
-  secure: true,
+  service: "gmail",
   auth: {
-    user: "noreply@helvetikon.org",
+    user: "helvetikon.org",
     pass: EMAIL_NOREPLY_PASSWORD,
   },
 };
