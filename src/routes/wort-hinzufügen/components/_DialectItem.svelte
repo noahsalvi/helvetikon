@@ -11,7 +11,7 @@
   {#if description}
     <button
       class="h-full w-full 
-    flex flex-col justify-center
+    flex flex-col justify-center items-start
     pl-3 rounded-lg
     {preferred ? 'bg-light-700' : 'bg-light-400'}"
     >
