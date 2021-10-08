@@ -5,6 +5,8 @@
 <!-- <p align="center"><a href="docs/screenshots.md">Screenshots</a> &bull; <a href="https://github.com/varbhat/exatorrent/releases/latest">Releases</a> &bull; <a href="#features">Features</a> &bull; <a href="#installation"> Installation </a> &bull; <a href="docs/usage.md"> Usage</a> &bull; <a href="docs/docker.md">Docker</a> &bull; <a href="docs/build.md"> Build </a> &bull; <a href="LICENSE">License</a></p>
 <hr> -->
 
+<a href="https://noahsalvi.notion.site/Roadmap-9419e185dc49479baf21248d93c83e89"> Roadmap (Notion) </a>
+
 ## Setup
 
 ### .env
