@@ -3,7 +3,7 @@ import authorize from "$lib/api/middlewares/authorize";
 import type { Dialect } from "@prisma/client";
 
 export async function get({}) {
-  const words = await prisma.word.findMany({ take: 50 });
+  const words = await prisma.word.findMany();
   return {
     body: words,
   };
