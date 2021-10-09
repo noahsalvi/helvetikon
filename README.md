@@ -1,11 +1,12 @@
 <h1 align="center"><a href="https://helvetikon.org">Helvetikon [In Development]</a></h1> 
 <p align="center">A community maintained dictionary for the swiss german language</p>
+<h4 align="center"><a href="https://noahsalvi.notion.site/8cfe2577e735497da32e5108c95717f8?v=060ee05f640d4cb4aa589d4ef8f200f3"> Roadmap (Notion) </a></h4>
+
 
 <hr>
 <!-- <p align="center"><a href="docs/screenshots.md">Screenshots</a> &bull; <a href="https://github.com/varbhat/exatorrent/releases/latest">Releases</a> &bull; <a href="#features">Features</a> &bull; <a href="#installation"> Installation </a> &bull; <a href="docs/usage.md"> Usage</a> &bull; <a href="docs/docker.md">Docker</a> &bull; <a href="docs/build.md"> Build </a> &bull; <a href="LICENSE">License</a></p>
 <hr> -->
 
-<a href="https://noahsalvi.notion.site/Roadmap-9419e185dc49479baf21248d93c83e89"> Roadmap (Notion) </a>
 
 ## Setup
 
