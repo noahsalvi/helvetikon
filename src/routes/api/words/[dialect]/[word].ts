@@ -11,6 +11,7 @@ export async function get({ params }) {
     include: {
       createdBy: { select: { username: true } },
       audioSamples: { orderBy: { createdAt: "desc" } },
+      grammar: true,
       interpretations: {
         orderBy: { updatedAt: "desc" },
         include: {

@@ -23,7 +23,6 @@
 <script lang="ts">
   import { dev } from "$app/env";
   import { page, session } from "$app/stores";
-
   import Fab from "$lib/components/Fab.svelte";
   import Footer from "$lib/components/Footer.svelte";
   import Icon from "$lib/components/Icon";
@@ -31,16 +30,18 @@
   import { error, warn } from "$lib/components/Toaster/toast";
   import config from "$lib/config";
   import dialects from "$lib/dialects";
-  import { metaContent } from "$lib/utils/meta-content";
+  import { metaContent, r } from "$lib/utils/meta-content";
+  import wordGenders from "$lib/word-genders";
+  import wordTypes from "$lib/word-types";
   import {
     faHome,
     faMicrophone,
     faShare,
-    faVolumeOff,
     faVolumeUp,
   } from "@fortawesome/free-solid-svg-icons";
   import type {
     AudioSample,
+    Grammar,
     Interpretation,
     Meaning,
     User,
@@ -48,10 +49,12 @@
   } from "@prisma/client";
   import ActionButton from "./components/_ActionButton.svelte";
   import Interpretations from "./components/_Interpretations.svelte";
+  import WordDetail from "./components/_WordDetail.svelte";
 
   export let word: Word & {
     createdBy: User;
     audioSamples: AudioSample[];
+    grammar: Grammar;
     interpretations: (Interpretation & {
       createdBy: User;
       upvotes: User[];
@@ -60,6 +63,13 @@
     })[];
   };
 
+  const isOwner = $session.user?.id == word.createdByUserId;
+  const wordTypeValue =
+    wordTypes[word.wordType]?.name +
+    r(
+      `, ${wordGenders[word.grammar.nounGender]?.name}`,
+      word.wordType === "NOUN"
+    );
   const hasAudioSample = !!word.audioSamples.length;
   let playingAudio = false;
 
@@ -99,6 +109,7 @@
 <!-- <SwissCross /> -->
 
 <main class="container min-h-screen flex flex-col">
+  {word.grammar.nounGender}
   <Nav />
   <div class="flex-grow">
     <div class="px-3">
@@ -120,14 +131,25 @@
         {/each}
       </div>
 
-      {#if word.german}
-        <a href="https://www.duden.de/rechtschreibung/{word.german}">
-          <h2 class="text-2xl">
-            <span class="text-primaryDark ">(DE)</span>
-            <span class="font-bold">{word.german}</span>
-          </h2>
-        </a>
-      {/if}
+      <!-- Word Details -->
+      <section class="text-xl">
+        {#if word.german}
+          <WordDetail
+            title="Deutsch:"
+            value={word.german}
+            href="https://www.duden.de/suchen/dudenonline/{word.german}"
+          />
+        {/if}
+        {#if word.wordType}
+          <WordDetail title="Wortart:" value={wordTypeValue} />
+        {:else}
+          <a
+            href="{$page.path}/wortart-hinzufügen"
+            class="text-lg border-2 border-dashed p-0.5 rounded text-gray-400"
+            >Wortart hinzufügen</a
+          >
+        {/if}
+      </section>
 
       <div class="h-4" />
 

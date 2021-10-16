@@ -1,3 +1,4 @@
 import Prisma, * as PrismaScope from "@prisma/client";
 
-export const Dialect = Prisma?.Dialect || PrismaScope?.Dialect;
+const p = Prisma || PrismaScope;
+export const Dialect = p.Dialect;
