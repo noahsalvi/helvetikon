@@ -133,16 +133,16 @@ model VerbConjucation {
 }
 
 enum WordType {
-  Noun
-  Verb
-  Article
-  Adjective
-  Pronoun
-  Numeral
+  NOUN
+  VERB
+  ARTICLE
+  ADJECTIVE
+  PRONOUN
+  NUMERAL
 }
 
 enum WordGender {
-  masculine
-  feminine
-  neuter
+  MASCULINE
+  FEMININE
+  NEUTER
 }

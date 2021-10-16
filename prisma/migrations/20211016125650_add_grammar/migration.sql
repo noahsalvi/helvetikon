@@ -1,8 +1,8 @@
 -- CreateEnum
-CREATE TYPE "WordType" AS ENUM ('Noun', 'Verb', 'Article', 'Adjective', 'Pronoun', 'Numeral');
+CREATE TYPE "WordType" AS ENUM ('NOUN', 'VERB', 'ARTICLE', 'ADJECTIVE', 'PRONOUN', 'NUMERAL');
 
 -- CreateEnum
-CREATE TYPE "WordGender" AS ENUM ('masculine', 'feminine', 'neuter');
+CREATE TYPE "WordGender" AS ENUM ('MASCULINE', 'FEMININE', 'NEUTER');
 
 -- AlterTable
 ALTER TABLE "User" ADD COLUMN     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
