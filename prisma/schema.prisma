@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -15,12 +12,14 @@ model Word {
   swissGerman     String
   german          String?
   spellings       String[]
-  dialect         Dialect
+  dialect         DIALECT
   interpretations Interpretation[]
   audioSamples    AudioSample[]
   createdAt       DateTime         @default(now())
   createdBy       User             @relation(fields: [createdByUserId], references: [id])
   createdByUserId Int
+  wordType        WordType?
+  grammar         Grammar?
 
   @@unique([swissGerman, dialect])
 }
@@ -51,7 +50,7 @@ model User {
   username                 String           @unique
   email                    String           @unique
   verified                 Boolean          @default(false)
-  preferredDialect         Dialect          @default(OTHER)
+  preferredDialect         DIALECT          @default(OTHER)
   createdWords             Word[]
   audioSamples             AudioSample[]
   createdInterpretations   Interpretation[]
@@ -61,6 +60,7 @@ model User {
   sessions                 Session[]
   lastForgotPasswordAt     DateTime?
   lastPasswordResetAt      DateTime?
+  createdAt                DateTime         @default(now())
 }
 
 model Session {
@@ -81,7 +81,7 @@ model AudioSample {
 }
 
 // Source: https://als.wikipedia.org/wiki/Schweizerdeutsch
-enum Dialect {
+enum DIALECT {
   BASEL
   // BASELBIETER
   AARGAU
@@ -96,4 +96,55 @@ enum Dialect {
   URI
   WALLIS
   OTHER
+
+  @@map("Dialect")
+}
+
+// Grammar
+model Grammar {
+  id     Int  @id @default(autoincrement())
+  wordId Int  @unique
+  word   Word @relation(fields: [wordId], references: [id])
+
+  nounPlural String?
+  nounGender WordGender?
+
+  verbPresentId       Int?             @unique
+  verbPresent         VerbConjucation? @relation("present", fields: [verbPresentId], references: [id])
+  verbConditionalIId  Int?             @unique
+  verbConditionalI    VerbConjucation? @relation("conditional1", fields: [verbConditionalIId], references: [id])
+  verbConditionalIIId Int?             @unique
+  verbCoditionalII    VerbConjucation? @relation("conditional2", fields: [verbConditionalIIId], references: [id])
+
+  adjectiveComparativ String?
+  adjectiveSuperlativ String?
+}
+
+model VerbConjucation {
+  id                 Int     @id @default(autoincrement())
+  firstPerson        String?
+  secondPerson       String?
+  thirdPerson        String?
+  firstPersonPlural  String?
+  secondPersonPlural String?
+  thirdPersonPlural  String?
+
+  grammar_verbPresent       Grammar? @relation("present")
+  grammar_verbConditionalI  Grammar? @relation("conditional1")
+  grammar_verbConditionalII Grammar? @relation("conditional2")
+}
+
+enum WordType {
+  Noun
+  Verb
+  Article
+  Adjective
+  Pronoun
+  Numeral
+}
+
+enum WordGender {
+  masculine
+  feminine
+  neuter
 }
