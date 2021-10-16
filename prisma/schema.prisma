@@ -12,7 +12,7 @@ model Word {
   swissGerman     String
   german          String?
   spellings       String[]
-  dialect         DIALECT
+  dialect         Dialect
   interpretations Interpretation[]
   audioSamples    AudioSample[]
   createdAt       DateTime         @default(now())
@@ -50,7 +50,7 @@ model User {
   username                 String           @unique
   email                    String           @unique
   verified                 Boolean          @default(false)
-  preferredDialect         DIALECT          @default(OTHER)
+  preferredDialect         Dialect          @default(OTHER)
   createdWords             Word[]
   audioSamples             AudioSample[]
   createdInterpretations   Interpretation[]
@@ -81,7 +81,7 @@ model AudioSample {
 }
 
 // Source: https://als.wikipedia.org/wiki/Schweizerdeutsch
-enum DIALECT {
+enum Dialect {
   BASEL
   // BASELBIETER
   AARGAU
@@ -96,8 +96,6 @@ enum DIALECT {
   URI
   WALLIS
   OTHER
-
-  @@map("Dialect")
 }
 
 // Grammar
