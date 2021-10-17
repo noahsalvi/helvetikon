@@ -6,6 +6,7 @@
 
 <script lang="ts">
   import { goto } from "$app/navigation";
+  import { session } from "$app/stores";
   import Button from "$lib/components/Button.svelte";
   import Fab from "$lib/components/Fab.svelte";
   import Icon from "$lib/components/Icon";
@@ -43,6 +44,7 @@
     fetch(path, { method: "POST", body: blob })
       .then((response) => {
         if (response.ok) {
+          $session.invalidate();
           goto(".").then(() => success("Hörbeispiel wurde hinzugefügt 👍"));
         } else {
           error();

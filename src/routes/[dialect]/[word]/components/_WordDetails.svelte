@@ -29,7 +29,7 @@
     />
   {/if}
   {#if grammar.nounPlural}
-    <WordDetail title="Mehrzahl:" value={grammar.nounPlural} />
+    <WordDetail title="Plural:" value={grammar.nounPlural} />
   {/if}
   {#if word.wordType}
     <WordDetail title="Wortart:" value={wordTypeValue} />

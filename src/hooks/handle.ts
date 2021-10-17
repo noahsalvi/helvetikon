@@ -72,7 +72,7 @@ async function resolveEnhanced(resolve: Function, request: any) {
   try {
     return await resolve(request);
   } catch (e) {
-    if ("status" in e) return e;
+    if (typeof e === "object" && "status" in e) return e;
     throw e;
   }
 }

@@ -10,16 +10,18 @@
 </script>
 
 <script lang="ts">
-  import Nav from "$lib/components/Nav.svelte";
-  import type { Word, Interpretation, Meaning } from "@prisma/client";
-  import Examples from "./_Examples.svelte";
   import { goto } from "$app/navigation";
+
+  import { session } from "$app/stores";
   import api from "$lib/api";
   import ButtonBar from "$lib/components/ButtonBar.svelte";
-  import { success, warn } from "$lib/components/Toaster/toast";
-  import { slide } from "svelte/transition";
   import Icon from "$lib/components/Icon";
+  import Nav from "$lib/components/Nav.svelte";
+  import { success, warn } from "$lib/components/Toaster/toast";
   import { faTimes } from "@fortawesome/free-solid-svg-icons";
+  import type { Interpretation, Meaning, Word } from "@prisma/client";
+  import { slide } from "svelte/transition";
+  import Examples from "./_Examples.svelte";
 
   export let interpretation: Interpretation & {
     word: Word;
@@ -35,7 +37,9 @@
     loading = true;
     await api
       .put(`/api/interpretations/${interpretation.id}`, meanings)
-      .then((_) => {
+      .then(async (_) => {
+        $session.invalidate();
+
         goto("../../").then(() => success("Interpretation aktualisiert"));
       })
       .catch((reason) => {

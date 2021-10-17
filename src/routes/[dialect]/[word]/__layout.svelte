@@ -2,6 +2,7 @@
   import dialects from "$lib/dialects";
 
   export async function load({ page, fetch }) {
+    console.log("load in layout");
     const { dialect: dialectSlug, word } = page.params;
 
     const dialect = Object.entries(dialects).find(
@@ -9,18 +10,27 @@
     )?.[0];
 
     if (!dialect) return;
+    const path = `/api/words/${dialect}/${word}`;
+    const result = await fetch(path);
 
-    const result = await fetch(`/api/words/${dialect}/${word}`);
-
-    if (!result.ok) {
-      return { status: result.status };
-    }
+    if (!result.ok) return { status: result.status };
 
     const wordData = await result.json();
-    console.log("this is executed");
 
-    return { context: { word: wordData } };
+    return { context: { word: wordData, path }, props: { path } };
   }
+</script>
+
+<script>
+  import { session } from "$app/stores";
+  import { invalidate } from "$app/navigation";
+  import { onMount } from "svelte";
+
+  export let path;
+
+  onMount(() => {
+    $session.invalidate = () => invalidate(path);
+  });
 </script>
 
 <slot />

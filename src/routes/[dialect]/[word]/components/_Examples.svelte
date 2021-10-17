@@ -3,7 +3,7 @@
   import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
   import { slide } from "svelte/transition";
 
-  export let examples: String[];
+  export let examples: string[];
   // Remove the first example which already gets displayed somewhere else
   examples = examples.slice(1);
 

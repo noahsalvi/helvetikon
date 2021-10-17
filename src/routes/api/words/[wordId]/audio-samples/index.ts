@@ -2,8 +2,8 @@ import authorize from "$lib/api/middlewares/authorize";
 import prisma from "$lib/prisma";
 import { promises as fs } from "fs";
 import { v4 } from "uuid";
-import ffmpeg from "ffmpeg";
 import path from "path";
+import ffmpeg from "fluent-ffmpeg";
 
 const __dirname = path.resolve();
 const production = process.env.NODE_ENV === "production";
@@ -37,9 +37,18 @@ export async function post({ body, params, locals }) {
   // Temporary Blob file
   const blobPath = folderPath + uuid + ".blob";
   await fs.writeFile(rootPath + blobPath, buffer);
-  const video = await new ffmpeg(rootPath + blobPath);
+
   const filePath = folderPath + uuid + ".mp3";
-  await video.fnExtractSoundToMP3(rootPath + filePath);
+  await new Promise((res, rej) => {
+    ffmpeg(rootPath + blobPath)
+      .toFormat("mp3")
+      .save(rootPath + filePath)
+      .on("end", () => {
+        res(null);
+      })
+      .on("error", rej);
+  });
+
   await fs.unlink(rootPath + blobPath);
 
   await prisma.audioSample.create({
