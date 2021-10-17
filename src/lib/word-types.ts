@@ -7,6 +7,7 @@ const wordTypes: { [key in WordType]: { name: string } } = {
   ADJECTIVE: { name: "Adjektiv" },
   PRONOUN: { name: "Pronomen" },
   NUMERAL: { name: "Numerale" },
+  PARTICLE: { name: "Partikel" },
 };
 
 export default wordTypes;

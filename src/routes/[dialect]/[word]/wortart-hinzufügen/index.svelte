@@ -12,6 +12,7 @@
   import { session } from "$app/stores";
   import api from "$lib/api";
   import Fab from "$lib/components/Fab.svelte";
+  import TitleDescriptionLayout from "$lib/components/layouts/TitleDescriptionLayout.svelte";
   import Nav from "$lib/components/Nav.svelte";
   import { success } from "$lib/components/Toaster/toast";
   import wordGenders from "$lib/word-genders";
@@ -52,47 +53,63 @@
 </script>
 
 <Nav />
-<main class="container px-3">
-  <h1 class="font-semibold text-3xl">
-    {title}
-  </h1>
-  <div class="h-5" />
+<main>
+  <TitleDescriptionLayout>
+    <svelte:fragment slot="title">
+      {title}
+    </svelte:fragment>
+    <svelte:fragment slot="description">
+      Wähle die Wortart für das Wort
+      <span class="font-bold text-black">{word.swissGerman}</span>
+      . Falls du dir unsicher bist, kannst du für Worte die es auch im Deutschen
+      gibt, auf Duden nachschauen. Alle unveränderlichen Wortarten gehören zu der
+      Wortart Partikel
+    </svelte:fragment>
 
-  {#if selectedWordType == "NOUN"}
-    <section class="flex flex-wrap gap-5">
-      <button class="word-type" on:click={() => selectGender("MASCULINE")}>
-        {wordGenders["MASCULINE"].name}
-      </button>
-      <button class="word-type" on:click={() => selectGender("FEMININE")}>
-        {wordGenders["FEMININE"].name}
-      </button>
-      <button class="word-type" on:click={() => selectGender("NEUTER")}>
-        {wordGenders["NEUTER"].name}
-      </button>
-      <Fab on:click={() => (selectedWordType = null)} />
-    </section>
-  {:else}
-    <section class="flex flex-wrap gap-5">
-      <button class="word-type" on:click={() => selectType("NOUN")}>
-        Substantiv
-      </button>
-      <button class="word-type" on:click={() => selectType("VERB")}>
-        Verb
-      </button>
-      <button class="word-type" on:click={() => selectType("ARTICLE")}>
-        Artikel
-      </button>
-      <button class="word-type" on:click={() => selectType("ADJECTIVE")}>
-        Adjektiv
-      </button>
-      <button class="word-type" on:click={() => selectType("PRONOUN")}>
-        Pronomen
-      </button>
-      <button class="word-type" on:click={() => selectType("NUMERAL")}>
-        Numerale
-      </button>
-    </section>
-  {/if}
+    {#if selectedWordType == "NOUN"}
+      <section class="flex flex-wrap gap-5">
+        <button class="word-type" on:click={() => selectGender("MASCULINE")}>
+          {wordGenders["MASCULINE"].name}
+        </button>
+        <button class="word-type" on:click={() => selectGender("FEMININE")}>
+          {wordGenders["FEMININE"].name}
+        </button>
+        <button class="word-type" on:click={() => selectGender("NEUTER")}>
+          {wordGenders["NEUTER"].name}
+        </button>
+        <Fab
+          on:click={() => {
+            selectedWordType = null;
+            selectedGender = null;
+          }}
+        />
+      </section>
+    {:else}
+      <section class="flex flex-wrap gap-5">
+        <button class="word-type" on:click={() => selectType("NOUN")}>
+          {wordTypes["NOUN"].name}
+        </button>
+        <button class="word-type" on:click={() => selectType("VERB")}>
+          {wordTypes["VERB"].name}
+        </button>
+        <button class="word-type" on:click={() => selectType("ARTICLE")}>
+          {wordTypes["ARTICLE"].name}
+        </button>
+        <button class="word-type" on:click={() => selectType("ADJECTIVE")}>
+          {wordTypes["ADJECTIVE"].name}
+        </button>
+        <button class="word-type" on:click={() => selectType("PRONOUN")}>
+          {wordTypes["PRONOUN"].name}
+        </button>
+        <button class="word-type" on:click={() => selectType("NUMERAL")}>
+          {wordTypes["NUMERAL"].name}
+        </button>
+        <button class="word-type" on:click={() => selectType("PARTICLE")}>
+          {wordTypes["PARTICLE"].name}
+        </button>
+      </section>
+    {/if}
+  </TitleDescriptionLayout>
 </main>
 
 <style>

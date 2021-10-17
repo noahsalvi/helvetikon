@@ -19,8 +19,9 @@ CREATE TABLE "Grammar" (
     "verbPresentId" INTEGER,
     "verbConditionalIId" INTEGER,
     "verbConditionalIIId" INTEGER,
-    "adjectiveComparativ" TEXT,
-    "adjectiveSuperlativ" TEXT,
+    "verbParticiplePast" TEXT,
+    "adjectiveComparative" TEXT,
+    "adjectiveSuperlative" TEXT,
 
     CONSTRAINT "Grammar_pkey" PRIMARY KEY ("id")
 );
@@ -61,7 +62,6 @@ ALTER TABLE "Grammar" ADD CONSTRAINT "Grammar_verbConditionalIId_fkey" FOREIGN K
 
 -- AddForeignKey
 ALTER TABLE "Grammar" ADD CONSTRAINT "Grammar_verbConditionalIIId_fkey" FOREIGN KEY ("verbConditionalIIId") REFERENCES "VerbConjucation"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
 
 -- CUSTOM Create Grammar Entity for each word
 insert into "Grammar" ("wordId") select id from "Word";

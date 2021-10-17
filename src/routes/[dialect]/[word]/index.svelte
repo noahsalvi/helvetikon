@@ -101,7 +101,7 @@
         {word.swissGerman}
       </h1>
 
-      <div class="text-lg font-semibold italic">
+      <div class="text-2xl font-semibold italic">
         {#each word.spellings as spelling, index}
           <span>{spelling}{index < word.spellings.length - 1 ? "," : ""} </span>
         {/each}
@@ -109,7 +109,7 @@
 
       <WordDetails {word} />
 
-      <div class="h-4" />
+      <div class="h-3" />
 
       <!-- Actions -->
       <div class="flex space-x-2 mb-6">
@@ -124,7 +124,7 @@
               : $page.path}
             on:click={addAudioSampleHandler}
             class="h-12 p-3.5 flex justify-between items-center space-x-2
-      bg-primary bg-opacity-5 rounded-full"
+      bg-primary bg-opacity-5 rounded-lg"
           >
             <Icon
               data={faMicrophone}

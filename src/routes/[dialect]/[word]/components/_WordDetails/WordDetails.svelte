@@ -25,23 +25,54 @@
       href="https://www.duden.de/suchen/dudenonline/{word.german}"
     />
   {/if}
-  {#if grammar.nounPlural}
-    <WordDetail title="Plural:" value={grammar.nounPlural} />
-  {/if}
+
   {#if word.wordType}
+    {#if word.wordType === "NOUN"}
+      {#if grammar.nounPlural}
+        <WordDetail title="Plural:" value={grammar.nounPlural} />
+      {/if}
+    {:else if word.wordType === "ADJECTIVE"}
+      {#if grammar.adjectiveComparative}
+        <WordDetail title="Komparativ:" value={grammar.adjectiveComparative} />
+      {/if}
+      {#if grammar.adjectiveSuperlative}
+        <WordDetail title="Superlativ:" value={grammar.adjectiveSuperlative} />
+      {/if}
+    {:else if word.wordType === "VERB"}
+      {#if grammar.verbParticiplePast}
+        <WordDetail title="Partizip II:" value={grammar.verbParticiplePast} />
+      {/if}
+    {/if}
+
     <WordDetail title="Wortart:" value={wordTypeValue} />
   {/if}
 
   {#if !word.wordType}
     <div class="h-3" />
     <AddDetailButton title="Wortart hinzufügen" path="wortart-hinzufügen" />
+    <div class="h-3" />
   {:else}
-    <div class="mt-3">
+    <div class="my-3 flex gap-2 flex-wrap">
       {#if word.wordType === "NOUN" && !grammar.nounPlural}
         <AddDetailButton title="Plural hinzufügen" path="plural-hinzufügen" />
       {:else if word.wordType === "VERB"}
         <!-- Todo -->
+        {#if !grammar.verbParticiplePast}
+          <AddDetailButton title="Partizip II" path="partizip-2" />
+        {/if}
       {:else if word.wordType === "ADJECTIVE"}
+        {#if !grammar.adjectiveComparative}
+          <AddDetailButton
+            title="Komparativ"
+            path="adjektiv-steigerung-hinzufügen"
+          />
+        {/if}
+        {#if !grammar.adjectiveSuperlative}
+          <AddDetailButton
+            title="Superlativ"
+            path="adjektiv-steigerung-hinzufügen"
+          />
+        {/if}
         <!-- Todo -->
       {/if}
     </div>

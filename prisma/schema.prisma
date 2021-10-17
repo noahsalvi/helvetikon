@@ -98,7 +98,6 @@ enum Dialect {
   OTHER
 }
 
-// Grammar
 model Grammar {
   id     Int  @id @default(autoincrement())
   wordId Int  @unique
@@ -113,9 +112,10 @@ model Grammar {
   verbConditionalI    VerbConjucation? @relation("conditional1", fields: [verbConditionalIId], references: [id])
   verbConditionalIIId Int?             @unique
   verbCoditionalII    VerbConjucation? @relation("conditional2", fields: [verbConditionalIIId], references: [id])
+  verbParticiplePast  String?
 
-  adjectiveComparativ String?
-  adjectiveSuperlativ String?
+  adjectiveComparative String?
+  adjectiveSuperlative String?
 }
 
 model VerbConjucation {

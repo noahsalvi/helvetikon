@@ -1,7 +1,6 @@
 <section class="step-layout px-6">
   <h1><slot name="title" /></h1>
   <h2><slot name="description">No Description set</slot></h2>
-  <form action="" />
   <div class="h-10" />
   <slot />
   <div class="h-5" />

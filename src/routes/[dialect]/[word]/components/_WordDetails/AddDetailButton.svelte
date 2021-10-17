@@ -10,7 +10,7 @@
 </script>
 
 <a
-  class="rounded flex bg-dark-500 text-white text-base w-max py-1 px-3 gap-1 items-center"
+  class="rounded flex bg-dark-500 text-white text-lg w-max py-1 px-3 gap-1 items-center"
   href="{$page.path}/{path}"
   use:restricted
 >
