@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
-  export async function load({ context }) {
-    const word = context.word;
+  export async function load({ stuff }) {
+    const word = stuff.word;
     if (word.wordType) return { status: 302, redirect: "./" };
 
     return { props: { word } };

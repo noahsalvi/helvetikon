@@ -4,10 +4,10 @@
   import { Word } from "@prisma/client";
   import StepLayout from "../../../wort-hinzufügen/components/_StepLayout.svelte";
 
-  export async function load({ session, context }) {
+  export async function load({ session, stuff }) {
     if (!session.user) return { status: 302, redirect: "/auth" };
 
-    return { props: context };
+    return { props: stuff };
   }
 </script>
 

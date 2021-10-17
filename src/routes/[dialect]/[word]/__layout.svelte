@@ -16,7 +16,7 @@
 
     const wordData = await result.json();
 
-    return { context: { word: wordData, path }, props: { path } };
+    return { stuff: { word: wordData, path }, props: { path } };
   }
 </script>
 

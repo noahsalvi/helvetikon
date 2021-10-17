@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { page } from "$app/stores";
-
   import { r } from "$lib/utils/meta-content";
   import wordGenders from "$lib/word-genders";
   import wordTypes from "$lib/word-types";
@@ -32,18 +30,20 @@
   {/if}
   {#if word.wordType}
     <WordDetail title="Wortart:" value={wordTypeValue} />
-  {:else}
-    <a
-      href="{$page.path}/wortart-hinzufügen"
-      class="border-dashed rounded border-2 text-lg p-0.5 text-gray-400"
-      >Wortart hinzufügen</a
-    >
   {/if}
-  <div class="my-5">
-    {#if !word.wordType}
-      <AddDetailButton title="Wortart hinzufügen" page={"wortart-hinzufügen"} />
-    {:else if word.wordType === "NOUN" && !grammar.nounPlural}
-      <!-- <AddDetailButton title="Plural hinzufügen" page="plural-hinzufügen" /> -->
-    {/if}
-  </div>
+
+  {#if !word.wordType}
+    <div class="h-3" />
+    <AddDetailButton title="Wortart hinzufügen" path="wortart-hinzufügen" />
+  {:else}
+    <div class="mt-3">
+      {#if word.wordType === "NOUN" && !grammar.nounPlural}
+        <AddDetailButton title="Plural hinzufügen" path="plural-hinzufügen" />
+      {:else if word.wordType === "VERB"}
+        <!-- Todo -->
+      {:else if word.wordType === "ADJECTIVE"}
+        <!-- Todo -->
+      {/if}
+    </div>
+  {/if}
 </section>
