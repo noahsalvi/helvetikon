@@ -1,6 +1,8 @@
 <script>
   import LogoWithText from "./LogoWithText.svelte";
   import UserButton from "./UserButton.svelte";
+
+  export let spacingBottom = true;
 </script>
 
 <!-- Placeholder -->
@@ -13,3 +15,6 @@
   </div>
 </nav>
 <div class="h-15" />
+{#if spacingBottom}
+  <div class="h-5" />
+{/if}

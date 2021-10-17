@@ -9,8 +9,12 @@
 </script>
 
 <script>
+  import Nav from "$lib/components/Nav.svelte";
+
   export let word;
 </script>
+
+<Nav />
 
 <StepLayout>
   <svelte:fragment slot="title">Plural hinzufügen</svelte:fragment>

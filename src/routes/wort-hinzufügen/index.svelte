@@ -45,7 +45,6 @@
 <Nav />
 
 <main class="container add-word">
-  <div class="h-5" />
   <div class="text-center text-gray-500">
     Schritt {currentStep + 1} von {steps.length}
   </div>

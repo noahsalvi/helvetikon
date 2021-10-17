@@ -62,8 +62,7 @@
 <Nav />
 
 <main class="container px-3 text-lg">
-  <div class="h-10" />
-  <h1 class="font-bold text-5xl text-coal mb-2">
+  <h1 class="font-bold text-3xl text-coal mb-2">
     {interpretation.word.swissGerman}
     {#if interpretation.word.german}
       <span class="text-2xl">= {interpretation.word.german}</span>

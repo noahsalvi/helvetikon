@@ -90,7 +90,6 @@
   <Nav />
   <div class="flex-grow">
     <div class="px-3">
-      <div class="h-10" />
       <div
         class="text-sm font-semibold bg-light-200 rounded flex w-min px-2 py-1"
       >

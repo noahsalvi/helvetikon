@@ -51,7 +51,6 @@
 
 <Nav />
 <main class="container px-3">
-  <div class="h-10" />
   <h1 class="font-semibold text-3xl">
     {title}
   </h1>
