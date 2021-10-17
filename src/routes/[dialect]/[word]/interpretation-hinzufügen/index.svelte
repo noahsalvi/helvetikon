@@ -6,6 +6,7 @@
 
 <script lang="ts">
   import { goto } from "$app/navigation";
+  import { session } from "$app/stores";
   import api from "$lib/api";
   import ButtonBar from "$lib/components/ButtonBar.svelte";
   import Icon from "$lib/components/Icon";
@@ -29,6 +30,7 @@
     await api
       .post(path, meanings)
       .then(() => {
+        $session.invalidate();
         goto(".").then(() => success("Interpretation wurde erstellt 🤝"));
       })
       .catch(() => error());

@@ -9,6 +9,7 @@
 
 <script lang="ts">
   import { goto } from "$app/navigation";
+  import { session } from "$app/stores";
   import api from "$lib/api";
   import Fab from "$lib/components/Fab.svelte";
   import Nav from "$lib/components/Nav.svelte";
@@ -41,7 +42,8 @@
         wordType: selectedWordType,
         gender: selectedGender,
       })
-      .then((res) => {
+      .then(() => {
+        $session.invalidate();
         goto("./").then(() => success("Wortart hinzugefügt!"));
       });
   }
