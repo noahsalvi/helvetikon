@@ -1,15 +1,6 @@
 <script context="module">
-  export async function load({ page, fetch }) {
-    const { dialect: dialectSlug, word } = page.params;
-    const dialect = Object.entries(dialects).find(
-      ([_, dialect]) => dialect.slug === dialectSlug
-    )?.[0];
-    if (!dialect) return;
-
-    const result = await fetch(`/api/words/${dialect}/${word}`);
-    const wordData = await result.json();
-
-    return { props: { word: wordData } };
+  export async function load({ context }) {
+    return { props: context };
   }
 </script>
 

@@ -1,22 +1,6 @@
 <script context="module">
-  export async function load({ page, fetch }) {
-    const { dialect: dialectSlug, word } = page.params;
-
-    const dialect = Object.entries(dialects).find(
-      ([_, value]) => value.slug === dialectSlug
-    )?.[0];
-
-    if (!dialect) return;
-
-    const result = await fetch(`/api/words/${dialect}/${word}`);
-
-    if (!result.ok) {
-      return { status: result.status };
-    }
-
-    const wordData = await result.json();
-
-    return { props: { word: wordData } };
+  export async function load({ context }) {
+    return { props: context };
   }
 </script>
 
@@ -30,9 +14,7 @@
   import { error, warn } from "$lib/components/Toaster/toast";
   import config from "$lib/config";
   import dialects from "$lib/dialects";
-  import { metaContent, r } from "$lib/utils/meta-content";
-  import wordGenders from "$lib/word-genders";
-  import wordTypes from "$lib/word-types";
+  import { metaContent } from "$lib/utils/meta-content";
   import {
     faHome,
     faMicrophone,
@@ -49,7 +31,7 @@
   } from "@prisma/client";
   import ActionButton from "./components/_ActionButton.svelte";
   import Interpretations from "./components/_Interpretations.svelte";
-  import WordDetail from "./components/_WordDetail.svelte";
+  import WordDetails from "./components/_WordDetails.svelte";
 
   export let word: Word & {
     createdBy: User;
@@ -64,12 +46,7 @@
   };
 
   const isOwner = $session.user?.id == word.createdByUserId;
-  const wordTypeValue =
-    wordTypes[word.wordType]?.name +
-    r(
-      `, ${wordGenders[word.grammar.nounGender]?.name}`,
-      word.wordType === "NOUN"
-    );
+
   const hasAudioSample = !!word.audioSamples.length;
   let playingAudio = false;
 
@@ -131,25 +108,7 @@
         {/each}
       </div>
 
-      <!-- Word Details -->
-      <section class="text-xl">
-        {#if word.german}
-          <WordDetail
-            title="Deutsch:"
-            value={word.german}
-            href="https://www.duden.de/suchen/dudenonline/{word.german}"
-          />
-        {/if}
-        {#if word.wordType}
-          <WordDetail title="Wortart:" value={wordTypeValue} />
-        {:else}
-          <a
-            href="{$page.path}/wortart-hinzufügen"
-            class="text-lg border-2 border-dashed p-0.5 rounded text-gray-400"
-            >Wortart hinzufügen</a
-          >
-        {/if}
-      </section>
+      <WordDetails {word} />
 
       <div class="h-4" />
 

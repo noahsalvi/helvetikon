@@ -1,17 +1,9 @@
 <script context="module" lang="ts">
-  export async function load({ page, fetch }) {
-    const { dialect: dialectSlug, word } = page.params;
-    const dialect = Object.entries(dialects).find(
-      ([_, dialect]) => dialect.slug === dialectSlug
-    )?.[0];
-    if (!dialect) return;
+  export async function load({ context }) {
+    const word = context.word;
+    if (word.wordType) return { status: 302, redirect: "./" };
 
-    const result = await fetch(`/api/words/${dialect}/${word}`);
-    const wordData: Word = await result.json();
-
-    if (wordData.wordType) return { status: 302, redirect: "./" };
-
-    return { props: { word: wordData } };
+    return { props: { word } };
   }
 </script>
 
@@ -21,7 +13,6 @@
   import Fab from "$lib/components/Fab.svelte";
   import Nav from "$lib/components/Nav.svelte";
   import { success } from "$lib/components/Toaster/toast";
-  import dialects from "$lib/dialects";
   import wordGenders from "$lib/word-genders";
   import wordTypes from "$lib/word-types";
   import type { Word, WordGender, WordType } from "@prisma/client";
@@ -59,7 +50,7 @@
 </script>
 
 <Nav />
-<main class="container">
+<main class="container px-3">
   <div class="h-10" />
   <h1 class="font-semibold text-3xl">
     {title}
