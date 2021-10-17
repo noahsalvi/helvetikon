@@ -1,13 +1,12 @@
 <script lang="ts">
   import { page } from "$app/stores";
-  import restricted from "$lib/actions/restricted";
-  import Icon from "$lib/components/Icon";
+
   import { r } from "$lib/utils/meta-content";
   import wordGenders from "$lib/word-genders";
   import wordTypes from "$lib/word-types";
-  import { faPlus } from "@fortawesome/free-solid-svg-icons";
   import { Grammar, Word } from "@prisma/client";
-  import WordDetail from "./_WordDetail.svelte";
+  import AddDetailButton from "./AddDetailButton.svelte";
+  import WordDetail from "./WordDetail.svelte";
 
   export let word: Word & { grammar: Grammar };
   const grammar = word.grammar;
@@ -41,15 +40,10 @@
     >
   {/if}
   <div class="my-5">
-    {#if word.wordType === "NOUN" && !grammar.nounPlural}
-      <a
-        class="rounded bg-dark-500 text-white text-lg py-1 px-3"
-        href="{$page.path}/plural-hinzufügen"
-        use:restricted
-      >
-        <Icon data={faPlus} />
-        Plural hinzufügen
-      </a>
+    {#if !word.wordType}
+      <AddDetailButton title="Wortart hinzufügen" page={"wortart-hinzufügen"} />
+    {:else if word.wordType === "NOUN" && !grammar.nounPlural}
+      <!-- <AddDetailButton title="Plural hinzufügen" page="plural-hinzufügen" /> -->
     {/if}
   </div>
 </section>

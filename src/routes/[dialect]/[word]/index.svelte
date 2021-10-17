@@ -31,7 +31,7 @@
   } from "@prisma/client";
   import ActionButton from "./components/_ActionButton.svelte";
   import Interpretations from "./components/_Interpretations.svelte";
-  import WordDetails from "./components/_WordDetails.svelte";
+  import WordDetails from "./components/_WordDetails/WordDetails.svelte";
 
   export let word: Word & {
     createdBy: User;
