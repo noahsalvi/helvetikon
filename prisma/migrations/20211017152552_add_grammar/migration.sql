@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "WordType" AS ENUM ('NOUN', 'VERB', 'ARTICLE', 'ADJECTIVE', 'PRONOUN', 'NUMERAL');
+CREATE TYPE "WordType" AS ENUM ('NOUN', 'VERB', 'ARTICLE', 'ADJECTIVE', 'PRONOUN', 'NUMERAL', 'PARTICLE');
 
 -- CreateEnum
 CREATE TYPE "WordGender" AS ENUM ('MASCULINE', 'FEMININE', 'NEUTER');
@@ -62,7 +62,6 @@ ALTER TABLE "Grammar" ADD CONSTRAINT "Grammar_verbConditionalIId_fkey" FOREIGN K
 -- AddForeignKey
 ALTER TABLE "Grammar" ADD CONSTRAINT "Grammar_verbConditionalIIId_fkey" FOREIGN KEY ("verbConditionalIIId") REFERENCES "VerbConjucation"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
--- CUSTOM
 
--- Create Grammar Entity for each word
+-- CUSTOM Create Grammar Entity for each word
 insert into "Grammar" ("wordId") select id from "Word";

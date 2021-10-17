@@ -139,6 +139,7 @@ enum WordType {
   ADJECTIVE
   PRONOUN
   NUMERAL
+  PARTICLE
 }
 
 enum WordGender {
