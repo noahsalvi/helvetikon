@@ -1,7 +1,5 @@
 <script context="module">
   export async function load({ context }) {
-    console.log("load in index");
-
     return { props: context };
   }
 </script>

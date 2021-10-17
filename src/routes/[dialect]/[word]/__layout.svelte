@@ -2,7 +2,6 @@
   import dialects from "$lib/dialects";
 
   export async function load({ page, fetch }) {
-    console.log("load in layout");
     const { dialect: dialectSlug, word } = page.params;
 
     const dialect = Object.entries(dialects).find(
