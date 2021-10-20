@@ -19,4 +19,8 @@
   svg.fa-icon {
     display: block;
   }
+
+  .svelte-use-form-hint {
+    @apply text-red-500 mt-1;
+  }
 </style>

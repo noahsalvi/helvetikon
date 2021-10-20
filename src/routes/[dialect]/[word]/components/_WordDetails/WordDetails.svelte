@@ -56,9 +56,8 @@
       {#if word.wordType === "NOUN" && !grammar.nounPlural}
         <AddDetailButton title="Plural hinzufügen" path="plural-hinzufügen" />
       {:else if word.wordType === "VERB"}
-        <!-- Todo -->
         {#if !grammar.verbParticiplePast}
-          <AddDetailButton title="Partizip II" path="partizip-2" />
+          <AddDetailButton title="Partizip II" path="partizip2-hinzufügen" />
         {/if}
       {:else if word.wordType === "ADJECTIVE"}
         {#if !grammar.adjectiveComparative}
@@ -73,7 +72,6 @@
             path="adjektiv-steigerung-hinzufügen"
           />
         {/if}
-        <!-- Todo -->
       {/if}
     </div>
   {/if}

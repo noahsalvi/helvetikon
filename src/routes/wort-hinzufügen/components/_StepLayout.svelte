@@ -7,10 +7,7 @@
 </section>
 
 <style global>
-  .svelte-use-form-hint {
-    @apply text-red-500 mt-1;
-  }
-
+  /* TODO clean this up */
   .step-layout h1 {
     @apply text-3xl font-bold text-coal;
   }
