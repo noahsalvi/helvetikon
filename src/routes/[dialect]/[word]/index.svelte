@@ -27,16 +27,22 @@
     Interpretation,
     Meaning,
     User,
+    VerbConjucation,
     Word,
   } from "@prisma/client";
   import ActionButton from "./components/_ActionButton.svelte";
+  import Conjugations from "./components/_Conjugations/Conjugations.svelte";
   import Interpretations from "./components/_Interpretations.svelte";
   import WordDetails from "./components/_WordDetails/WordDetails.svelte";
 
   export let word: Word & {
     createdBy: User;
     audioSamples: AudioSample[];
-    grammar: Grammar;
+    grammar: Grammar & {
+      verbPresent: VerbConjucation;
+      verbConditionalI: VerbConjucation;
+      verbConditionalII: VerbConjucation;
+    };
     interpretations: (Interpretation & {
       createdBy: User;
       upvotes: User[];
@@ -86,7 +92,6 @@
 <!-- <SwissCross /> -->
 
 <main class="container min-h-screen flex flex-col">
-  {word.grammar.nounGender}
   <Nav />
   <div class="flex-grow">
     <div class="px-3">
@@ -103,7 +108,7 @@
 
       <div class="text-2xl font-semibold italic">
         {#each word.spellings as spelling, index}
-          <span>{spelling}{index < word.spellings.length - 1 ? "," : ""} </span>
+          <span>{spelling}{index < word.spellings.length - 1 ? "," : ""}</span>
         {/each}
       </div>
 
@@ -124,7 +129,7 @@
               : $page.path}
             on:click={addAudioSampleHandler}
             class="h-12 p-3.5 flex justify-between items-center space-x-2
-      bg-primary bg-opacity-5 rounded-lg"
+            bg-primary bg-opacity-5 rounded-lg"
           >
             <Icon
               data={faMicrophone}
@@ -139,7 +144,13 @@
       <hr class="bg-primary h-1 rounded mb-3" />
     </div>
 
+    <div class="h-5" />
+
     <Interpretations interpretations={word.interpretations} />
+    <div class="h-3" />
+    {#if word.wordType === "VERB"}
+      <Conjugations grammar={word.grammar} />
+    {/if}
   </div>
 </main>
 <Footer />

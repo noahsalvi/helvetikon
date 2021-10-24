@@ -39,6 +39,22 @@ CREATE TABLE "VerbConjucation" (
     CONSTRAINT "VerbConjucation_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "VerbConjugationHistory" (
+    "id" SERIAL NOT NULL,
+    "sourceId" INTEGER NOT NULL,
+    "firstPerson" TEXT,
+    "secondPerson" TEXT,
+    "thirdPerson" TEXT,
+    "firstPersonPlural" TEXT,
+    "secondPersonPlural" TEXT,
+    "thirdPersonPlural" TEXT,
+    "userId" INTEGER,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "VerbConjugationHistory_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Grammar_wordId_key" ON "Grammar"("wordId");
 
@@ -62,6 +78,13 @@ ALTER TABLE "Grammar" ADD CONSTRAINT "Grammar_verbConditionalIId_fkey" FOREIGN K
 
 -- AddForeignKey
 ALTER TABLE "Grammar" ADD CONSTRAINT "Grammar_verbConditionalIIId_fkey" FOREIGN KEY ("verbConditionalIIId") REFERENCES "VerbConjucation"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "VerbConjugationHistory" ADD CONSTRAINT "VerbConjugationHistory_sourceId_fkey" FOREIGN KEY ("sourceId") REFERENCES "VerbConjucation"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "VerbConjugationHistory" ADD CONSTRAINT "VerbConjugationHistory_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
 
 -- CUSTOM Create Grammar Entity for each word
 insert into "Grammar" ("wordId") select id from "Word";

@@ -10,6 +10,7 @@
   import { warn } from "$lib/components/Toaster/toast";
   import "swiper/css";
   import { r } from "$lib/utils/meta-content";
+  import Subtitle from "$lib/components/Subtitle.svelte";
 
   export let interpretations: (Interpretation & {
     createdBy: User;
@@ -38,6 +39,7 @@
 </script>
 
 <section>
+  <div class="mx-3"><Subtitle>Interpretation</Subtitle></div>
   <Swiper on:slideChange={updateActiveIndex}>
     {#each interpretations as interpretation}
       <SwiperSlide>
@@ -52,10 +54,6 @@
               Bearbeiten
             </a>
           {/if}
-
-          <h1 class="font-bold text-lg">Interpretation</h1>
-
-          <div class="h-2" />
 
           <ol class={r("list-decimal", interpretation.meanings.length > 1)}>
             {#each interpretation.meanings as meaning}

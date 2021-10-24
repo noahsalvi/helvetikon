@@ -61,6 +61,8 @@ model User {
   lastForgotPasswordAt     DateTime?
   lastPasswordResetAt      DateTime?
   createdAt                DateTime         @default(now())
+
+  VerbConjugationHistory VerbConjugationHistory[]
 }
 
 model Session {
@@ -119,17 +121,33 @@ model Grammar {
 }
 
 model VerbConjucation {
-  id                 Int     @id @default(autoincrement())
+  id                 Int                      @id @default(autoincrement())
   firstPerson        String?
   secondPerson       String?
   thirdPerson        String?
   firstPersonPlural  String?
   secondPersonPlural String?
   thirdPersonPlural  String?
+  history            VerbConjugationHistory[]
 
   grammar_verbPresent       Grammar? @relation("present")
   grammar_verbConditionalI  Grammar? @relation("conditional1")
   grammar_verbConditionalII Grammar? @relation("conditional2")
+}
+
+model VerbConjugationHistory {
+  id                 Int              @id @default(autoincrement())
+  source             VerbConjucation? @relation(fields: [sourceId], references: [id])
+  sourceId           Int
+  firstPerson        String?
+  secondPerson       String?
+  thirdPerson        String?
+  firstPersonPlural  String?
+  secondPersonPlural String?
+  thirdPersonPlural  String?
+  createdBy          User?            @relation(fields: [userId], references: [id])
+  userId             Int?
+  createdAt          DateTime         @default(now())
 }
 
 enum WordType {
