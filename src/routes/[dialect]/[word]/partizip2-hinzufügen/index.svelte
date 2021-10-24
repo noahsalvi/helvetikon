@@ -61,7 +61,7 @@
         name="participlePast"
         use:validators={[required, minLength(word.swissGerman.length)]}
       />
-      <Hint for="participle-past" on="minLength">Zu kurz</Hint>
+      <Hint for="participlePast" on="minLength">Zu kurz</Hint>
       <ButtonBar valid={$form.valid}>Hinzufügen</ButtonBar>
     </form>
   </TitleDescriptionLayout>
