@@ -49,7 +49,7 @@ CREATE TABLE "VerbConjugationHistory" (
     "firstPersonPlural" TEXT,
     "secondPersonPlural" TEXT,
     "thirdPersonPlural" TEXT,
-    "userId" INTEGER,
+    "createdById" INTEGER,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "VerbConjugationHistory_pkey" PRIMARY KEY ("id")
@@ -83,8 +83,7 @@ ALTER TABLE "Grammar" ADD CONSTRAINT "Grammar_verbConditionalIIId_fkey" FOREIGN 
 ALTER TABLE "VerbConjugationHistory" ADD CONSTRAINT "VerbConjugationHistory_sourceId_fkey" FOREIGN KEY ("sourceId") REFERENCES "VerbConjucation"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "VerbConjugationHistory" ADD CONSTRAINT "VerbConjugationHistory_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
+ALTER TABLE "VerbConjugationHistory" ADD CONSTRAINT "VerbConjugationHistory_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- CUSTOM Create Grammar Entity for each word
 insert into "Grammar" ("wordId") select id from "Word";
