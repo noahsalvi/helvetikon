@@ -54,18 +54,19 @@ export async function post({ params, body, locals }) {
         },
       })
     );
+
   prisma.grammar
     .update({
       where: { wordId },
       data: {
         verbConditionalI: {
           update: {
-            firstPerson: present.firstPerson,
-            secondPerson: present.secondPerson,
-            thirdPerson: present.thirdPerson,
-            firstPersonPlural: present.firstPersonPlural,
-            secondPersonPlural: present.secondPersonPlural,
-            thirdPersonPlural: present.thirdPersonPlural,
+            firstPerson: conditionalI.firstPerson,
+            secondPerson: conditionalI.secondPerson,
+            thirdPerson: conditionalI.thirdPerson,
+            firstPersonPlural: conditionalI.firstPersonPlural,
+            secondPersonPlural: conditionalI.secondPersonPlural,
+            thirdPersonPlural: conditionalI.thirdPersonPlural,
           },
         },
       },
@@ -77,12 +78,45 @@ export async function post({ params, body, locals }) {
           sourceId: grammar.verbConditionalIId,
           createdById: user.id,
 
-          firstPerson: present.firstPerson,
-          secondPerson: present.secondPerson,
-          thirdPerson: present.thirdPerson,
-          firstPersonPlural: present.firstPersonPlural,
-          secondPersonPlural: present.secondPersonPlural,
-          thirdPersonPlural: present.thirdPersonPlural,
+          firstPerson: conditionalI.firstPerson,
+          secondPerson: conditionalI.secondPerson,
+          thirdPerson: conditionalI.thirdPerson,
+          firstPersonPlural: conditionalI.firstPersonPlural,
+          secondPersonPlural: conditionalI.secondPersonPlural,
+          thirdPersonPlural: conditionalI.thirdPersonPlural,
+        },
+      })
+    );
+  //TODO FINISH THIS
+  prisma.grammar
+    .update({
+      where: { wordId },
+      data: {
+        verbCoditionalII: {
+          update: {
+            firstPerson: conditionalI.firstPerson,
+            secondPerson: conditionalI.secondPerson,
+            thirdPerson: conditionalI.thirdPerson,
+            firstPersonPlural: conditionalI.firstPersonPlural,
+            secondPersonPlural: conditionalI.secondPersonPlural,
+            thirdPersonPlural: conditionalI.thirdPersonPlural,
+          },
+        },
+      },
+    })
+    .then((grammar) =>
+      prisma.verbConjugationHistory.create({
+        include: { source: true },
+        data: {
+          sourceId: grammar.verbConditionalIId,
+          createdById: user.id,
+
+          firstPerson: conditionalI.firstPerson,
+          secondPerson: conditionalI.secondPerson,
+          thirdPerson: conditionalI.thirdPerson,
+          firstPersonPlural: conditionalI.firstPersonPlural,
+          secondPersonPlural: conditionalI.secondPersonPlural,
+          thirdPersonPlural: conditionalI.thirdPersonPlural,
         },
       })
     );

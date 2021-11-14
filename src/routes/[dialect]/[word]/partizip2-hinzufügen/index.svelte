@@ -27,7 +27,6 @@
 
   function submit() {
     const body = $form.values;
-    console.log(body);
 
     api
       .put(`/api/words/${word.id}/participle-past`, body)
