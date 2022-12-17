@@ -84,6 +84,3 @@ ALTER TABLE "VerbConjugationHistory" ADD CONSTRAINT "VerbConjugationHistory_sour
 
 -- AddForeignKey
 ALTER TABLE "VerbConjugationHistory" ADD CONSTRAINT "VerbConjugationHistory_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- CUSTOM Create Grammar Entity for each word
-insert into "Grammar" ("wordId") select id from "Word";

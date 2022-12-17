@@ -6,13 +6,13 @@
   import AddDetailButton from "./AddDetailButton.svelte";
   import WordDetail from "./WordDetail.svelte";
 
-  export let word: Word & { grammar: Grammar };
+  export let word: Word & { grammar?: Grammar };
   const grammar = word.grammar;
 
   const wordTypeValue =
     wordTypes[word.wordType]?.name +
     r(
-      `, ${wordGenders[word.grammar.nounGender]?.name}`,
+      `, ${wordGenders[word.grammar?.nounGender]?.name}`,
       word.wordType === "NOUN"
     );
 </script>

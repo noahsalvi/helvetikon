@@ -113,7 +113,7 @@ model Grammar {
   verbConditionalIId  Int?             @unique
   verbConditionalI    VerbConjucation? @relation("conditional1", fields: [verbConditionalIId], references: [id])
   verbConditionalIIId Int?             @unique
-  verbCoditionalII    VerbConjucation? @relation("conditional2", fields: [verbConditionalIIId], references: [id])
+  verbConditionalII   VerbConjucation? @relation("conditional2", fields: [verbConditionalIIId], references: [id])
   verbParticiplePast  String?
 
   adjectiveComparative String?

@@ -65,6 +65,11 @@ And to run the nodejs app
 node build/
 ```
 
+## Restore from backup
+- `pg_restore -d DB_NAME < dump.sql`
+- `npx prisma db push`
+
+
 ## Resources
 
 - [JWT Authentication](https://stackoverflow.com/a/41250085/13475809)
