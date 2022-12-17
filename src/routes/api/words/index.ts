@@ -16,7 +16,6 @@ type WordDraft = {
   dialect: Dialect;
 };
 
-// TODO create grammar instantly
 export async function post({ body, locals }) {
   const user = authorize(locals);
   const wordDraft: WordDraft = body;

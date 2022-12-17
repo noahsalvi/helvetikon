@@ -49,7 +49,7 @@ export async function handle({
 
           const response = await resolveEnhanced(resolve, request);
 
-          const cookies: string[] = response.headers["set-cookie"] || [];
+          const cookies: string[] = response.headers?.["set-cookie"] ?? [];
           cookies.push(accessTokenCookie);
 
           return {
