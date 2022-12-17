@@ -11,7 +11,13 @@ export async function get({ params }) {
     include: {
       createdBy: { select: { username: true } },
       audioSamples: { orderBy: { createdAt: "desc" } },
-      grammar: true,
+      grammar: {
+        include: {
+          verbPresent: true,
+          verbConditionalI: true,
+          verbConditionalII: true,
+        },
+      },
       interpretations: {
         orderBy: { updatedAt: "desc" },
         include: {

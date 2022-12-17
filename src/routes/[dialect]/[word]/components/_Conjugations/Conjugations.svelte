@@ -5,10 +5,13 @@
   import ConjugationTable from "./ConjugationTable.svelte";
 
   export let grammar: Grammar & {
-    verbPresent: VerbConjucation;
-    verbConditionalI: VerbConjucation;
-    verbConditionalII: VerbConjucation;
+    verbPresent?: VerbConjucation;
+    verbConditionalI?: VerbConjucation;
+    verbConditionalII?: VerbConjucation;
   };
+  grammar.verbPresent = grammar.verbPresent ?? ({} as any);
+  grammar.verbConditionalI = grammar.verbConditionalI ?? ({} as any);
+  grammar.verbConditionalII = grammar.verbConditionalII ?? ({} as any);
 </script>
 
 <section class="mx-3">
