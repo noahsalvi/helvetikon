@@ -37,5 +37,5 @@ jobs:
           password: ${{ secrets.DEPLOY_PASSWORD }}
           script: |
             cd helvetikon
-            git pull
+            git pull --ff-only
             docker compose up --build -d
