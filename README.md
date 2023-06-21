@@ -1,5 +1,5 @@
 <h1 align="center"><a href="https://helvetikon.org">Helvetikon [In Development]</a></h1> 
-<p align="center">A community maintained dictionary for the swiss german language</p>
+<p align="center">A crowdsourced dictionary for the swiss german language</p>
 <h4 align="center"><a href="https://noahsalvi.notion.site/8cfe2577e735497da32e5108c95717f8?v=060ee05f640d4cb4aa589d4ef8f200f3"> Roadmap (Notion) </a></h4>
 
 
