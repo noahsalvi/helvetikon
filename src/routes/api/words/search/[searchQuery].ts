@@ -12,7 +12,7 @@ export async function get({ params }) {
 
   const searchQuerySpellings = `.*${searchQuery}.*`;
   const wordsSpellingMatch: Word[] =
-    await prisma.$queryRaw`select * from "Word" where array_to_string(spellings, ',') ~* ${searchQuerySpellings} "de_CH"`;
+    await prisma.$queryRaw`select * from "Word" where array_to_string(spellings, ',') ~* ${searchQuerySpellings}`;
 
   const words = removeDuplicates([
     ...wordsSwissGermanMatch,
