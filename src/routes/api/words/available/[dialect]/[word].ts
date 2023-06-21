@@ -5,7 +5,7 @@ export async function get({ params }) {
   const { word, dialect }: { word: string; dialect: Dialect } = params;
 
   const wordsSwissGermanMatch: Word[] =
-    await prisma.$queryRaw`select * from "Word" where "dialect" = ${dialect} AND "swissGerman" = ${word} collate "de_CH"`;
+    await prisma.$queryRaw`select * from "Word" where "dialect" = ${dialect} AND "swissGerman" = ${word}`;
 
   const wordsSpellingMatch: Word[] =
     await prisma.$queryRaw`select * from "Word" where "dialect" = ${dialect} AND ${word} = any(spellings)`;

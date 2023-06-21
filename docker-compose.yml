@@ -30,11 +30,13 @@ services:
 
   db:
     container_name: helvetikon-db
-    image: postgres:14
+    image: postgres:15
     volumes:
       - db:/var/lib/postgresql/data
     restart: always
     env_file: .env
+    environment:
+      POSTGRES_INITDB_ARGS: "--locale-provider=icu --icu-locale=de-CH-x-icu"
 
 volumes:
   app:
