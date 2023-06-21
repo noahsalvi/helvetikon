@@ -1,5 +1,5 @@
 services:
-  helvetikon:
+  app:
     container_name: helvetikon-app
     depends_on:
       - db
@@ -17,7 +17,7 @@ services:
     container_name: helvetikon-studio
     image: node:18
     depends_on:
-      - helvetikon
+      - app
       - db
     volumes:
       - app:/app
