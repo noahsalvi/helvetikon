@@ -2,7 +2,7 @@ name: Deploy to Remote Server
 
 on:
   push:
-    branches: [master]
+    branches: [master, dockerization]
 
 jobs:
   deploy:
@@ -28,19 +28,14 @@ jobs:
           VITE_EMAIL_ICLOUD_USER: ${{ secrets.EMAIL_ICLOUD_USER }}
           VITE_EMAIL_ICLOUD_PASSWORD: ${{ secrets.EMAIL_ICLOUD_PASSWORD }}
         run: yarn build
-
-      - name: Save SSH Key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
-          chmod 700 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.DEPLOY_HOST}} >> ~/.ssh/known_hosts
-
-      - name: Copy Build to Remote Server
-        run: rsync -a --delete build prisma package.json yarn.lock ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:helvetikon
-
-      - name: Install Production Dependencies | Remote
-        run: ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "cd helvetikon && yarn install --prod"
-
-      - name: Migrate Database & Restart Server | Remote
-        run: ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "cd helvetikon && npx prisma migrate deploy && pm2 reload helvetikon && pm2 reload helvetikon-prisma"
+      
+      - name: Pull Repository and Rebuild Containers
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          password: ${{ secrets.DEPLOY_PASSWORD }}
+          script: |
+            cd helvetikon
+            git pull
+            docker compose up --build -d
