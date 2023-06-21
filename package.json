@@ -5,6 +5,8 @@
     "dev": "svelte-kit dev --host",
     "build": "svelte-kit build",
     "preview": "svelte-kit preview",
+    "start:prod": "node build",
+    "start:migrate:prod": "prisma migrate deploy && yarn start:prod",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
     "generate": "prisma generate && node prisma/fix-prisma-module-specifier.js",
@@ -29,7 +31,7 @@
     "jwt-decode": "^3.1.2",
     "md5": "^2.3.0",
     "nodemailer": "^6.6.5",
-    "prisma": "^3.2.1",
+    "prisma": "^3.15.2",
     "svelte": "^3.42.5",
     "svelte-awesome": "^2.3.2",
     "svelte-check": "^2.0.0",
@@ -44,7 +46,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@prisma/client": "^3.2.1",
+    "@prisma/client": "^3.15.2",
     "bcrypt": "^5.0.1",
     "ffmpeg": "^0.0.4",
     "swiper": "^7.0.1"

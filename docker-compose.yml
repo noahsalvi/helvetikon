@@ -1,0 +1,41 @@
+services:
+  helvetikon:
+    container_name: helvetikon-app
+    depends_on:
+      - db
+    build: .
+    volumes:
+      - app:/app
+    ports:
+      - 3000:3000
+    restart: always
+    env_file: .env
+    environment:
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?schema=public
+  
+  prisma-studio:
+    container_name: helvetikon-studio
+    image: node:18
+    depends_on:
+      - helvetikon
+      - db
+    volumes:
+      - app:/app
+    ports:
+      - 5555:5555
+    working_dir: /app
+    command: yarn prisma studio
+    environment:
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?schema=public
+
+  db:
+    container_name: helvetikon-db
+    image: postgres:14
+    volumes:
+      - db:/var/lib/postgresql/data
+    restart: always
+    env_file: .env
+
+volumes:
+  app:
+  db:
