@@ -3,7 +3,7 @@ services:
     container_name: helvetikon-app
     depends_on:
       - db
-    build: .
+    image: noahsalvi/helvetikon
     volumes:
       - app:/app
     ports:
