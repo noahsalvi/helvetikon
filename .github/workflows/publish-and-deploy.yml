@@ -43,4 +43,4 @@ jobs:
             docker compose down
             docker volume rm helvetikon_app
             docker compose up -d --remove-orphans
-            docker image prune
+            docker image prune -f

@@ -3,7 +3,7 @@ services:
     container_name: helvetikon-app
     depends_on:
       - db
-    image: noahsalvi/helvetikon
+    image: noahsalvi/helvetikon # Replace with "build: ." to use locally
     volumes:
       - app:/app
     ports:
