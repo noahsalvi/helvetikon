@@ -28,9 +28,10 @@ jobs:
 
   deploy:
     needs: publish_image
+    name: Deploy image
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy image
+      - name: SSH run deployment instructions
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.DEPLOY_HOST }}
