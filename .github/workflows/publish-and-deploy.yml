@@ -2,7 +2,7 @@ name: Publish Docker image and deploy to server
 
 on:
   push:
-    branches: [master, dockerization]
+    branches: [master]
 
 jobs:
   publish_image:
