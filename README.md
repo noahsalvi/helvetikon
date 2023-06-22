@@ -12,25 +12,22 @@
 
 ### .env
 
-Create a .env file in the project root with the following keys
-
-```
-DATABASE_URL="postgresql://user:password@localhost:5432/database-name?schema=public"
-VITE_PASSWORD_SECRET="SECRET"
-VITE_PASSWORD_RESET_SECRET="SECRET"
-VITE_EMAIL_VERIFICATION_SECRET="SECRET"
-```
+To set the required environment variables, duplicate `.env.example` and rename it to `.env`.
+Fill in the variables as instructed in the file.
 
 ### PostgreSQL
 
-Also a postgresql database needs to be created and connected via the DATABASE_URL secret.
+A Postgres version 15 instance is required containing the previously specified user and database.
+
+> To enable the database to correctly compare swiss german words, configure `de_CH` or `de-CH-x-icu` 
+> to be the database's locale or at least it's `LC_COLLATE` setting.
 
 ### FFMPEG
 
 FFMPEG needs to be installed on the server so that the audio samples endpoint can convert audio blobs to mp3.
 If you don't want to do that, just don't use the the "add audio sample" feature in DEV :)
 
-## Developing
+## Development
 
 This project uses [yarn](https://classic.yarnpkg.com/en/docs/install) instead of npm as the package manager.
 
