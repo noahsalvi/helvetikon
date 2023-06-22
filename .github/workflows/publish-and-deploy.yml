@@ -6,7 +6,7 @@ on:
 
 jobs:
   publish_image:
-    name: Push Docker image to Docker Hub
+    name: Publish image
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -30,7 +30,7 @@ jobs:
     needs: publish_image
     runs-on: ubuntu-latest
     steps:
-      - name: Pull Repository and Rebuild Containers
+      - name: Deploy image
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.DEPLOY_HOST }}
