@@ -1,0 +1,43 @@
+services:
+  app:
+    container_name: helvetikon-app
+    depends_on:
+      - db
+    image: noahsalvi/helvetikon # Replace with "build: ." to use locally
+    volumes:
+      - app:/app
+    ports:
+      - 3000:3000
+    restart: always
+    env_file: .env
+    environment:
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?schema=public
+  
+  prisma-studio:
+    container_name: helvetikon-studio
+    image: node:18
+    depends_on:
+      - app
+      - db
+    volumes:
+      - app:/app
+    ports:
+      - 5555:5555
+    working_dir: /app
+    command: yarn prisma studio
+    environment:
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?schema=public
+
+  db:
+    container_name: helvetikon-db
+    image: postgres:15
+    volumes:
+      - db:/var/lib/postgresql/data
+    restart: always
+    env_file: .env
+    environment:
+      POSTGRES_INITDB_ARGS: "--locale-provider=icu --icu-locale=de-CH-x-icu"
+
+volumes:
+  app:
+  db:

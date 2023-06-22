@@ -1,0 +1,46 @@
+name: Publish Docker image and deploy to server
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  publish_image:
+    name: Publish image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+      
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Build and push Docker image
+        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: noahsalvi/helvetikon
+
+  deploy:
+    needs: publish_image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy image
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          password: ${{ secrets.DEPLOY_PASSWORD }}
+          script: |
+            cd helvetikon
+            git pull --ff-only
+            docker compose pull
+            docker compose down
+            docker volume rm helvetikon_app
+            docker compose up -d --remove-orphans
+            docker image prune -f
