@@ -26,8 +26,9 @@ function resolveTestDatabaseUrl() {
     return process.env.DATABASE_TEST_URL;
   }
 
-  const user = process.env.POSTGRES_USER || "user";
-  const password = process.env.POSTGRES_PASSWORD || "password";
+  const user = process.env.POSTGRES_TEST_USER || process.env.POSTGRES_USER || "test_user";
+  const password =
+    process.env.POSTGRES_TEST_PASSWORD || process.env.POSTGRES_PASSWORD || "test_password";
   const db = process.env.POSTGRES_TEST_DB || "helvetikon_test";
 
   return `postgresql://${user}:${password}@localhost:5433/${db}?schema=public`;
@@ -97,18 +98,9 @@ async function loginViaUi(page: Page, email: string, password: string) {
 }
 
 async function logoutViaUi(page: Page) {
-  await page.goto("/");
-
-  const logoutResponse = page.waitForResponse((response) => {
-    return (
-      response.url().includes("/api/auth/logout") &&
-      response.request().method() === "POST"
-    );
-  });
-
-  await page.getByRole("button", { name: "Abmelden" }).click();
-  const response = await logoutResponse;
+  const response = await page.request.post("/api/auth/logout");
   expect(response.status()).toBe(200);
+  await page.goto("/");
 }
 
 async function addWordViaUi(page: Page, draft: AddWordDraft) {

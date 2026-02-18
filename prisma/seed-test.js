@@ -1,5 +1,4 @@
 import bcrypt from "bcrypt";
-import { execFileSync } from "child_process";
 import { promises as fs } from "fs";
 import { PrismaClient } from "@prisma/client";
 import path from "path";
@@ -118,22 +117,8 @@ async function seed() {
     audioPath
   );
   await fs.mkdir(path.dirname(absoluteAudioPath), { recursive: true });
-  execFileSync(
-    "ffmpeg",
-    [
-      "-f",
-      "lavfi",
-      "-i",
-      "sine=frequency=880:duration=0.25",
-      "-q:a",
-      "6",
-      "-acodec",
-      "libmp3lame",
-      "-y",
-      absoluteAudioPath,
-    ],
-    { stdio: "ignore" }
-  );
+  // CI fixture: keep deterministic audio-sample path without requiring FFmpeg.
+  await fs.writeFile(absoluteAudioPath, Buffer.alloc(0));
 
   await prisma.audioSample.upsert({
     where: { id: "seed-audio-gruezi" },
