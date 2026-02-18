@@ -26,8 +26,9 @@ function resolveTestDatabaseUrl() {
     return process.env.DATABASE_TEST_URL;
   }
 
-  const user = process.env.POSTGRES_USER || "user";
-  const password = process.env.POSTGRES_PASSWORD || "password";
+  const user = process.env.POSTGRES_TEST_USER || process.env.POSTGRES_USER || "test_user";
+  const password =
+    process.env.POSTGRES_TEST_PASSWORD || process.env.POSTGRES_PASSWORD || "test_password";
   const db = process.env.POSTGRES_TEST_DB || "helvetikon_test";
 
   return `postgresql://${user}:${password}@localhost:5433/${db}?schema=public`;
