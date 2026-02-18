@@ -76,9 +76,14 @@
     if (playingAudio) return;
     const path = word.audioSamples[0]?.path;
     if (!path) return error("Konnte Audio nicht abspielen 😲");
-    const rootPath = dev
+    const configuredRoot = (import.meta as any).env
+      ?.VITE_AUDIO_SAMPLES_PUBLIC_ROOT;
+    const defaultRoot = dev
       ? "/audio-samples/"
       : "https://static.helvetikon.org/audio-samples/";
+    const rootPath = (configuredRoot || defaultRoot).endsWith("/")
+      ? configuredRoot || defaultRoot
+      : `${configuredRoot || defaultRoot}/`;
     const audio = new Audio(rootPath + path);
     playingAudio = true;
     await audio.play();

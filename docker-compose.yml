@@ -31,13 +31,29 @@ services:
   db:
     container_name: helvetikon-db
     image: postgres:15
+    ports:
+      - 5432:5432
     volumes:
       - db:/var/lib/postgresql/data
     restart: always
     env_file: .env
     environment:
       POSTGRES_INITDB_ARGS: "--locale-provider=icu --icu-locale=de-CH-x-icu"
+  
+  db-test:
+    container_name: helvetikon-db-test
+    image: postgres:15
+    ports:
+      - 5433:5432
+    volumes:
+      - db-test:/var/lib/postgresql/data
+    restart: always
+    env_file: .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_TEST_DB:-helvetikon_test}
+      POSTGRES_INITDB_ARGS: "--locale-provider=icu --icu-locale=de-CH-x-icu"
 
 volumes:
   app:
   db:
+  db-test:

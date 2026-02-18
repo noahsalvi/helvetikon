@@ -7,6 +7,7 @@ import path from "path";
 
 const __dirname = path.resolve();
 const production = process.env.NODE_ENV === "production";
+const configuredAudioSamplesRoot = process.env.AUDIO_SAMPLES_FS_ROOT;
 
 export async function post({ body, params, locals }) {
   const user = authorize(locals);
@@ -25,22 +26,23 @@ export async function post({ body, params, locals }) {
   const uuid: string = v4();
   const buffer = Buffer.from(blob);
 
-  const rootPath =
-    __dirname +
-    (production
-      ? "/static-helvetikon/audio-samples/"
-      : "/static/audio-samples/");
+  const rootPath = configuredAudioSamplesRoot
+    ? path.resolve(configuredAudioSamplesRoot)
+    : path.join(
+        __dirname,
+        production ? "static-helvetikon/audio-samples" : "static/audio-samples"
+      );
 
   const folderPath = `${word.dialect}/${word.swissGerman}/${user.username}/`;
   // Create folder if missing
-  await fs.mkdir(rootPath + folderPath, { recursive: true });
+  await fs.mkdir(path.join(rootPath, folderPath), { recursive: true });
   // Temporary Blob file
   const blobPath = folderPath + uuid + ".blob";
-  await fs.writeFile(rootPath + blobPath, buffer);
-  const video = await new ffmpeg(rootPath + blobPath);
+  await fs.writeFile(path.join(rootPath, blobPath), buffer);
+  const video = await new ffmpeg(path.join(rootPath, blobPath));
   const filePath = folderPath + uuid + ".mp3";
-  await video.fnExtractSoundToMP3(rootPath + filePath);
-  await fs.unlink(rootPath + blobPath);
+  await video.fnExtractSoundToMP3(path.join(rootPath, filePath));
+  await fs.unlink(path.join(rootPath, blobPath));
 
   await prisma.audioSample.create({
     data: { id: uuid, userId: user.id, wordId: wordId, path: filePath },

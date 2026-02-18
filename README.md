@@ -46,6 +46,15 @@ npm run dev
 npm run dev -- --open
 ```
 
+## Testing
+
+Use a dedicated test database (Docker service `db-test`, port `5433`) so tests never touch your dev data.
+
+```bash
+yarn test:db:setup
+yarn test
+```
+
 ## Building
 
 To build and run the production version of the app.
