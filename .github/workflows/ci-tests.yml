@@ -21,6 +21,9 @@ jobs:
           node-version: 22
           cache: yarn
 
+      - name: Prepare env
+        run: cp .env.example .env
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
