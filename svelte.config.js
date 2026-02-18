@@ -12,7 +12,7 @@ const config = {
     adapter: adapter({}),
     target: "#svelte",
     vite: {
-      plugins: [WindiCSS.default()],
+      plugins: [WindiCSS()],
     },
   },
 };
