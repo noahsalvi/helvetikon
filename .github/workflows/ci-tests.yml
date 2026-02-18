@@ -50,6 +50,9 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Set up test database
+        run: yarn test:db:setup
+
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
 
