@@ -1,5 +1,5 @@
 # Builder Stage
-FROM node:18 AS builder
+FROM node:20 AS builder
 
 WORKDIR /app
 
@@ -19,7 +19,7 @@ RUN yarn install --prod --ignore-scripts --frozen-lockfile
 
 # Runner Stage
 # TODO Replace with slim build after updating prisma to ^4.10.0
-FROM node:18 AS runner
+FROM node:20 AS runner
 
 WORKDIR /app
 

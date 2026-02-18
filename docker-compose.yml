@@ -15,7 +15,7 @@ services:
   
   prisma-studio:
     container_name: helvetikon-studio
-    image: node:18
+    image: node:20
     depends_on:
       - app
       - db

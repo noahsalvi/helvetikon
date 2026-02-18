@@ -1,7 +1,7 @@
 # Runbook
 
 ## Prerequisites
-- Node.js 18+
+- Node.js 20+
 - Yarn classic (`yarn`)
 - PostgreSQL 15
 - FFMPEG (required for audio upload/conversion paths)
