@@ -90,6 +90,7 @@
 - E2E smoke tests:
   - `tests/e2e/auth-redirect.spec.ts`
   - `tests/e2e/search-empty-state.spec.ts` (API-level unauthenticated create-word check)
+  - `tests/e2e/seeded-word.spec.ts` (seeded word detail + availability conflict)
 
 ## Run Commands
 - `yarn test:unit`
@@ -101,8 +102,11 @@
 - Reset only test DB: `yarn test:db:reset`
 - Seed test DB fixtures: `yarn test:db:seed`
 - Full reset + seed: `yarn test:db:setup`
+- Playwright E2E now performs automatic reset + seed from `DATABASE_TEST_URL` via `tests/e2e/global-setup.ts`.
 
 ## Seed Fixtures
 - Verified user: `owner.test@helvetikon.local` (password: `TestPass123!`)
 - Unverified user: `unverified.test@helvetikon.local` (password: `TestPass123!`)
 - Seed word: `Gruezi` in `BERN` dialect with one interpretation
+- Additional seed word: `Schoggi` in `ZUERICH` dialect
+- Seeded audio sample file path: `static/audio-samples/BERN/Gruezi/owner_test/seed-gruezi.mp3`

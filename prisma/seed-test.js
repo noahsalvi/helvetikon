@@ -1,7 +1,11 @@
 import bcrypt from "bcrypt";
+import { promises as fs } from "fs";
 import { PrismaClient } from "@prisma/client";
+import path from "path";
 
 const prisma = new PrismaClient();
+const testAudioFixtureBase64 =
+  "SUQzAwAAAAAAF1RTU0UAAAAPAAADTGF2ZjU2LjI0LjEwMQAAAAAAAAAAAAAA//uQxAADBzSxQAAAn8AAAACAAADSAAAAAEAAACgP/7kMQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
 async function seed() {
   const password = await bcrypt.hash("TestPass123!", 10);
@@ -61,6 +65,27 @@ async function seed() {
     },
   });
 
+  await prisma.word.upsert({
+    where: {
+      swissGerman_dialect: {
+        swissGerman: "Schoggi",
+        dialect: "ZUERICH",
+      },
+    },
+    update: {
+      german: "Schokolade",
+      spellings: ["Schoggi"],
+      createdByUserId: ownerUser.id,
+    },
+    create: {
+      swissGerman: "Schoggi",
+      german: "Schokolade",
+      spellings: ["Schoggi"],
+      dialect: "ZUERICH",
+      createdByUserId: ownerUser.id,
+    },
+  });
+
   const existingInterpretation = await prisma.interpretation.findFirst({
     where: {
       wordId: seedWord.id,
@@ -84,6 +109,34 @@ async function seed() {
       },
     });
   }
+
+  const audioPath = "BERN/Gruezi/owner_test/seed-gruezi.mp3";
+  const absoluteAudioPath = path.join(
+    process.cwd(),
+    "static",
+    "audio-samples",
+    audioPath
+  );
+  await fs.mkdir(path.dirname(absoluteAudioPath), { recursive: true });
+  await fs.writeFile(
+    absoluteAudioPath,
+    Buffer.from(testAudioFixtureBase64, "base64")
+  );
+
+  await prisma.audioSample.upsert({
+    where: { id: "seed-audio-gruezi" },
+    update: {
+      userId: ownerUser.id,
+      wordId: seedWord.id,
+      path: audioPath,
+    },
+    create: {
+      id: "seed-audio-gruezi",
+      userId: ownerUser.id,
+      wordId: seedWord.id,
+      path: audioPath,
+    },
+  });
 
   console.log("Test DB seeded with deterministic fixtures");
 }
