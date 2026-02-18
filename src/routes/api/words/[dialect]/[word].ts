@@ -4,7 +4,7 @@ export async function get({ params }) {
   const query = params.word;
   const dialect = params.dialect;
 
-  const word = await prisma.word.findFirst({
+  const word: any = await prisma.word.findFirst({
     where: {
       AND: { swissGerman: { equals: query }, dialect: { equals: dialect } },
     },

@@ -14,7 +14,7 @@ export async function post({ body, params, locals }) {
   const blob: Uint8Array = body;
 
   const wordId = parseInt(params.wordId);
-  const word = await prisma.word.findUnique({
+  const word: any = await prisma.word.findUnique({
     where: { id: wordId },
     include: { audioSamples: true },
   });

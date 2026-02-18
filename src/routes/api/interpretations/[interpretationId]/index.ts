@@ -15,7 +15,7 @@ export async function get({ params, locals }) {
   };
 }
 
-type MeaningDraft = { explanation: string; examples: string };
+type MeaningDraft = { explanation: string; examples: string[] };
 
 export async function put({ params, locals, body }) {
   const user = authorize(locals);
