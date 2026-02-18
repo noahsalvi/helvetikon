@@ -62,3 +62,8 @@ Playwright is useful here for UI walkthroughs and regression checks of flows.
 - Use Conventional Commits for all commit messages.
 - Format: `<type>(optional-scope): <summary>`.
 - Common types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`.
+
+## 10. Branching and PR target
+- Default integration branch is `develop`.
+- Open feature/fix PRs against `develop` (not `master`).
+- `master` is deployment-oriented; changes should only reach `master` through your release/deploy flow.
