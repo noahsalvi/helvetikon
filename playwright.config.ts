@@ -11,7 +11,7 @@ export default defineConfig({
   },
   webServer: {
     command:
-      "sh -lc 'set -a; . ./.env 2>/dev/null || true; set +a; DATABASE_URL=\"${DATABASE_TEST_URL:-postgresql://${POSTGRES_TEST_USER:-test_user}:${POSTGRES_TEST_PASSWORD:-test_password}@localhost:5433/${POSTGRES_TEST_DB:-helvetikon_test}?schema=public}\" AUDIO_SAMPLES_FS_ROOT=\"${AUDIO_SAMPLES_FS_ROOT:-./static/audio-samples-test}\" VITE_AUDIO_SAMPLES_PUBLIC_ROOT=\"${VITE_AUDIO_SAMPLES_PUBLIC_ROOT:-/audio-samples-test/}\" NODE_ENV=test npx -y node@18 ./node_modules/vite/bin/vite.js dev --host --port 4173'",
+      "sh -lc 'set -a; . ./.env 2>/dev/null || true; set +a; DATABASE_URL=\"postgresql://${POSTGRES_TEST_USER:-${POSTGRES_USER:-user}}:${POSTGRES_TEST_PASSWORD:-${POSTGRES_PASSWORD:-password}}@${POSTGRES_TEST_HOST:-localhost}:${POSTGRES_TEST_PORT:-5433}/${POSTGRES_TEST_DB:-helvetikon_test}?schema=public\" AUDIO_SAMPLES_FS_ROOT=\"${AUDIO_SAMPLES_FS_ROOT:-./static/audio-samples-test}\" VITE_AUDIO_SAMPLES_PUBLIC_ROOT=\"${VITE_AUDIO_SAMPLES_PUBLIC_ROOT:-/audio-samples-test/}\" NODE_ENV=test node ./node_modules/vite/bin/vite.js dev --host --port 4173'",
     url: "http://127.0.0.1:4173",
     reuseExistingServer: true,
     timeout: 120000,

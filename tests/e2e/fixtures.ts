@@ -1,4 +1,6 @@
+import "dotenv/config";
 import { test as base, expect, type APIRequestContext, type Page } from "@playwright/test";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { Dialect, PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -22,25 +24,18 @@ type AddInterpretationDraft = {
 };
 
 function resolveTestDatabaseUrl() {
-  if (process.env.DATABASE_TEST_URL) {
-    return process.env.DATABASE_TEST_URL;
-  }
-
-  const user = process.env.POSTGRES_TEST_USER || process.env.POSTGRES_USER || "test_user";
+  const user = process.env.POSTGRES_TEST_USER || process.env.POSTGRES_USER || "user";
   const password =
-    process.env.POSTGRES_TEST_PASSWORD || process.env.POSTGRES_PASSWORD || "test_password";
+    process.env.POSTGRES_TEST_PASSWORD || process.env.POSTGRES_PASSWORD || "password";
+  const host = process.env.POSTGRES_TEST_HOST || "localhost";
+  const port = process.env.POSTGRES_TEST_PORT || "5433";
   const db = process.env.POSTGRES_TEST_DB || "helvetikon_test";
 
-  return `postgresql://${user}:${password}@localhost:5433/${db}?schema=public`;
+  return `postgresql://${user}:${password}@${host}:${port}/${db}?schema=public`;
 }
 
-const prisma = new PrismaClient({
-  datasources: {
-    db: {
-      url: resolveTestDatabaseUrl(),
-    },
-  },
-});
+const adapter = new PrismaPg({ connectionString: resolveTestDatabaseUrl() });
+const prisma = new PrismaClient({ adapter });
 
 const EMAIL_VERIFICATION_SECRET =
   process.env.EMAIL_VERIFICATION_SECRET || "email-verification-secret";
