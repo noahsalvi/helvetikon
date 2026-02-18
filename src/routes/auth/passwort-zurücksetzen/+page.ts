@@ -1,6 +1,6 @@
 import { redirect } from "@sveltejs/kit";
 import type { PageLoad } from "./$types";
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 export const load: PageLoad = ({ url }) => {
   const token = url.searchParams.get("token");
