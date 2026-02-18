@@ -20,17 +20,17 @@
   })[];
 
   let activeIndex = 0;
-  let Swiper = null;
-  let SwiperSlide = null;
+  let swiperReady = false;
 
-  onMount(async () => {
-    const swiper = await import("swiper/svelte");
-    Swiper = swiper.Swiper;
-    SwiperSlide = swiper.SwiperSlide;
+  onMount(() => {
+    void import("swiper/element/bundle").then(({ register }) => {
+      register();
+      swiperReady = true;
+    });
   });
 
   const updateActiveIndex = (e) => {
-    activeIndex = e.detail[0][0].activeIndex;
+    activeIndex = e.detail[0].activeIndex;
   };
 
   const addInterpretation = () => {
@@ -47,10 +47,10 @@
 </script>
 
 <section>
-  {#if Swiper && SwiperSlide}
-    <svelte:component this={Swiper} on:slideChange={updateActiveIndex}>
+  {#if swiperReady}
+    <swiper-container on:swiperslidechange={updateActiveIndex}>
       {#each interpretations as interpretation}
-        <svelte:component this={SwiperSlide}>
+        <swiper-slide>
           <div
             class="relative mx-3 mb-1 p-3 rounded-lg bg-white border-3 border-light-300 filter drop-shadow"
           >
@@ -99,9 +99,9 @@
               />
             </div>
           </div>
-        </svelte:component>
+        </swiper-slide>
       {/each}
-      <svelte:component this={SwiperSlide}>
+      <swiper-slide>
         <button
           type="button"
           on:click={addInterpretation}
@@ -112,8 +112,8 @@
           <Icon data={faPlus} class="text-coal !block w-8 h-8" />
           <div class="textxl text-coal">Interpretation hinzufügen</div>
         </button>
-      </svelte:component>
-    </svelte:component>
+      </swiper-slide>
+    </swiper-container>
   {:else}
     {#each interpretations as interpretation}
       <div
