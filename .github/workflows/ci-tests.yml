@@ -24,8 +24,8 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build validation
-        run: yarn build
+      - name: Typecheck
+        run: yarn run check
 
       - name: Unit and API tests
         run: yarn test:unit
