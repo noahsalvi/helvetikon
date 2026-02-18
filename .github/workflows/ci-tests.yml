@@ -25,7 +25,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Typecheck
-        run: yarn run check
+        run: npx -y node@18 ./node_modules/.bin/svelte-check --tsconfig ./tsconfig.json
 
       - name: Unit and API tests
         run: yarn test:unit
