@@ -11,8 +11,10 @@ source .env
 
 POSTGRES_USER="${POSTGRES_USER:-user}"
 POSTGRES_PASSWORD="${POSTGRES_PASSWORD:-password}"
+POSTGRES_TEST_USER="${POSTGRES_TEST_USER:-${POSTGRES_USER}}"
+POSTGRES_TEST_PASSWORD="${POSTGRES_TEST_PASSWORD:-${POSTGRES_PASSWORD}}"
 POSTGRES_TEST_DB="${POSTGRES_TEST_DB:-helvetikon_test}"
-DATABASE_TEST_URL="${DATABASE_TEST_URL:-postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:5433/${POSTGRES_TEST_DB}?schema=public}"
+DATABASE_TEST_URL="${DATABASE_TEST_URL:-postgresql://${POSTGRES_TEST_USER}:${POSTGRES_TEST_PASSWORD}@localhost:5433/${POSTGRES_TEST_DB}?schema=public}"
 AUDIO_SAMPLES_FS_ROOT="${AUDIO_SAMPLES_FS_ROOT:-./static/audio-samples-test}"
 VITE_AUDIO_SAMPLES_PUBLIC_ROOT="${VITE_AUDIO_SAMPLES_PUBLIC_ROOT:-/audio-samples-test/}"
 
@@ -24,7 +26,7 @@ case "$command" in
     ;;
   wait)
     echo "Waiting for db-test to accept connections..."
-    until docker compose exec -T db-test pg_isready -U "$POSTGRES_USER" -d "$POSTGRES_TEST_DB" >/dev/null 2>&1; do
+    until docker compose exec -T db-test pg_isready -U "$POSTGRES_TEST_USER" -d "$POSTGRES_TEST_DB" >/dev/null 2>&1; do
       sleep 1
     done
     echo "db-test is ready"

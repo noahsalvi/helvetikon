@@ -49,6 +49,7 @@ npm run dev -- --open
 ## Testing
 
 Use a dedicated test database (Docker service `db-test`, port `5433`) so tests never touch your dev data.
+Use separate credentials for test DB (`POSTGRES_TEST_USER` / `POSTGRES_TEST_PASSWORD`).
 
 ```bash
 yarn test:db:setup
