@@ -28,7 +28,7 @@
     <td style="height:100px" />
   </tr>
   <tr>
-    <td align="center">
+    <td style="text-align: center;">
       <a class="verify-button" {href}>E-Mail verifizieren</a>
     </td>
   </tr>
