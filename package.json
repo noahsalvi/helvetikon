@@ -28,7 +28,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@playwright/test": "^1.58.2",
-    "@sveltejs/adapter-node": "1.3.1",
+    "@sveltejs/adapter-node": "1.0.0-next.40",
     "@sveltejs/kit": "1.0.0-next.168",
     "@types/bcrypt": "^5.0.0",
     "@types/cookie": "^0.4.1",
