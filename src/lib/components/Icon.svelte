@@ -16,8 +16,11 @@
   aria-hidden="true"
   role="img"
   viewBox={`0 0 ${width} ${height}`}
+  width="1em"
+  height="1em"
   class={`fa-icon ${className} ${spin ? "fa-spin" : ""}`}
-  style={`transform: scale(${scale}); transform-origin: center;`}
+  style={`--icon-scale: ${scale};`}
+  fill="currentColor"
 >
   {#each paths as path}
     <path d={path}></path>
@@ -25,6 +28,10 @@
 </svg>
 
 <style>
+  .fa-icon {
+    scale: var(--icon-scale, 1);
+  }
+
   .fa-spin {
     animation: fa-spin 1s infinite linear;
   }
