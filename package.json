@@ -44,7 +44,7 @@
     "jwt-decode": "^3.1.2",
     "md5": "^2.3.0",
     "nodemailer": "6.10.1",
-    "prisma": "^3.15.2",
+    "prisma": "6.0.1",
     "svelte": "3.59.2",
     "svelte-awesome": "^2.3.2",
     "svelte-check": "2.10.3",
@@ -60,7 +60,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@prisma/client": "^3.15.2",
+    "@prisma/client": "6.0.1",
     "bcrypt": "5.1.1",
     "ffmpeg": "^0.0.4",
     "swiper": "^7.0.1"
