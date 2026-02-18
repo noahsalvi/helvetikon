@@ -24,8 +24,8 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Typecheck
-        run: npx -y node@18 ./node_modules/.bin/svelte-check --tsconfig ./tsconfig.json
+      - name: Build validation
+        run: yarn build
 
       - name: Unit and API tests
         run: yarn test:unit
