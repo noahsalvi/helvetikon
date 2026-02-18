@@ -114,4 +114,5 @@
 - Unverified user: `unverified.test@helvetikon.local` (password: `TestPass123!`)
 - Seed word: `Gruezi` in `BERN` dialect with one interpretation
 - Additional seed word: `Schoggi` in `ZUERICH` dialect
-- Seeded audio sample file path: `static/audio-samples/BERN/Gruezi/owner_test/seed-gruezi.mp3`
+- Seeded audio sample file path: `static/audio-samples-test/BERN/Gruezi/owner_test/seed-gruezi.mp3`
+- Seed audio fixture is generated as a real MP3 with `ffmpeg` during `test:db:seed`.

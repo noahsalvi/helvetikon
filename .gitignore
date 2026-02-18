@@ -12,5 +12,6 @@ node_modules
 .env
 # User generated files
 /static/audio-samples
+/static/audio-samples-test
 # Helper files
 /src/routes/email.ts

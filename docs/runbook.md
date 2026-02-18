@@ -39,11 +39,14 @@ yarn preview
 ## Test database (recommended with Docker)
 1. Keep your normal development DB in `DATABASE_URL`.
 2. Use a separate test DB in `DATABASE_TEST_URL` (defaults to port `5433`).
-3. Start and seed test DB:
+3. Keep test audio isolated with:
+- `AUDIO_SAMPLES_FS_ROOT=./static/audio-samples-test`
+- `VITE_AUDIO_SAMPLES_PUBLIC_ROOT=/audio-samples-test/`
+4. Start and seed test DB:
 ```bash
 yarn test:db:setup
 ```
-4. Run tests:
+5. Run tests:
 ```bash
 yarn test
 ```

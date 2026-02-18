@@ -1,11 +1,10 @@
 import bcrypt from "bcrypt";
+import { execFileSync } from "child_process";
 import { promises as fs } from "fs";
 import { PrismaClient } from "@prisma/client";
 import path from "path";
 
 const prisma = new PrismaClient();
-const testAudioFixtureBase64 =
-  "SUQzAwAAAAAAF1RTU0UAAAAPAAADTGF2ZjU2LjI0LjEwMQAAAAAAAAAAAAAA//uQxAADBzSxQAAAn8AAAACAAADSAAAAAEAAACgP/7kMQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
 async function seed() {
   const password = await bcrypt.hash("TestPass123!", 10);
@@ -111,16 +110,29 @@ async function seed() {
   }
 
   const audioPath = "BERN/Gruezi/owner_test/seed-gruezi.mp3";
+  const audioSamplesRoot =
+    process.env.AUDIO_SAMPLES_FS_ROOT ||
+    path.join(process.cwd(), "static", "audio-samples-test");
   const absoluteAudioPath = path.join(
-    process.cwd(),
-    "static",
-    "audio-samples",
+    audioSamplesRoot,
     audioPath
   );
   await fs.mkdir(path.dirname(absoluteAudioPath), { recursive: true });
-  await fs.writeFile(
-    absoluteAudioPath,
-    Buffer.from(testAudioFixtureBase64, "base64")
+  execFileSync(
+    "ffmpeg",
+    [
+      "-f",
+      "lavfi",
+      "-i",
+      "sine=frequency=880:duration=0.25",
+      "-q:a",
+      "6",
+      "-acodec",
+      "libmp3lame",
+      "-y",
+      absoluteAudioPath,
+    ],
+    { stdio: "ignore" }
   );
 
   await prisma.audioSample.upsert({
