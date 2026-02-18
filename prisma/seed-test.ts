@@ -1,9 +1,14 @@
 import bcrypt from "bcrypt";
 import { promises as fs } from "fs";
-import { PrismaClient } from "@prisma/client";
 import path from "path";
+import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+const databaseUrl =
+  process.env.DATABASE_URL ??
+  "postgresql://postgres:postgres@localhost:5432/postgres?schema=public";
+const adapter = new PrismaPg({ connectionString: databaseUrl });
+const prisma = new PrismaClient({ adapter });
 
 async function seed() {
   const password = await bcrypt.hash("TestPass123!", 10);
@@ -112,12 +117,9 @@ async function seed() {
   const audioSamplesRoot =
     process.env.AUDIO_SAMPLES_FS_ROOT ||
     path.join(process.cwd(), "static", "audio-samples-test");
-  const absoluteAudioPath = path.join(
-    audioSamplesRoot,
-    audioPath
-  );
+  const absoluteAudioPath = path.join(audioSamplesRoot, audioPath);
+
   await fs.mkdir(path.dirname(absoluteAudioPath), { recursive: true });
-  // CI fixture: keep deterministic audio-sample path without requiring FFmpeg.
   await fs.writeFile(absoluteAudioPath, Buffer.alloc(0));
 
   await prisma.audioSample.upsert({

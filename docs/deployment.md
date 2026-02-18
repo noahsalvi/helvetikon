@@ -10,9 +10,15 @@ Trigger:
 - Push to `master` branch.
 
 Steps:
-1. GitHub Actions builds Docker image from `Dockerfile`.
-2. Image is pushed to Docker Hub as `noahsalvi/helvetikon`.
-3. A second job SSHes to the server and runs:
+1. Validation jobs run before publish:
+   - `yarn install --frozen-lockfile`
+   - `yarn check`
+   - `yarn build`
+   - `yarn test:unit`
+   - `yarn test:e2e` (with Docker test DB setup/teardown)
+2. GitHub Actions builds Docker image from `Dockerfile`.
+3. Image is pushed to Docker Hub as `noahsalvi/helvetikon`.
+4. A second job SSHes to the server and runs:
    - `cd helvetikon`
    - `git pull --ff-only`
    - `docker compose pull`
@@ -33,7 +39,8 @@ Volumes:
 
 ## App container behavior
 - `CMD ["yarn", "start:migrate:prod"]`
-- `start:migrate:prod` runs Prisma migrations, then starts server.
+- `start:migrate:prod` runs `prisma migrate deploy`, then starts server (`yarn start:prod`).
+- Migration flow is explicit and tied to app startup; deploys do not rely on ad-hoc manual migrate commands.
 
 ## Required secrets/config
 From `.env` and workflow secrets:

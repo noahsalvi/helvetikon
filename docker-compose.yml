@@ -50,8 +50,8 @@ services:
     restart: always
     env_file: .env
     environment:
-      POSTGRES_USER: ${POSTGRES_TEST_USER:-test_user}
-      POSTGRES_PASSWORD: ${POSTGRES_TEST_PASSWORD:-test_password}
+      POSTGRES_USER: ${POSTGRES_TEST_USER:-user}
+      POSTGRES_PASSWORD: ${POSTGRES_TEST_PASSWORD:-password}
       POSTGRES_DB: ${POSTGRES_TEST_DB:-helvetikon_test}
       POSTGRES_INITDB_ARGS: "--locale-provider=icu --icu-locale=de-CH-x-icu"
 

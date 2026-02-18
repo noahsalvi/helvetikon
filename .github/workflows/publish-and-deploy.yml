@@ -5,7 +5,68 @@ on:
     branches: [master]
 
 jobs:
+  validate_fast:
+    name: Validate (install/check/build/unit)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+
+      - name: Prepare env
+        run: cp .env.example .env
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Typecheck
+        run: yarn run check
+
+      - name: Build validation
+        run: yarn build
+
+      - name: Unit and API tests
+        run: yarn test:unit
+
+  validate_e2e:
+    name: Validate (e2e)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+
+      - name: Prepare env
+        run: cp .env.example .env
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Set up test database
+        run: yarn test:db:setup
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Run E2E tests
+        run: yarn test:e2e
+
+      - name: Stop test database
+        if: always()
+        run: yarn test:db:down || true
+
   publish_image:
+    needs: [validate_fast, validate_e2e]
     name: Publish image
     runs-on: ubuntu-latest
     steps:
