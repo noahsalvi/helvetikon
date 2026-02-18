@@ -97,18 +97,9 @@ async function loginViaUi(page: Page, email: string, password: string) {
 }
 
 async function logoutViaUi(page: Page) {
-  await page.goto("/");
-
-  const logoutResponse = page.waitForResponse((response) => {
-    return (
-      response.url().includes("/api/auth/logout") &&
-      response.request().method() === "POST"
-    );
-  });
-
-  await page.getByRole("button", { name: "Abmelden" }).click();
-  const response = await logoutResponse;
+  const response = await page.request.post("/api/auth/logout");
   expect(response.status()).toBe(200);
+  await page.goto("/");
 }
 
 async function addWordViaUi(page: Page, draft: AddWordDraft) {
