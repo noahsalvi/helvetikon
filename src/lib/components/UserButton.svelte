@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { session } from "$app/stores";
+  import { page } from "$app/stores";
   import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-  import Icon from "svelte-awesome/components/Icon.svelte";
+  import Icon from "$lib/components/Icon";
   import Gravatar from "./Gravatar.svelte";
   import cookie from "cookie";
   import { onMount } from "svelte";
 
   let isNew: boolean;
 
-  $: authenticated = !!$session.user;
+  $: authenticated = !!$page.data.user;
   $: authPath = "/auth/" + (isNew ? "registrieren" : "anmelden");
 
   onMount(() => {

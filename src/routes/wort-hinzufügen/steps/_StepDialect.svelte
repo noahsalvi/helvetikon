@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { session } from "$app/stores";
+  import { page } from "$app/stores";
   import dialects from "$lib/dialects";
   import { getContext } from "svelte";
   import type { Writable } from "svelte/store";
@@ -8,7 +8,7 @@
   import StepLayout from "../components/_StepLayout.svelte";
 
   const data: Writable<any> = getContext("add-word-data");
-  const preferredDialect = $session.user.preferredDialect;
+  const preferredDialect = $page.data.user.preferredDialect;
   const sortedDialects = Object.assign({ [preferredDialect]: null }, dialects);
 
   const selectDialect = (key: string) => {
@@ -33,5 +33,5 @@
     {/each}
   </ul>
 
-  <div class="h-26" />
+  <div class="h-26"></div>
 </StepLayout>

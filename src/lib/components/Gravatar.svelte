@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { session } from "$app/stores";
+  import { page } from "$app/stores";
   import md5 from "md5";
 
-  const email = $session.user?.email || "";
+  const email = $page.data.user?.email || "";
   const gravatarHash: string = md5(email.trim().toLowerCase());
 </script>
 

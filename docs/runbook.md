@@ -65,3 +65,4 @@ yarn test
 - Missing/invalid secrets: auth and mail routes fail.
 - No FFMPEG: audio sample upload path fails.
 - DB collation: README recommends `de_CH`/`de-CH-x-icu` for swiss german sorting behavior.
+- Forms depend on `svelte-use-form@3.0.0-beta.0` for Svelte 5 compatibility; if form validation/hints break, verify this package version first.

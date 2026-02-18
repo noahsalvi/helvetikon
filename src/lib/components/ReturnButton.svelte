@@ -1,6 +1,6 @@
 <script>
   import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-  import Icon from "svelte-awesome/components/Icon.svelte";
+  import Icon from "$lib/components/Icon";
 
   export let href = "./";
 </script>

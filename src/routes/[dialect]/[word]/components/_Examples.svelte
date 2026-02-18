@@ -13,9 +13,10 @@
 </script>
 
 {#if examples.length}
-  <div
+  <button
+    type="button"
     on:click={toggle}
-    class="has-pointer-event bg-hint mt-3 py-2 px-4 rounded"
+    class="has-pointer-event bg-hint mt-3 py-2 px-4 rounded w-full text-left"
   >
     <div class="flex items-center">
       <Icon data={collapsed ? faPlus : faMinus} class="mr-2" />
@@ -28,5 +29,5 @@
         {/each}
       </div>
     {/if}
-  </div>
+  </button>
 {/if}

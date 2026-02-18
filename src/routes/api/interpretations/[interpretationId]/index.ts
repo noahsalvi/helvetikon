@@ -21,7 +21,7 @@ export async function put({ params, locals, body }) {
   const user = authorize(locals);
   const interpretationId = parseInt(params.interpretationId);
   const meanings: MeaningDraft[] = body;
-  // prisma can't create the meanings when these to fields are still on the object
+
   meanings.forEach((meaning: any) => {
     delete meaning.id;
     delete meaning.interpretationId;
@@ -47,7 +47,7 @@ export async function put({ params, locals, body }) {
     },
   });
 
-  const [_, newInterpretation] = await prisma.$transaction([
+  const [, newInterpretation] = await prisma.$transaction([
     deleteMeanings,
     createMeanings,
   ]);

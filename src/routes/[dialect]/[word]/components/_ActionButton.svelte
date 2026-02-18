@@ -13,5 +13,5 @@
   {r('bg-opacity-100 svg:text-white', active)}
   not-disabled:active:(bg-opacity-50)"
 >
-  <slot />
+  <slot></slot>
 </button>

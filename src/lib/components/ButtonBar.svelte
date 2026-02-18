@@ -13,7 +13,7 @@
 
     <div class="flex-grow">
       <Button on:click {loading} {valid} class="filter drop-shadow-lg"
-        ><slot /></Button
+        ><slot></slot></Button
       >
     </div>
   </div>

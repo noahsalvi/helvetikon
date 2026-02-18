@@ -7,9 +7,11 @@
   export let preferred = false;
 </script>
 
-<li on:click class="h-12">
+<li class="h-12">
   {#if description}
     <button
+      type="button"
+      on:click
       class="h-full w-full 
     flex flex-col justify-center items-start
     pl-3 rounded-lg
@@ -24,6 +26,8 @@
     </button>
   {:else}
     <button
+      type="button"
+      on:click
       class="h-full w-full 
       px-3 rounded-lg
       {preferred ? 'bg-light-700' : 'bg-light-400'}"

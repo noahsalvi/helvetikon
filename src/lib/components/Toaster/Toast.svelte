@@ -28,6 +28,11 @@
 
 <div
   on:click={destroy}
+  on:keydown={(event) => {
+    if (event.key === "Enter" || event.key === " ") destroy();
+  }}
+  role="button"
+  tabindex="0"
   transition:fly
   class="px-4 py-1.5 rounded min-w-30 shadow-md {styling} flex items-center gap-3 pointer-events-auto"
 >

@@ -73,7 +73,7 @@
       Darf nicht länger als 20 Zeichen sein.
     </Hint>
 
-    <div class="h-5" />
+    <div class="h-5"></div>
 
     <StepButton on:click={checkAvailability} valid={$form.valid} {loading} />
   </form>

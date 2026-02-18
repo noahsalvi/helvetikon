@@ -34,7 +34,7 @@
   </span>
   <Spellings bind:spellings={$data.spellings} />
 
-  <div class="h-5" />
+  <div class="h-5"></div>
 
   <StepButton on:click={$data.nextStep} {loading} />
 </StepLayout>

@@ -1,6 +1,6 @@
 <script>
   // @ts-nocheck
-  import { dev } from "$app/env";
+  import { dev } from "$app/environment";
   import EmailDefaultLayout from "./EmailDefaultLayout.svelte";
 
   export let user;
@@ -26,7 +26,7 @@
     </td>
   </tr>
   <tr>
-    <td style="height:100px" />
+    <td style="height:100px"></td>
   </tr>
   <tr>
     <td align="center">
