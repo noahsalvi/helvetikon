@@ -33,6 +33,20 @@ yarn preview
 - Type checks: `yarn check`
 - Prisma client generation: `yarn generate`
 - Production start locally (after build): `yarn start:prod`
+- Test DB (Docker): `yarn test:db:setup`
+- Test suites: `yarn test` / `yarn test:unit` / `yarn test:e2e`
+
+## Test database (recommended with Docker)
+1. Keep your normal development DB in `DATABASE_URL`.
+2. Use a separate test DB in `DATABASE_TEST_URL` (defaults to port `5433`).
+3. Start and seed test DB:
+```bash
+yarn test:db:setup
+```
+4. Run tests:
+```bash
+yarn test
+```
 
 ## Quick health checks
 - Home page loads and shows search

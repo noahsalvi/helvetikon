@@ -10,6 +10,7 @@
 - Keep `DATABASE_URL` for normal development only.
 - Reset only the test database before test runs (`migrate reset` + deterministic seed).
 - Do not run automated tests against the developer database.
+- Docker-first onboarding: `db-test` service on port `5433`.
 
 ## Test Layers
 - End-to-end (Playwright): critical workflows and redirects.
@@ -96,13 +97,17 @@
 - `yarn test:unit`
 - `yarn test:e2e`
 - `yarn test`
+- `yarn test:db:setup` (start/wait/reset/seed test DB)
+- `yarn test:db:down` (stop test DB)
 
 ## Dedicated Test DB Commands
 - Set `DATABASE_TEST_URL` in `.env`.
+- Start Docker test DB: `yarn test:db:up`
+- Wait for readiness: `yarn test:db:wait`
 - Reset only test DB: `yarn test:db:reset`
 - Seed test DB fixtures: `yarn test:db:seed`
-- Full reset + seed: `yarn test:db:setup`
-- Playwright E2E now performs automatic reset + seed from `DATABASE_TEST_URL` via `tests/e2e/global-setup.ts`.
+- Full start + wait + reset + seed: `yarn test:db:setup`
+- Playwright E2E now runs `test-db setup` automatically via `tests/e2e/global-setup.ts`.
 
 ## Seed Fixtures
 - Verified user: `owner.test@helvetikon.local` (password: `TestPass123!`)

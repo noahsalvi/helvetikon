@@ -11,12 +11,7 @@ export default defineConfig({
   },
   webServer: {
     command:
-      "npx -y node@18 ./node_modules/.bin/svelte-kit dev --host --port 4173",
-    env: {
-      ...process.env,
-      DATABASE_URL: process.env.DATABASE_TEST_URL,
-      NODE_ENV: "test",
-    },
+      "/bin/zsh -lc 'source .env && DATABASE_URL=\"${DATABASE_TEST_URL:-postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-password}@localhost:5433/${POSTGRES_TEST_DB:-helvetikon_test}?schema=public}\" NODE_ENV=test npx -y node@18 ./node_modules/.bin/svelte-kit dev --host --port 4173'",
     url: "http://127.0.0.1:4173",
     reuseExistingServer: true,
     timeout: 120000,
