@@ -9,7 +9,7 @@
 <table id="parent">
   <tbody>
     <tr>
-      <td align="center">
+      <td style="text-align: center;">
         <div class="card">
           <table class="frame">
             <tbody>

@@ -1,11 +1,13 @@
 import prisma from "$lib/prisma";
 import { COOKIE_MAX_AGE } from "$lib/utils/cookie-max-age";
-import type { User } from "@prisma/client";
+import type { Session, User } from "@prisma/client";
 import cookie from "cookie";
+import { randomUUID } from "crypto";
 import jwt from "jsonwebtoken";
 import { PASSWORD_SECRET } from "../secrets";
 
 const accessTokensBeingUpdated = new Map<string, Promise<string>>();
+type SessionWithUser = Session & { user: User };
 
 const expiresIn = "10m";
 
@@ -18,7 +20,10 @@ namespace AccessToken {
       preferredDialect: user.preferredDialect,
     };
 
-    const token = jwt.sign(userSafe, PASSWORD_SECRET, { expiresIn });
+    const token = jwt.sign(userSafe, PASSWORD_SECRET, {
+      expiresIn,
+      jwtid: randomUUID(),
+    });
     await prisma.session.create({ data: { token, userId: user.id } });
 
     return token;
@@ -36,10 +41,10 @@ namespace AccessToken {
     );
     accessTokensBeingUpdated.set(token, newTokenPromise);
 
-    const session = await prisma.session.findUnique({
+    const session = (await prisma.session.findUnique({
       where: { token },
       include: { user: true },
-    });
+    })) as SessionWithUser | null;
 
     if (!session) {
       newTokenPromiseResolver(null);
