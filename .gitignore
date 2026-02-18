@@ -5,6 +5,9 @@ node_modules
 /functions
 /.svelte-kit
 /package
+/playwright-report
+/test-results
+.vitest
 
 .env
 # User generated files
