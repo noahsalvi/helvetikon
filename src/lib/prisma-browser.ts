@@ -1,3 +1,3 @@
-import Prisma, * as PrismaScope from "@prisma/client";
+import { Dialect } from "@prisma/client";
 
-export const Dialect = Prisma?.Dialect || PrismaScope?.Dialect;
+export { Dialect };
