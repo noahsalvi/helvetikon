@@ -25,9 +25,9 @@
                   <h1>{title}</h1>
                 </td>
               </tr>
-              <slot />
+              <slot></slot>
               <tr>
-                <td style="height:20px" />
+                <td style="height:20px"></td>
               </tr>
             </tbody>
           </table>

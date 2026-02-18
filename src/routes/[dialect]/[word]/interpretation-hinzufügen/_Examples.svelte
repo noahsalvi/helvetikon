@@ -45,7 +45,7 @@
     {/each}
   </div>
 
-  <div class="h-1" />
+  <div class="h-1"></div>
 
   <button on:click={addExample} class="text-primary font-bold text-sm"
     >+ Beispiel hinzufügen</button

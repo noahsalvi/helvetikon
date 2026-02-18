@@ -75,7 +75,7 @@
       Darf nicht länger als 20 Zeichen sein.
     </Hint>
 
-    <div class="h-5" />
+    <div class="h-5"></div>
 
     <StepButton
       text="Erstellen"
@@ -85,7 +85,7 @@
     />
   </form>
 
-  <div class="h-5" />
+  <div class="h-5"></div>
 
   <div class="text-gray-500 bg-light-300 p-3 rounded-lg">
     Im nächsten Schritt können Bedeutungen und Beispielsätze erfasst werden.

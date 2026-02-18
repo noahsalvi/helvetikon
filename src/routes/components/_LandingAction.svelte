@@ -13,6 +13,6 @@
   font-semibold"
   {href}
 >
-  <slot />
+  <slot></slot>
   <Icon data={icon} />
 </a>

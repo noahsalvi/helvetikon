@@ -7,7 +7,7 @@
 
 <section>
   <h2 class="text-xl">Neue Wörter 🥳</h2>
-  <div class="h-1" />
+  <div class="h-1"></div>
   <div class="flex flex-wrap gap-1">
     {#each recentWords as word}
       <a

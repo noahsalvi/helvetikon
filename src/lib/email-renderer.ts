@@ -1,4 +1,5 @@
 import juicePkg from "juice";
+import { render as renderSvelte } from "svelte/server";
 
 const { juiceResources } = juicePkg;
 type JuiceOptions = juicePkg.Options;
@@ -7,16 +8,14 @@ export async function renderMail(
   Component: any,
   { data = {}, ...options }: { data?: {} } & JuiceOptions = {}
 ) {
-  const { html: rawHtml, css, head } = Component.render(data);
-
-  if (head) {
-    // eslint-disable-next-line no-console
-    console.error("Rendering a document head is not supported");
-  }
+  const rendered = renderSvelte(Component, { props: data });
+  const rawHtml = rendered.body;
+  const head = rendered.head || "";
+  const cssCode = "";
 
   const html: string = await new Promise((resolve, reject) => {
     juiceResources(
-      `${css.code ? `<style>${css.code}</style>` : ""}${rawHtml}`,
+      `${head}${cssCode ? `<style>${cssCode}</style>` : ""}${rawHtml}`,
       options,
       (err, result) => (err ? reject(err) : resolve(result))
     );

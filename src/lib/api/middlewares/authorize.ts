@@ -1,6 +1,4 @@
-import type { Session } from "$lib/models/session";
-
-export default function authorize(locals: Session) {
+export default function authorize(locals: App.Locals) {
   if (!locals.user) {
     throw {
       status: 401,

@@ -1,4 +1,5 @@
-import { ToastProps, ToastType } from "./toastProps";
+import { ToastType } from "./toastProps";
+import type { ToastProps } from "./toastProps";
 import toasts from "./toasts";
 
 export const toast = (toast: ToastProps, showNextVisit?: boolean) => {

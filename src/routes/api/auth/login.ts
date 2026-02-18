@@ -35,6 +35,13 @@ export async function post({ body, locals }) {
     path: "/",
   });
 
+  locals.user = {
+    id: user.id,
+    email: user.email,
+    username: user.username,
+    preferredDialect: user.preferredDialect,
+  };
+
   return {
     headers: {
       "set-cookie": [jwtCookie, hasLoggedInBefore],

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { session } from "$app/stores";
+  import { page } from "$app/stores";
 
   import Icon from "$lib/components/Icon";
   import dialects from "$lib/dialects";
@@ -36,7 +36,7 @@
 
           // Sort after the dialects object and preferredDialect
           const sortedWords = words.sort((a, b) => {
-            if (a.dialect === $session.user?.preferredDialect) return -1;
+            if (a.dialect === $page.data.user?.preferredDialect) return -1;
             const aPos = dialectKeys.indexOf(a.dialect);
             const bPos = dialectKeys.indexOf(b.dialect);
             return aPos - bPos;
@@ -79,7 +79,7 @@
     </button>
   </div>
 
-  <div class="h-3" />
+  <div class="h-3"></div>
 
   <div
     class="absolute w-full bg-white text-sm text-black rounded-lg shadow-lg overflow-hidden"
@@ -87,10 +87,10 @@
     {#each searchResultWords as word}
       <a
         href="/{dialects[word.dialect].slug}/{word.swissGerman}"
-        class="flex items-center flex-wrap px-3 py-2 border-light-700 not-last:border-b-2 
+        class="flex items-center flex-wrap px-3 py-2 border-light-700 not-last:border-b-2
         {r(
           'bg-hint bg-opacity-40',
-          word.dialect === $session.user?.preferredDialect
+          word.dialect === $page.data.user?.preferredDialect
         )}"
       >
         <div class="bg-accent text-sm text-white p-1 mr-3 rounded-md">

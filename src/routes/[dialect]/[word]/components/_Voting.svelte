@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { session } from "$app/stores";
+  import { page } from "$app/stores";
   import api from "$lib/api";
   import Icon from "$lib/components/Icon";
   import { warn } from "$lib/components/Toaster/toast";
@@ -7,15 +7,16 @@
     faArrowCircleDown,
     faArrowCircleUp,
   } from "@fortawesome/free-solid-svg-icons";
-  import type { User } from "@prisma/client";
+  type PublicUser = { username: string };
 
   export let interpretationId: number;
-  export let upvotes: User[];
-  export let downvotes: User[];
+  export let upvotes: PublicUser[];
+  export let downvotes: PublicUser[];
 
   const upvote = () => {
+    const currentUser = $page.data.user;
     const upvoteIndex = upvotes.findIndex(
-      (upvote) => upvote.username === $session.user.username
+      (vote) => vote.username === currentUser.username
     );
 
     let upvote: boolean;
@@ -23,10 +24,8 @@
       upvotes = upvotes.splice(upvoteIndex, 1);
       upvote = false;
     } else {
-      upvotes = [...upvotes, $session.user];
-      downvotes = downvotes.filter(
-        (d) => d.username !== $session.user?.username
-      );
+      upvotes = [...upvotes, currentUser];
+      downvotes = downvotes.filter((d) => d.username !== currentUser?.username);
       upvote = true;
     }
 
@@ -34,8 +33,9 @@
   };
 
   const downvote = () => {
+    const currentUser = $page.data.user;
     const downvoteIndex = downvotes.findIndex(
-      (downvote) => downvote.username === $session.user.username
+      (vote) => vote.username === currentUser.username
     );
 
     let downvote: boolean;
@@ -43,8 +43,8 @@
       downvotes = downvotes.splice(downvoteIndex, 1);
       downvote = false;
     } else {
-      downvotes = [...downvotes, $session.user];
-      upvotes = upvotes.filter((u) => u.username !== $session.user?.username);
+      downvotes = [...downvotes, currentUser];
+      upvotes = upvotes.filter((u) => u.username !== currentUser?.username);
       downvote = true;
     }
 
@@ -64,16 +64,16 @@
   };
 
   const authorizeVote = (callback) => {
-    if (!$session.user) return warn("Nur angemeldete Nutzer dürfen abstimmen");
+    if (!$page.data.user) return warn("Nur angemeldete Nutzer dürfen abstimmen");
     callback();
   };
 
   $: score = upvotes.length - downvotes.length;
   $: selfUpvote = upvotes.find(
-    (upvote) => upvote.username === $session.user?.username
+    (vote) => vote.username === $page.data.user?.username
   );
   $: selfDownvote = downvotes.find(
-    (downvote) => downvote.username === $session.user?.username
+    (vote) => vote.username === $page.data.user?.username
   );
 </script>
 

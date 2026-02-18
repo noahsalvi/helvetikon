@@ -1,5 +1,5 @@
 <script>
-  import { dev } from "$app/env";
+  import { dev } from "$app/environment";
 
   import EmailDefaultLayout from "./EmailDefaultLayout.svelte";
 
@@ -25,7 +25,7 @@
     </td>
   </tr>
   <tr>
-    <td style="height:100px" />
+    <td style="height:100px"></td>
   </tr>
   <tr>
     <td style="text-align: center;">

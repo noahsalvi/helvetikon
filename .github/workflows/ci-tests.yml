@@ -18,7 +18,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: yarn
 
       - name: Install dependencies
@@ -26,6 +26,9 @@ jobs:
 
       - name: Typecheck
         run: yarn run check
+
+      - name: Build validation
+        run: yarn build
 
       - name: Unit and API tests
         run: yarn test:unit
@@ -41,7 +44,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: yarn
 
       - name: Prepare env
@@ -52,6 +55,7 @@ jobs:
 
       - name: Set up test database
         run: yarn test:db:setup
+
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
 

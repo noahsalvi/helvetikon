@@ -17,6 +17,6 @@
   {#if loading}
     <Icon data={faSpinner} spin />
   {:else}
-    <slot />
+    <slot></slot>
   {/if}
 </button>

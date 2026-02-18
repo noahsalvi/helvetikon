@@ -2,7 +2,7 @@
 
 ## Tech stack
 - SvelteKit (file-based routing, server endpoints in `src/routes/api`)
-- Svelte + TypeScript
+- Svelte 5 + TypeScript
 - Prisma ORM with PostgreSQL
 - WindiCSS via Vite plugin
 - Node adapter (`@sveltejs/adapter-node`)
@@ -11,17 +11,21 @@
 ## Top-level structure
 - `src/routes`: app pages and API endpoints
 - `src/lib`: shared domain logic, API helper, auth helpers, components
-- `src/hooks`: request auth/session handling
+- `src/hooks.server.ts`: request auth/session handling
 - `prisma`: schema and SQL migrations
 - `.github/workflows`: CI/CD workflow
 - `Dockerfile`, `docker-compose.yml`: deploy/runtime definition
 
 ## Auth/session model
 - Access token is stored in cookie `access-token`.
-- Request auth is resolved in `src/hooks/handle.ts`.
-- `handle` verifies JWT and populates `request.locals.user`.
+- Request auth is resolved in `src/hooks.server.ts`.
+- `handle` verifies JWT and populates `event.locals.user`.
 - On expired JWT, it attempts token rotation through `AccessToken.update(...)`.
-- `getSession` exposes `locals.user` to frontend loads.
+- Root server layout load (`src/routes/+layout.server.ts`) exposes `locals.user` to frontend via `data.user`.
+
+## Form handling
+- Form state/validation uses `svelte-use-form@3.0.0-beta.0` (Svelte 5 compatible).
+- Auth and add-word flows rely on `useForm`, field validators, and hint rendering from that package.
 
 ## Data model (Prisma)
 Core entities in `prisma/schema.prisma`:

@@ -19,7 +19,7 @@
       <Logo class />
     </div>
 
-    <div class="h-3" />
+    <div class="h-3"></div>
 
     <div class="text-center text-gray-300 text-sm">Kontaktiere mich unter:</div>
     <div class="text-center text-xl">
@@ -28,11 +28,11 @@
       </a>
     </div>
 
-    <div class="h-3" />
+    <div class="h-3"></div>
 
     <div class="flex items-center justify-center">
       <a href="https://github.com/noahsalvi/helvetikon">Github</a>
-      <div class="h-1 w-1 mx-3 rounded-full bg-gray-300" />
+      <div class="h-1 w-1 mx-3 rounded-full bg-gray-300"></div>
       <a href="/faq">FAQ</a>
     </div>
   </div>
